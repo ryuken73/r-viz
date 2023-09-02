@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useColor } from 'color-thief-react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import background1 from 'resources/Cul2.jpg';
+// import background1 from 'resources/Cul2.jpg';
+import background1 from 'resources/ji.jpg';
 import Portal from 'Components/Portal';
 import Simple from 'Components/Victory';
 import Sample from 'Components/Victory/Sample';
@@ -27,9 +29,10 @@ const SHOW_HEADER_SCROLL_Y = 200;
 const HIDE_HEIGHT = '80px';
 
 const StyledContainer = styled(Container)`
-  background-image: url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5));
+  /* background-image: url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5));
   background-repeat: no-repeat, no-repeat;
   background-position: top center, right;
+  background-attachment: fixed; */
   /* background-size: contain; */
 `
 
@@ -41,6 +44,11 @@ const TopHeader = styled.div`
   width: 100%;
   background-color: ${props => props.show && 'black'};
   z-index: 1;
+  background-image: url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5));
+  background-repeat: no-repeat, no-repeat;
+  background-position: top center, right;
+  background-attachment: fixed;
+  background-size: contain;
 `
 const ScrollContainer = styled.div`
   transform: translateY(${RELATIVE_HEIGHT});
@@ -81,7 +89,7 @@ const BigNumber = styled(CommonDiv)`
   background: transparent;
   font-size: ${props => props.size ? `${props.size}rem` : '2rem'};
   backdrop-filter: blur(5px);
-  color: darkblue;
+  color: white;
 `
 const TopHero = styled.div`
   height: ${RELATIVE_HEIGHT};
@@ -98,6 +106,8 @@ const Hero = styled.div`
 
 function App() {
   const [showTopHeader, setShowTopHeader] = React.useState(false);
+  const { data, loading, error} = useColor(background1, 'rgbString');
+  console.log(data, loading, error)
   const handleScroll = event => {
     const scrollY = document.documentElement.scrollTop
     if(scrollY > SHOW_HEADER_SCROLL_Y - 50){
