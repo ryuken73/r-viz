@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import background1 from 'resources/Cul2.jpg';
 import Portal from 'Components/Portal';
 import Simple from 'Components/Victory';
 import Sample from 'Components/Victory/Sample';
+import {throttle} from 'utils';
 import './App.css';
 
 const GraphContainer = styled.div`
@@ -14,13 +16,22 @@ const GraphContainer = styled.div`
 `
 const CommonDiv = styled.div`
   text-align: center;
-  background: teal;
+  background: black;
+  /* backdrop-filter: blur(10px); */
   color: white;
   font-size: 1rem;
   border-radius: 5px;
 `
 const RELATIVE_HEIGHT = '80px';
+const SHOW_HEADER_SCROLL_Y = 200;
 const HIDE_HEIGHT = '80px';
+
+const StyledContainer = styled(Container)`
+  background-image: url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5));
+  background-repeat: no-repeat, no-repeat;
+  background-position: top center, right;
+  /* background-size: contain; */
+`
 
 const TopHeader = styled.div`
   position: fixed;
@@ -28,19 +39,14 @@ const TopHeader = styled.div`
   left: 0;
   height: ${RELATIVE_HEIGHT};
   width: 100%;
-  background-color: yellow;
+  background-color: ${props => props.show && 'black'};
   z-index: 1;
 `
-
 const ScrollContainer = styled.div`
   transform: translateY(${RELATIVE_HEIGHT});
 `
-const SingleColumnBox = styled.div`
-  /* margin-top: 1rem; */
-`
-const TowColumnBox = styled.div`
-
-`
+const SingleColumnBox = styled.div` `
+const TowColumnBox = styled.div` `
 const Header = styled(CommonDiv)`
   color: lightgrey;
   border-bottom-left-radius: 0px;
@@ -54,12 +60,32 @@ const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 `
+const Columns = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+`
+const GraphBox = styled.div`
+  width: 45%;
+`
+const Card = styled.div`
+  width: 100%;
+  &:after {
+    padding-bottom: 100%;
+    content: "abc";
+    display: block;
+    background-color: teal;
+  }
+`
 const BigNumber = styled(CommonDiv)`
-  font-size: 2rem;
+  background: transparent;
+  font-size: ${props => props.size ? `${props.size}rem` : '2rem'};
+  backdrop-filter: blur(5px);
+  color: darkblue;
 `
 const TopHero = styled.div`
   height: ${RELATIVE_HEIGHT};
-  height: 250px;
+  height: ${SHOW_HEADER_SCROLL_Y}px;
   padding-top: calc(80px + 10px);
 `
 const Hero = styled.div`
@@ -69,21 +95,33 @@ const Hero = styled.div`
   margin: 0 auto;
 `
 
+
 function App() {
+  const [showTopHeader, setShowTopHeader] = React.useState(false);
+  const handleScroll = event => {
+    const scrollY = document.documentElement.scrollTop
+    if(scrollY > SHOW_HEADER_SCROLL_Y - 50){
+      setShowTopHeader(true);
+    } else {
+      setShowTopHeader(false);
+    }
+  }
+  const onScroll = throttle(handleScroll, 50);
   React.useEffect(() => {
-    document.addEventListener('sticky-change', (event) => {
-      console.log(event.detail.target, event.detail.sticking)
-    })
-  }, [])
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    }
+  }, [onScroll])
   return (
-    <>
+    <div>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <TopHeader>
+      <StyledContainer onScroll={handleScroll} maxWidth="lg">
+        <TopHeader show={showTopHeader}>
           {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
         </TopHeader> 
         <TopHero>
-          <Hero>hero message</Hero>
+          <BigNumber size={5}>13.5%</BigNumber>
         </TopHero>
         <ScrollContainer>
           <SingleColumnBox>
@@ -110,10 +148,16 @@ function App() {
             <Contents>Swans are birds of the family Anatidae within the genus Cygnus. The swans' close relatives include the geese and ducks. Swans are grouped with the closely related geese in the subfamily Anserinae where they form the tribe Cygnini. Sometimes, they are considered a distinct subfamily, Cygninae. There are six or seven living (and one extinct) species of swan in the genus Cygnus; in addition, there is another species known as the coscoroba swan, although this species is no longer considered one of the true swans. Swans usually mate for life, although “divorce” sometimes occurs, particularly following nesting failure, and if a mate dies, the remaining swan will take up with another. The number of eggs in each clutch ranges from three to eight.</Contents>
           </SingleColumnBox>
           <p></p>
-          <SingleColumnBox height="long">
-            <Header>흐린상태3</Header>
-            <Contents>Swans are birds of the family Anatidae within the genus Cygnus. The swans' close relatives include the geese and ducks. Swans are grouped with the closely related geese in the subfamily Anserinae where they form the tribe Cygnini. Sometimes, they are considered a distinct subfamily, Cygninae. There are six or seven living (and one extinct) species of swan in the genus Cygnus; in addition, there is another species known as the coscoroba swan, although this species is no longer considered one of the true swans. Swans usually mate for life, although “divorce” sometimes occurs, particularly following nesting failure, and if a mate dies, the remaining swan will take up with another. The number of eggs in each clutch ranges from three to eight.</Contents>
-          </SingleColumnBox>
+          <Columns>
+            <GraphBox>
+              <Header>흐린상태3</Header>
+              <Card></Card>
+            </GraphBox>
+            <GraphBox>
+              <Header>흐린상태4</Header>
+              <Card></Card>
+            </GraphBox>
+          </Columns>
           <p></p>
           <SingleColumnBox height="long">
             <Header>흐린상태</Header>
@@ -133,8 +177,8 @@ function App() {
             <SingleColumnBox></SingleColumnBox>
           </TowColumnBox>
         </ScrollContainer>
-      </Container>
-    </>
+      </StyledContainer>
+    </div>
   );
 }
 
