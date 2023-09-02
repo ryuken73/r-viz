@@ -19,15 +19,21 @@ const CommonDiv = styled.div`
   font-size: 1rem;
   border-radius: 5px;
 `
-const TopContents = styled.div`
-  /* min-height: 10rem; */
-  /* position: fixed; */
+const RELATIVE_HEIGHT = '80px';
+const HIDE_HEIGHT = '80px';
+
+const TopHeader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: ${RELATIVE_HEIGHT};
+  width: 100%;
+  background-color: yellow;
   z-index: 1;
-  top: 0px;
-  height: 80px;
 `
+
 const ScrollContainer = styled.div`
-  transform: translateY(80px);
+  transform: translateY(${RELATIVE_HEIGHT});
 `
 const SingleColumnBox = styled.div`
   /* margin-top: 1rem; */
@@ -51,6 +57,17 @@ const Contents = styled(CommonDiv)`
 const BigNumber = styled(CommonDiv)`
   font-size: 2rem;
 `
+const TopHero = styled.div`
+  height: ${RELATIVE_HEIGHT};
+  height: 250px;
+  padding-top: calc(80px + 10px);
+`
+const Hero = styled.div`
+  width: 200px;
+  height: 100px;
+  background: #ccc;
+  margin: 0 auto;
+`
 
 function App() {
   React.useEffect(() => {
@@ -62,11 +79,12 @@ function App() {
     <>
       <CssBaseline />
       <Container maxWidth="lg">
-        <TopContents>
-          <Contents>
-            <Box>25%</Box>
-          </Contents>
-        </TopContents>
+        <TopHeader>
+          {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
+        </TopHeader> 
+        <TopHero>
+          <Hero>hero message</Hero>
+        </TopHero>
         <ScrollContainer>
           <SingleColumnBox>
             <Header>흐린상태XX</Header>
