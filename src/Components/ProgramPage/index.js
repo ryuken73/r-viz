@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import { usePalette } from 'color-thief-react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
+import BottomDrawer from 'Components/BottomDrawer';
+import DrawBody from 'Components/BottomDrawer/DrawBody';
 import background1 from 'resources/Cul2.jpg';
 import {throttle} from 'utils';
 
@@ -91,6 +93,7 @@ function ProgramPage(props) {
   const {programImage} = props;
   const backgroundImage = programImage || background1; 
   const [ showTopHeader, setShowTopHeader ] = React.useState(false);
+  const [ drawOpen, setDrawerOpen ] = React.useState(false);
   const [ colors, setColors ] = React.useState([])
   const containerRef = React.useRef(null);
   const { data, loading, error} = usePalette(backgroundImage, 5, 'rgbString');
@@ -121,6 +124,10 @@ function ProgramPage(props) {
     }
   }, [onScroll])
 
+  const toggleDrawer = React.useCallback(() => {
+    setDrawerOpen(drawOpen => !drawOpen);
+  }, [])
+
   return (
     <PageContainer ref={containerRef}>
       <CssBaseline />
@@ -128,12 +135,14 @@ function ProgramPage(props) {
         <TopHeader 
           show={showTopHeader}
           backgroundImage={backgroundImage}   
+          backgroundColor={color1}
         >
           {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
         </TopHeader> 
         <TopHero>
           <BigNumber size={5}>13.5%</BigNumber>
         </TopHero>
+        <button onClick={toggleDrawer}>show detail</button>
         <ScrollContainer>
           <SingleColumnBox color2={color2} color4={color4}>
             <Header>흐린상태XX</Header>
@@ -187,6 +196,13 @@ function ProgramPage(props) {
             <SingleColumnBox></SingleColumnBox>
             <SingleColumnBox></SingleColumnBox>
           </TowColumnBox>
+          <BottomDrawer
+            drawOpen={drawOpen}
+            toggleDrawer={toggleDrawer}
+            backgroundColor={color3}
+          >
+            <DrawBody></DrawBody>
+          </BottomDrawer>
         </ScrollContainer>
       </StyledContainer>
 
