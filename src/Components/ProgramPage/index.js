@@ -21,7 +21,9 @@ const TopHeader = styled.div`
   width: 100%;
   background-color: ${props => props.show && 'black'};
   z-index: 1;
-  background-image: url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5));
+  background-image: ${props => props.backgroundImage ? 
+    `url(${props.backgroundImage}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`:
+    `url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`};
   background-repeat: no-repeat, no-repeat;
   background-position: top center, right;
   background-attachment: fixed;
@@ -85,15 +87,19 @@ const Card = styled.div`
   }
 `
 
-function ProgramPage() {
+function ProgramPage(props) {
+  const {programImage} = props;
+  const backgroundImage = programImage || background1; 
   const [ showTopHeader, setShowTopHeader ] = React.useState(false);
   const [ colors, setColors ] = React.useState([])
-  const { data, loading, error} = usePalette(background1, 5, 'rgbString');
+  const containerRef = React.useRef(null);
+  const { data, loading, error} = usePalette(backgroundImage, 5, 'rgbString');
   const [color1, color2, color3, color4, color5] = colors;
 
   React.useEffect(() => {
     if(loading === false && error === undefined){
-      document.body.style.cssText = `background: ${data[0]} !important`;  
+      // document.body.style.cssText = `background: ${data[0]} !important`;  
+      containerRef.current.style.cssText = `background: ${data[0]} !important`;  
       setColors(data)
     }
   }, [data, error, loading])
@@ -116,10 +122,13 @@ function ProgramPage() {
   }, [onScroll])
 
   return (
-    <PageContainer>
+    <PageContainer ref={containerRef}>
       <CssBaseline />
       <StyledContainer onScroll={handleScroll} maxWidth="lg">
-        <TopHeader show={showTopHeader}>
+        <TopHeader 
+          show={showTopHeader}
+          backgroundImage={backgroundImage}   
+        >
           {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
         </TopHeader> 
         <TopHero>
