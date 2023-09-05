@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import { usePalette } from 'color-thief-react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -10,7 +11,7 @@ import DrawBody from 'Components/BottomDrawer/DrawBody';
 import background1 from 'resources/Cul2.jpg';
 import {throttle} from 'utils';
 
-const RELATIVE_HEIGHT = '80px';
+const HEADER_IMAGE_HEIGHT = '25vw';
 const SHOW_HEADER_SCROLL_Y = 200;
 
 const PageContainer = styled.div`
@@ -20,18 +21,14 @@ const TopHeader = styled.div`
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 25vw;
+  height: ${HEADER_IMAGE_HEIGHT};
   z-index: 1;
 `
 const StyledImage = styled.img`
   height: 100%;
-  width: 100%;
   object-fit: cover;
 `
 const TopHero = styled.div`
-  height: ${SHOW_HEADER_SCROLL_Y}px;
-  padding-top: calc(25vw + 10px);
 `
 const CommonDiv = styled.div`
   text-align: center;
@@ -45,7 +42,7 @@ const BigNumber = styled(CommonDiv)`
   color: white;
 `
 const ScrollContainer = styled.div`
-  transform: translateY(calc(25vw + 5px));
+  /* transform: translateY(calc(25vw)); */
 `
 const SingleColumnBox = styled.div`
 `;
@@ -56,8 +53,10 @@ const Header = styled(CommonDiv)`
   margin-bottom: 0.05rem;
   position: -webkit-sticky;
   position: sticky;
-  top: 0px;
-  background: yellow;
+  /* top: 0px; */
+  top: 25vw;
+  background: black;
+  color: white;
 `
 const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
@@ -81,7 +80,8 @@ const Card = styled.div`
     padding-bottom: 100%;
     content: "";
     display: block;
-    background-color: teal;
+    background-color: transparent;
+    border: 1px solid black;
   }
 `
 
@@ -127,18 +127,15 @@ function ProgramPage(props) {
   return (
     <PageContainer ref={containerRef}>
       <CssBaseline />
-        <TopHeader 
-          show={showTopHeader}
-          backgroundImage={backgroundImage}   
-          backgroundColor={color1}
-        >
-          <StyledImage src={backgroundImage}></StyledImage>
-        </TopHeader> 
+      <TopHeader 
+        show={showTopHeader}
+      >
+        <StyledImage src={backgroundImage}></StyledImage>
+      </TopHeader> 
+      <TopHero onClick={toggleDrawer}>
+        <BigNumber size={5}>13.5%</BigNumber>
+      </TopHero>
       <StyledContainer onScroll={handleScroll} maxWidth="lg">
-        <TopHero>
-          <BigNumber size={5}>13.5%</BigNumber>
-        </TopHero>
-        <button onClick={toggleDrawer}>show detail</button>
         <ScrollContainer>
           <SingleColumnBox color2={color2} color4={color4}>
             <Header>흐린상태XX</Header>
