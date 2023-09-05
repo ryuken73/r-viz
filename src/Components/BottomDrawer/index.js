@@ -8,9 +8,9 @@ function BottomDraw(props) {
   const {drawOpen=false, backgroundColor='black', toggleDrawer, children} = props;
   const ModalElement = css`
     position: absolute;
-    top: 30px;
+    top: 50px;
     background-color: ${backgroundColor};
-    width: 100%;
+    width: 95vw;
     max-width: 700px;
     min-height: 100%;
     border-top-left-radius: 4px;
@@ -18,7 +18,7 @@ function BottomDraw(props) {
     text-align: center;
 
     @media (max-width: 767px) {
-      width: 100%;
+      width: 95vw;
     }
   `
   return (
