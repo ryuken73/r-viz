@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import { usePalette } from 'color-thief-react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -15,26 +16,39 @@ const SHOW_HEADER_SCROLL_Y = 200;
 const PageContainer = styled.div`
 `
 const StyledContainer = styled(Container)` `
+// const TopHeader = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: ${RELATIVE_HEIGHT};
+//   width: 100%;
+//   background-color: ${props => props.show && 'black'};
+//   z-index: 1;
+//   background-image: ${props => props.backgroundImage ? 
+//     `url(${props.backgroundImage}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`:
+//     `url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`};
+//   background-repeat: no-repeat, no-repeat;
+//   background-position: top center, right;
+//   background-attachment: fixed;
+//   background-size: contain;
+// `
 const TopHeader = styled.div`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
-  height: ${RELATIVE_HEIGHT};
   width: 100%;
-  background-color: ${props => props.show && 'black'};
+  height: 25vw;
   z-index: 1;
-  background-image: ${props => props.backgroundImage ? 
-    `url(${props.backgroundImage}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`:
-    `url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`};
-  background-repeat: no-repeat, no-repeat;
-  background-position: top center, right;
-  background-attachment: fixed;
-  background-size: contain;
+`
+const StyledImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 `
 const TopHero = styled.div`
-  height: ${RELATIVE_HEIGHT};
+  /* height: ${RELATIVE_HEIGHT}; */
   height: ${SHOW_HEADER_SCROLL_Y}px;
-  padding-top: calc(80px + 10px);
+  padding-top: calc(25vw + 10px);
 `
 const CommonDiv = styled.div`
   text-align: center;
@@ -48,7 +62,8 @@ const BigNumber = styled(CommonDiv)`
   color: white;
 `
 const ScrollContainer = styled.div`
-  transform: translateY(${RELATIVE_HEIGHT});
+  /* transform: translateY(${RELATIVE_HEIGHT}); */
+  transform: translateY(calc(25vw + 5px));
 `
 const SingleColumnBox = styled.div`
   /* color: ${props => props.color2 ? props.color2 : "lightgrey"}; */
@@ -62,6 +77,7 @@ const Header = styled(CommonDiv)`
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
+  background: yellow;
 `
 const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
@@ -128,17 +144,28 @@ function ProgramPage(props) {
     setDrawerOpen(drawOpen => !drawOpen);
   }, [])
 
+  const FixedDiv = styled.div`
+    position: fixed;
+    color: black;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  `
+
   return (
     <PageContainer ref={containerRef}>
       <CssBaseline />
-      <StyledContainer onScroll={handleScroll} maxWidth="lg">
         <TopHeader 
           show={showTopHeader}
           backgroundImage={backgroundImage}   
           backgroundColor={color1}
         >
+          <StyledImage src={backgroundImage}></StyledImage>
           {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
         </TopHeader> 
+      <StyledContainer onScroll={handleScroll} maxWidth="lg">
         <TopHero>
           <BigNumber size={5}>13.5%</BigNumber>
         </TopHero>
