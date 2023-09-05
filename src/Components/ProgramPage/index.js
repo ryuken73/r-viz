@@ -16,22 +16,6 @@ const SHOW_HEADER_SCROLL_Y = 200;
 const PageContainer = styled.div`
 `
 const StyledContainer = styled(Container)` `
-// const TopHeader = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   height: ${RELATIVE_HEIGHT};
-//   width: 100%;
-//   background-color: ${props => props.show && 'black'};
-//   z-index: 1;
-//   background-image: ${props => props.backgroundImage ? 
-//     `url(${props.backgroundImage}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`:
-//     `url(${background1}), linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5))`};
-//   background-repeat: no-repeat, no-repeat;
-//   background-position: top center, right;
-//   background-attachment: fixed;
-//   background-size: contain;
-// `
 const TopHeader = styled.div`
   position: sticky;
   top: 0;
@@ -46,7 +30,6 @@ const StyledImage = styled.img`
   object-fit: cover;
 `
 const TopHero = styled.div`
-  /* height: ${RELATIVE_HEIGHT}; */
   height: ${SHOW_HEADER_SCROLL_Y}px;
   padding-top: calc(25vw + 10px);
 `
@@ -62,12 +45,9 @@ const BigNumber = styled(CommonDiv)`
   color: white;
 `
 const ScrollContainer = styled.div`
-  /* transform: translateY(${RELATIVE_HEIGHT}); */
   transform: translateY(calc(25vw + 5px));
 `
 const SingleColumnBox = styled.div`
-  /* color: ${props => props.color2 ? props.color2 : "lightgrey"}; */
-  /* background: ${props => props.color4 ? props.color4 : "lightgrey"}; */
 `;
 const TowColumnBox = styled.div` `
 const Header = styled(CommonDiv)`
@@ -144,16 +124,6 @@ function ProgramPage(props) {
     setDrawerOpen(drawOpen => !drawOpen);
   }, [])
 
-  const FixedDiv = styled.div`
-    position: fixed;
-    color: black;
-    width: 100px;
-    height: 100px;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  `
-
   return (
     <PageContainer ref={containerRef}>
       <CssBaseline />
@@ -163,7 +133,6 @@ function ProgramPage(props) {
           backgroundColor={color1}
         >
           <StyledImage src={backgroundImage}></StyledImage>
-          {/* <TopHeaderContent color="white">☰</TopHeaderContent> */}
         </TopHeader> 
       <StyledContainer onScroll={handleScroll} maxWidth="lg">
         <TopHero>
