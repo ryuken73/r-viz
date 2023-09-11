@@ -249,7 +249,7 @@ function ProgramPage(props) {
           <BottomDrawer
             drawOpen={drawOpen}
             toggleDrawer={toggleDrawer}
-            backgroundColor={color3}
+            backgroundColor={'rgb(33 3 3)'}
           >
             <DrawBody></DrawBody>
           </BottomDrawer>
