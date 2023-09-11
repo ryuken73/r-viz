@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import BottomDrawer from 'Components/BottomDrawer';
 import DrawBody from 'Components/BottomDrawer/DrawBody';
+import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import background1 from 'resources/Cul2.jpg';
 import {throttle} from 'utils';
 
@@ -53,6 +54,12 @@ const TopHero = styled.div`
   margin-bottom: 1rem;
   border-radius: 5px;
 `
+const TopHeroContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
 const CommonDiv = styled.div`
   text-align: center;
   font-size: 1rem;
@@ -61,9 +68,13 @@ const CommonDiv = styled.div`
   -webkit-backdrop-filter: blur(20px);
 `
 const BigNumber = styled(CommonDiv)`
+  flex: ${props => props.flex};
   background: transparent;
   font-size: ${props => props.size ? `${props.size}rem` : '2rem'};
-  color: white;
+`
+const TextSmall = styled(CommonDiv)`
+  flex: ${props => props.flex};
+  font-size: ${props => props.size ? `${props.size}rem` : '1rem'};
 `
 const ScrollContainer = styled.div`
   /* transform: translateY(calc(25vw)); */
@@ -118,6 +129,7 @@ function ProgramPage(props) {
   const [ showTopHeader, setShowTopHeader ] = React.useState(false);
   const [ drawOpen, setDrawerOpen ] = React.useState(false);
   const [ colors, setColors ] = React.useState([])
+  const [ totalRecv, setTotalRecv ] = React.useState(1232)
   const containerRef = React.useRef(null);
   const { data, loading, error} = usePalette(backgroundImage, 5, 'rgbString');
   const [color1, color2, color3, color4, color5] = colors;
@@ -130,6 +142,17 @@ function ProgramPage(props) {
       setColors(data)
     }
   }, [data, error, loading])
+
+  React.useEffect(() => {
+    // const timer = setInterval(() => {
+    //   setTotalRecv(totalRecv => {
+    //     return totalRecv + parseInt((Math.random() * 1000).toFixed(0));
+    //   })
+    // }, 2000)
+    // return () => {
+    //   clearInterval(timer)
+    // }
+  }, [])
 
   const handleScroll = event => {
     const scrollY = document.documentElement.scrollTop
@@ -162,7 +185,13 @@ function ProgramPage(props) {
       </TopHeader> 
       <StyledContainer onScroll={handleScroll} maxWidth="lg">
       <TopHero onClick={toggleDrawer}>
-        <BigNumber size={5}>13.5%</BigNumber>
+        <TextSmall>현재 동시 시청자수</TextSmall>
+        <TopHeroContent>
+          <BigNumber size={5} flex={5}>
+            <AnimatedNumber number={totalRecv} />
+          </BigNumber>
+          <TextSmall size={2} flex={1}>명</TextSmall>
+        </TopHeroContent>
       </TopHero>
         <ScrollContainer>
           <SingleColumnBox color2={color2} color4={color4}>
