@@ -15,6 +15,23 @@ const HEADER_IMAGE_HEIGHT = '25vw';
 const SHOW_HEADER_SCROLL_Y = 200;
 
 const PageContainer = styled.div`
+  position: relative;
+  contain: paint;
+  color: white;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 400%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background: black;
+    background-image: ${props => `url(${props.programImage})`};
+    background-blend-mode: hard-light;
+    transform: rotate(90deg) scale(3);
+    filter: grayscale(50%) brightness(0.4);
+  };
 `
 const StyledContainer = styled(Container)` `
 const TopHeader = styled.div`
@@ -22,23 +39,30 @@ const TopHeader = styled.div`
   top: 0;
   left: 0;
   height: ${HEADER_IMAGE_HEIGHT};
-  z-index: 1;
+  z-index: 10;
+  filter: grayscale(50%) brightness(0.9);
 `
 const StyledImage = styled.img`
   height: 100%;
   object-fit: cover;
 `
 const TopHero = styled.div`
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
 `
 const CommonDiv = styled.div`
   text-align: center;
   font-size: 1rem;
   border-radius: 5px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 `
 const BigNumber = styled(CommonDiv)`
   background: transparent;
   font-size: ${props => props.size ? `${props.size}rem` : '2rem'};
-  backdrop-filter: blur(5px);
   color: white;
 `
 const ScrollContainer = styled.div`
@@ -55,8 +79,9 @@ const Header = styled(CommonDiv)`
   position: sticky;
   /* top: 0px; */
   top: 25vw;
-  background: black;
-  color: white;
+  /* background: blue; */
+  /* color: lightgrey; */
+  z-index: 5;
 `
 const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
@@ -81,7 +106,9 @@ const Card = styled.div`
     content: "";
     display: block;
     background-color: transparent;
-    border: 1px solid black;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    /* border: 1px solid black; */
   }
 `
 
@@ -98,7 +125,8 @@ function ProgramPage(props) {
   React.useEffect(() => {
     if(loading === false && error === undefined){
       // document.body.style.cssText = `background: ${data[0]} !important`;  
-      containerRef.current.style.cssText = `background: ${data[0]} !important`;  
+      // containerRef.current.style.cssText = `background: ${data[0]} !important`;  
+      containerRef.current.style.cssText = `background-image: ${backgroundImage} `
       setColors(data)
     }
   }, [data, error, loading])
@@ -125,17 +153,17 @@ function ProgramPage(props) {
   }, [])
 
   return (
-    <PageContainer ref={containerRef}>
+    <PageContainer ref={containerRef} programImage={programImage}>
       <CssBaseline />
       <TopHeader 
         show={showTopHeader}
       >
         <StyledImage src={backgroundImage}></StyledImage>
       </TopHeader> 
+      <StyledContainer onScroll={handleScroll} maxWidth="lg">
       <TopHero onClick={toggleDrawer}>
         <BigNumber size={5}>13.5%</BigNumber>
       </TopHero>
-      <StyledContainer onScroll={handleScroll} maxWidth="lg">
         <ScrollContainer>
           <SingleColumnBox color2={color2} color4={color4}>
             <Header>흐린상태XX</Header>
@@ -198,7 +226,6 @@ function ProgramPage(props) {
           </BottomDrawer>
         </ScrollContainer>
       </StyledContainer>
-
     </PageContainer>
   )
 }
