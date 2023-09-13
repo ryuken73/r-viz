@@ -8,6 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import BottomDrawer from 'Components/BottomDrawer';
 import DrawBody from 'Components/BottomDrawer/DrawBody';
+import F2 from 'Components/Chart/F2';
+import ParallaxBox from 'Components/Common/ParallaxBox';
 import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import background1 from 'resources/Cul2.jpg';
 import {throttle} from 'utils';
@@ -196,7 +198,7 @@ function ProgramPage(props) {
         <ScrollContainer>
           <SingleColumnBox color2={color2} color4={color4}>
             <Header>흐린상태XX</Header>
-            <Contents>날씨</Contents>
+            <F2></F2>
             <BigNumber>100</BigNumber>
           </SingleColumnBox>
           <p></p>
