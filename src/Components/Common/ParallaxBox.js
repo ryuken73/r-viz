@@ -5,7 +5,7 @@ function ParallaxBox(props) {
   const {speed} = props;
   return (
     <Parallax speed={speed}>
-      <div style={{fontSize:"20px", color: "white"}}>ParallaxBox</div>
+      <div style={{fontSize:"20px", color: "white", textAlign: 'center'}}>ParallaxBox</div>
     </Parallax>
   )
 }

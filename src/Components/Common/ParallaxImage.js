@@ -1,0 +1,40 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Parallax, Background } from 'react-parallax';
+
+const StyledImage = styled.img`
+  filter: brightness(0.3) grayscale(10%) !important;
+  transform: rotate(80deg) scale(1.5) translateY(10%);
+`
+const StyledParallax = styled(Parallax)`
+    width: 100%;
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-right: auto;
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: unset !important;
+    contain: paint;
+`
+const Container = styled.div`
+    overflow: unset !important;
+`
+
+function ParallaxImage(props) {
+  const {image, children} = props;
+  return (
+    <StyledParallax
+      strength={500}
+    >
+      <Background>
+        <StyledImage src={image} />
+      </Background>
+      <Container>
+        {children}
+      </Container>
+    </StyledParallax>
+  )
+}
+
+export default React.memo(ParallaxImage);
