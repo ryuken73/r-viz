@@ -13,6 +13,7 @@ function SwiperView(props) {
   return (
     <Swiper
       speed={150}
+      noSwipingClass='noSwiping'
     >
       {pages.map(page => (
         <SwiperSlide key={page}>
