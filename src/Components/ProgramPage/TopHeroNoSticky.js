@@ -30,8 +30,10 @@ function TopHero(props) {
   return (
     <Container>
       <TopHeroContent>
-        <BigNumber size={baseNumberSize*ratio} flex={5} opacity={ratio}>
-          <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize*ratio} />
+        {/* <BigNumber size={baseNumberSize*ratio} flex={5} opacity={ratio}> */}
+          {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize*ratio} /> */}
+        <BigNumber size={baseNumberSize} flex={5} opacity={ratio}>
+          <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize} />
         </BigNumber>
       </TopHeroContent>
     </Container>
