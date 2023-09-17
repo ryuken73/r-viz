@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { usePalette } from 'color-thief-react';
+import tinycolor from 'tinycolor2';
 import {
   Header,
   Contents
@@ -36,10 +38,20 @@ function ProgramPage(props) {
     programTitle="아름다운 이 아침 김창완입니다.",
     programImage
   } = props;
+  const [ imageColors, setImageColors ] = React.useState(['black'])
+  const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
+  React.useEffect(() => {
+    if(loading === false && error === undefined){
+      setImageColors(data)
+    }
+  }, [data, error, loading])
+  const filterdColor = tinycolor(imageColors[0]).greyscale(10).darken(65).toString();
+  console.log(filterdColor)
   return (
     <div>
       <ParallaxImage
         image={programImage}
+        overflowColor={filterdColor}
       >
       <TopTitle title={programTitle}>
       </TopTitle>

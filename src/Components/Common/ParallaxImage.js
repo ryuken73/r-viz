@@ -16,16 +16,22 @@ const StyledParallax = styled(Parallax)`
     padding-right: 16px;
     overflow: unset !important;
     contain: paint;
+    background-color: ${props => props.overflowColor};
 `
 const Container = styled.div`
     overflow: unset !important;
 `
 
 function ParallaxImage(props) {
-  const {image, children} = props;
+  const {image, overflowColor='black', children} = props;
   return (
     <StyledParallax
       strength={500}
+      renderLayer={(percentage) => {
+        console.log(percentage);
+        return <dv></dv>
+      }}
+      overflowColor={overflowColor}
     >
       <Background>
         <StyledImage src={image} />
