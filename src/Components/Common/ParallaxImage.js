@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {throttle} from 'utils';
 import { Parallax, Background } from 'react-parallax';
 
 const StyledImage = styled.img`
@@ -23,12 +24,14 @@ const Container = styled.div`
 `
 
 function ParallaxImage(props) {
-  const {image, overflowColor='black', children} = props;
+  const {image, overflowColor='black', handleScroll, children} = props;
+  const onChangePercentage = throttle(handleScroll, 50);
+
   return (
     <StyledParallax
       strength={500}
       renderLayer={(percentage) => {
-        console.log(percentage);
+        onChangePercentage(percentage)
         return <dv></dv>
       }}
       overflowColor={overflowColor}

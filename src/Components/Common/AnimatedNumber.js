@@ -11,20 +11,21 @@ function numberWithCommas(n) {
 }
 
 const AnimatedNumber = props => {
+  const {number, postfix, postfixSize} = props;
   const [total, setTotal] = useState(props.number);
   useEffect(() => {
     TweenLite.to(myObject, 0.5, {
-      totalValue: props.number,
+      totalValue: number,
       roundProps: "totalValue",
       onUpdate: () => {
         const withCommas = numberWithCommas(myObject.totalValue)
         setTotal(withCommas);
       }
     });
-  }, [props.number]);
+  }, [number]);
   return (
     <>
-      {total}
+      {total} <span style={{transition: '1s all', fontSize: `${postfixSize}rem`}}>{postfix}</span>
     </>
   );
 };

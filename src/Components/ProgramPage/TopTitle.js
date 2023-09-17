@@ -1,28 +1,29 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import {TextSmall} from 'Components/Common/StyleDefs';
+import ParallaxBox from 'Components/Common/ParallaxBox';
+import TopHero from 'Components/ProgramPage/TopHeroNoSticky';
 
 const Container = styled.div`
   position: relative;
-  height: 100px;
+  height: 300px;
   color: white;
-`
-
-const Title = styled.div`
-  position: sticky;
-  top: 50px;
-  left: 50%;
-  text-align: center;
-  font-size: 1.6rem;
+  transform: translateY(-10px);
 `
 
 function TopTitle(props) {
-  const {title} = props;
+  const {currentPx, setShowSummary, totalRecv=12345} = props;
   return (
-    <Container>
-      <Title>
-        {title}
-      </Title>
-    </Container>
+    <ParallaxBox speed={-30}>
+      <Container>
+        <TextSmall>현재 동시 청취자수</TextSmall>
+        <TopHero 
+          currentPx={currentPx} 
+          setShowSummary={setShowSummary}
+          totalRecv={totalRecv}
+        ></TopHero>
+      </Container>
+    </ParallaxBox>
   )
 }
 
