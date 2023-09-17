@@ -15,7 +15,8 @@ function Footer() {
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 2 }} elevation={3}>
       <BottomNavigation
-        sx={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(40,40,41,1) 100%, rgba(86,88,89,1) 100%)'}}
+        // sx={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(40,40,41,1) 100%, rgba(86,88,89,1) 100%)'}}
+        sx={{background: 'tranparent !important'}}
         showLabels
         value={value}
         onChange={(event, newValue) => {

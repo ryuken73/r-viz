@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
+const STYLE = {
+  BLUR: 50
+}
+
 const CommonDiv = styled.div`
   text-align: center;
   font-size: 1rem;
   border-radius: 5px;
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  backdrop-filter: blur(${STYLE.BLUR}px));
   color: white;
 `
 export const BigNumber = styled(CommonDiv)`
@@ -43,4 +48,5 @@ export const Header = styled(CommonDiv)`
 export const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+  backdrop-filter: blur(${STYLE.BLUR}px);
 `

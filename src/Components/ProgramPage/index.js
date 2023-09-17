@@ -7,6 +7,7 @@ import {
 import TopTitle from 'Components/ProgramPage/TopTitle';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
+import F2 from 'Components/Chart/F2';
 
 const SingleColumnBox = styled.div`
 `;
@@ -45,7 +46,9 @@ function ProgramPage(props) {
       <TopHero totalRecv={12345} />
       <SingleColumnBox height="long">
         <Header>흐린상태2</Header>
-        <Contents>Swans are birds of the family Anatidae within the genus Cygnus. The swans' close relatives include the geese and ducks. Swans are grouped with the closely related geese in the subfamily Anserinae where they form the tribe Cygnini. Sometimes, they are considered a distinct subfamily, Cygninae. There are six or seven living (and one extinct) species of swan in the genus Cygnus; in addition, there is another species known as the coscoroba swan, although this species is no longer considered one of the true swans. Swans usually mate for life, although “divorce” sometimes occurs, particularly following nesting failure, and if a mate dies, the remaining swan will take up with another. The number of eggs in each clutch ranges from three to eight.</Contents>
+        <Contents>
+          <F2></F2>
+        </Contents>
       </SingleColumnBox>
       <p></p>
       <Columns>
