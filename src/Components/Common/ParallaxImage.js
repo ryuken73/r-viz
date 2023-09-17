@@ -18,6 +18,10 @@ const StyledParallax = styled(Parallax)`
     overflow: unset !important;
     contain: paint;
     background-color: ${props => props.overflowColor};
+    .react-parallax-background-children {
+      -webkit-transform-style: preserve-3d;
+      -webkit-backface-visibility: hidden;
+    }
 `
 const Container = styled.div`
     overflow: unset !important;
