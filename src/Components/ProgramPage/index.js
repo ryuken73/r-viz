@@ -58,7 +58,7 @@ const getPxFromPercent = (totalHeight, percent) => {
 
 function ProgramPage(props) {
   const {
-    programTitle="두시탈출 컬투쇼";
+    programTitle="두시탈출 컬투쇼",
     programImage
   } = props;
   const [ imageColors, setImageColors ] = React.useState(['black'])
