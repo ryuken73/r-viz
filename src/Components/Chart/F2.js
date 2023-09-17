@@ -7,7 +7,6 @@ const StyledCanvas = styled.canvas`
   height: 100%;
 `
 
-
 const data = [
   {
     date: '2017-06-05',
@@ -218,23 +217,40 @@ function LineChart() {
     if(containerRef.current === null) return;
     const context = containerRef.current.getContext('2d');
     const LineChart = (
-    <Canvas context={context} pixelRatio={window.devicePixelRatio}>
-      <Chart data={data}>
-        <Axis
-          field="date"
-          tickCount={3}
-          style={{
-            label: { align: 'between' },
-          }}
-        />
-        <Axis field="value" tickCount={5} />
-        <Tooltip showCrosshairs={true} />
-        <Line x="date" y="value" />
-        <Tooltip />
-      </Chart>
-    </Canvas>
+      <Canvas context={context} pixelRatio={window.devicePixelRatio}>
+        <Chart data={data}>
+          <Axis
+            field="date"
+            tickCount={5}
+            style={{
+              label: { align: 'between' },
+              grid: { stroke: 'transparent'}
+            }}
+          />
+          <Axis 
+            field="value" 
+            tickCount={5} 
+            style={{
+              grid: {
+                stroke: 'transparent'
+              }
+            }}
+          />
+          <Tooltip showCrosshairs={true} />
+          <Line 
+            x="date" 
+            y="value" 
+            style={{
+              stroke: 'yellow',
+              lineWidth: 5 
+            }}
+          />
+          <Tooltip />
+        </Chart>
+      </Canvas>
     );
   const chart = new Canvas(LineChart.props);
+  console.log(chart)
   // Chart.line({
   //   scaleGridLineColor: '#1b1129',
   //   scaleLineColor: '#1b1129' 
@@ -245,7 +261,7 @@ function LineChart() {
 
   return (
     <div className="App">
-      <StyledCanvas ref={containerRef} id="container"></StyledCanvas>
+      <StyledCanvas ref={containerRef} id="container" className="noSwiping"></StyledCanvas>
     </div>
   );
 }
