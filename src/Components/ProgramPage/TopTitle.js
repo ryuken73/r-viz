@@ -8,13 +8,13 @@ const Container = styled.div`
   position: relative;
   height: 300px;
   color: white;
-  transform: translateY(-10px);
+  transform: translateY(30%);
 `
 
 function TopTitle(props) {
   const {currentPx, setShowSummary, totalRecv=12345} = props;
   return (
-    <ParallaxBox speed={-30}>
+    // <ParallaxBox speed={-30}>
       <Container>
         <TextSmall>현재 동시 청취자수</TextSmall>
         <TopHero 
@@ -23,7 +23,7 @@ function TopTitle(props) {
           totalRecv={totalRecv}
         ></TopHero>
       </Container>
-    </ParallaxBox>
+    // </ParallaxBox>
   )
 }
 

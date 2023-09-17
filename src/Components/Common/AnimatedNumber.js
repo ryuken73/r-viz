@@ -25,7 +25,7 @@ const AnimatedNumber = props => {
   }, [number]);
   return (
     <>
-      {total} <span style={{transition: '1s all', fontSize: `${postfixSize}rem`}}>{postfix}</span>
+      {total} <span style={{transition: '0.5s all', fontSize: `${postfixSize}rem`}}>{postfix}</span>
     </>
   );
 };

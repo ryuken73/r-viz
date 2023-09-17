@@ -17,7 +17,7 @@ export const BigNumber = styled(CommonDiv)`
   background: transparent;
   font-size: ${props => props.size ? `${props.size}rem` : '2rem'};
   opacity: ${props => props.opacity ? `${props.opacity}` : 1};
-  transition: 1s all;
+  transition: 0.5s all;
 `
 export const TextSmall = styled(CommonDiv)`
   flex: ${props => props.flex};

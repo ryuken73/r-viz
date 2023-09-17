@@ -167,6 +167,36 @@ function ProgramPage(props) {
           <Card></Card>
         </GraphBox>
       </Columns>
+      <Columns>
+        <GraphBox>
+          <Header>흐린상태3</Header>
+          <Card></Card>
+        </GraphBox>
+        <GraphBox>
+          <Header>흐린상태4</Header>
+          <Card></Card>
+        </GraphBox>
+      </Columns>
+      <Columns>
+        <GraphBox>
+          <Header>흐린상태3</Header>
+          <Card></Card>
+        </GraphBox>
+        <GraphBox>
+          <Header>흐린상태4</Header>
+          <Card></Card>
+        </GraphBox>
+      </Columns>
+      <Columns>
+        <GraphBox>
+          <Header>흐린상태3</Header>
+          <Card></Card>
+        </GraphBox>
+        <GraphBox>
+          <Header>흐린상태4</Header>
+          <Card></Card>
+        </GraphBox>
+      </Columns>
   
       </ParallaxImage>
     </div>
