@@ -18,7 +18,7 @@ const FROM_EFFECT_START = 100;
 const TO_EFFECT_START = 200;
 function TopHero(props) {
   const {totalRecv = 0, currentPx, setShowSummary} = props;
-  const baseNumberSize = 5;
+  const baseNumberSize = 20;
   const basePostfixSize = 2;
   const ratio = currentPx < FROM_EFFECT_START ? 1 : (TO_EFFECT_START - currentPx) / FROM_EFFECT_START
   if(ratio < 0){

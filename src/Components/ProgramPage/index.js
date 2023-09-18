@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import { usePalette } from 'color-thief-react';
 import tinycolor from 'tinycolor2';
 import {
+  TitleContainer,
+  SummaryTextContainer,
+  DummyText,
+  Title,
+  SingleColumnBox,
+  Columns,
+  GraphBox,
+  Card,
   Header,
   Contents,
   TextSmall
@@ -12,46 +20,6 @@ import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import F2 from 'Components/Chart/F2';
 
-const SingleColumnBox = styled.div`
-`;
-const Columns = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center; 
-`
-const GraphBox = styled.div`
-  width: 45%;
-`
-const Card = styled.div`
-  width: 100%;
-  &:after {
-    padding-bottom: 100%;
-    content: "";
-    display: block;
-    background-color: transparent;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-  }
-`
-const TitleContainer = styled.div`
-  position: sticky;
-  top: 0;
-  left: 50%;
-  text-align: center;
-  color: white;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  backdrop-filter: blur(50px);
-  z-index: 20;
-`
-const SummaryTextContainer = styled.div`
-  opacity: ${props => props.hide ? 0 : 1};
-  transition: 1s all;
-`
-const Title = styled.div`
-  font-size: 2rem;
-  margin-bottom: 5px;
-`
 const getPxFromPercent = (totalHeight, percent) => {
   return totalHeight * percent / 100;
 }
@@ -94,7 +62,7 @@ function ProgramPage(props) {
       >
       <TitleContainer>
         <SummaryTextContainer hide={true}>
-          <TextSmall>not shown</TextSmall>
+          <DummyText showSummary={showSummary}>Dummy</DummyText>
         </SummaryTextContainer>
         <Title>
           {programTitle}
