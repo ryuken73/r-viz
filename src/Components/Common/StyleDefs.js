@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const STYLE = {
-  BLUR: 50
+  BLUR: 50,
+  BLUR_HEADER: 25
 }
 
 const CommonDiv = styled.div`
@@ -38,7 +39,7 @@ export const TopTitle = styled(CommonDiv)`
 export const Header = styled(CommonDiv)`
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  margin-bottom: 0.05rem;
+  /* margin-bottom: 0.05rem; */
   position: -webkit-sticky;
   position: sticky;
   /* top: 0px; */
@@ -46,6 +47,8 @@ export const Header = styled(CommonDiv)`
   /* background: blue; */
   /* color: lightgrey; */
   z-index: 5;
+  /* backdrop-filter: blur(${STYLE.BLUR}px);
+  -webkit-backdrop-filter: blur(${STYLE.BLUR}px); */
 `
 export const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
@@ -61,7 +64,12 @@ export const Columns = styled.div`
   align-items: center; 
 `
 export const GraphBox = styled.div`
-  width: 45%;
+  width: 48%;
+  backdrop-filter: blur(${STYLE.BLUR}px);
+  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  border-radius: 20px;
+  /* border: 1px solid white; */
+  margin-bottom: 2vh;
 `
 export const Card = styled.div`
   width: 100%;
@@ -70,8 +78,8 @@ export const Card = styled.div`
     content: "";
     display: block;
     background-color: transparent;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    /* backdrop-filter: blur(${STYLE.BLUR}px);
+    -webkit-backdrop-filter: blur(${STYLE.BLUR}px); */
   }
 `
 export const TitleContainer = styled.div`

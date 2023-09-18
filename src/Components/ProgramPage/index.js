@@ -97,7 +97,7 @@ function ProgramPage(props) {
       </TopTitle>
       {/* <TopHero totalRecv={12345} /> */}
       <SingleColumnBox height="long">
-        <Header>흐린상태2</Header>
+        <Header>실시간 청취자</Header>
         <Contents>
           <F2></F2>
         </Contents>

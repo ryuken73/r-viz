@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import F2, { jsx, Canvas, Chart, Line, Axis, Tooltip } from '@antv/f2';
 
+const Container = styled.div`
+  border-radius: 10px;
+`
 const StyledCanvas = styled.canvas`
   width: 100%;
   height: 100%;
@@ -260,9 +263,9 @@ function LineChart() {
 }, [])
 
   return (
-    <div className="App">
+    <Container className="App">
       <StyledCanvas ref={containerRef} id="container" className="noSwiping"></StyledCanvas>
-    </div>
+    </Container>
   );
 }
 
