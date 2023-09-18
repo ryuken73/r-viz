@@ -16,9 +16,21 @@ import {
   TextSmall
 } from 'Components/Common/StyleDefs';
 import TopTitle from 'Components/ProgramPage/TopTitle';
+import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import F2 from 'Components/Chart/F2';
+
+const CustomImg = styled.img`
+  position: absolute;
+  object-fit: cover;
+  object-position: center top;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: ${props => props.showSummary ? 0.1 : 0.6};
+  transition: 1s all;
+`
 
 const getPxFromPercent = (totalHeight, percent) => {
   return totalHeight * percent / 100;
@@ -55,22 +67,28 @@ function ProgramPage(props) {
   const totalRecv = 12345;
   return (
     <div>
+      <TitleContainer>
+        <CustomImg src={programImage} showSummary={showSummary} />
+        <SummaryTextContainer hide={true}>
+          <DummyText showSummary={showSummary}>Dummy</DummyText>
+        </SummaryTextContainer>
+        <Title hide={!showSummary}>
+          {programTitle}
+        </Title>
+        <SummaryTextContainer hide={!showSummary}>
+          <TextSmall>
+            현재 동시 청취자수 : 
+            <span>
+              <AnimatedNumber number={totalRecv} postfix="명" postfixSize={1} />
+            </span>
+          </TextSmall>
+        </SummaryTextContainer>
+      </TitleContainer>
       <ParallaxImage
         image={programImage}
         overflowColor={filterdColor}
         handleScroll={handleScroll}
       >
-      <TitleContainer>
-        <SummaryTextContainer hide={true}>
-          <DummyText showSummary={showSummary}>Dummy</DummyText>
-        </SummaryTextContainer>
-        <Title>
-          {programTitle}
-        </Title>
-        <SummaryTextContainer hide={!showSummary}>
-          <TextSmall>현재 동시 청취자수: {totalRecv}</TextSmall>
-        </SummaryTextContainer>
-      </TitleContainer>
       <TopTitle 
         totalRecv={totalRecv}
         currentPx={currentPx} 

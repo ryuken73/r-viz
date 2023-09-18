@@ -8,21 +8,32 @@ import {
 import AnimatedNumber from 'Components/Common/AnimatedNumber';
 
 const Container = styled.div`
-  position: sticky;
+  /* position: sticky;
   top: 0;
-  left: 0;
+  left: 0; */
+  margin-top: 10px;
   z-index: 10;
-  backdrop-filter: blur(20px);
 `
-
+const FROM_EFFECT_START = 100;
+const TO_EFFECT_START = 200;
 function TopHero(props) {
-  const {totalRecv = 0} = props;
+  const {totalRecv = 0, currentPx, setShowSummary} = props;
+  const baseNumberSize = 5;
+  const basePostfixSize = 2;
+  const ratio = currentPx < FROM_EFFECT_START ? 1 : (TO_EFFECT_START - currentPx) / FROM_EFFECT_START
+  if(ratio < 0){
+    setShowSummary(true)
+  } else {
+    setShowSummary(false)
+  }
+  console.log(ratio, currentPx)
   return (
     <Container>
-      <TextSmall>현재 동시 청취자수</TextSmall>
       <TopHeroContent>
-        <BigNumber size={20} flex={5}>
-          <AnimatedNumber number={totalRecv} postfix={"11명"} />
+        {/* <BigNumber size={baseNumberSize*ratio} flex={5} opacity={ratio}> */}
+          {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize*ratio} /> */}
+        <BigNumber size={baseNumberSize} flex={5} opacity={ratio}>
+          <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize} />
         </BigNumber>
       </TopHeroContent>
     </Container>

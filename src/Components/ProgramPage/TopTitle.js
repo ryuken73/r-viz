@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import {TextSmall} from 'Components/Common/StyleDefs';
 import ParallaxBox from 'Components/Common/ParallaxBox';
-import TopHero from 'Components/ProgramPage/TopHeroNoSticky';
+import TopHero from 'Components/ProgramPage/TopHero';
 
 const Container = styled.div`
   position: relative;
-  height: 300px;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  /* height: 300px; */
   color: white;
-  transform: translateY(30%);
+  /* transform: translateY(30%); */
 `
 
 function TopTitle(props) {

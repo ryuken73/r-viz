@@ -13,8 +13,8 @@ const StyledParallax = styled(Parallax)`
     box-sizing: border-box;
     margin-right: auto;
     display: block;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 4vw;
+    padding-right: 4vw;
     overflow: unset !important;
     contain: paint;
     background-color: ${props => props.overflowColor};

@@ -6,7 +6,7 @@ const STYLE = {
 
 const CommonDiv = styled.div`
   text-align: center;
-  font-size: 4vw;
+  font-size: 2vh;
   border-radius: 5px;
   -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
   backdrop-filter: blur(${STYLE.BLUR}px));
@@ -15,13 +15,13 @@ const CommonDiv = styled.div`
 export const BigNumber = styled(CommonDiv)`
   flex: ${props => props.flex};
   background: transparent;
-  font-size: ${props => props.size ? `${props.size}vw` : '8vw'};
+  font-size: ${props => props.size ? `${props.size * 2}vh` : '4vh'};
   opacity: ${props => props.opacity ? `${props.opacity}` : 1};
   transition: 0.5s all;
 `
 export const TextSmall = styled(CommonDiv)`
   flex: ${props => props.flex};
-  font-size: ${props => props.size ? `${props.size * 4}vw` : '4vw'};
+  font-size: ${props => props.size ? `${props.size * 2}vh` : '2vh'};
 `
 export const TopHeroContent = styled.div`
   width: 100%;
@@ -32,7 +32,7 @@ export const TopHeroContent = styled.div`
 export const TopTitle = styled(CommonDiv)`
   font-size: 1.6rem;
   font-weight: bold;
-  padding-top: 3rem;
+  padding-top: 6vh;
   padding-bottom: 3rem;
 `
 export const Header = styled(CommonDiv)`
@@ -42,7 +42,7 @@ export const Header = styled(CommonDiv)`
   position: -webkit-sticky;
   position: sticky;
   /* top: 0px; */
-  top: calc(25vw);
+  top: calc(15vh);
   /* background: blue; */
   /* color: lightgrey; */
   z-index: 5;
@@ -75,31 +75,30 @@ export const Card = styled.div`
   }
 `
 export const TitleContainer = styled.div`
+  display: relative;
   position: sticky;
   top: 0;
   left: 50%;
   text-align: center;
   color: white;
-  /* padding-top: 1rem; */
-  /* padding-bottom: 1rem; */
   backdrop-filter: blur(50px);
-  border: 1px solid white;
   z-index: 20;
   background: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 25vw;
+  min-height: 15vh;
 `
 export const SummaryTextContainer = styled.div`
   opacity: ${props => props.hide ? 0 : 1};
   transition: 1s all;
 `
 export const Title = styled.div`
-  font-size: 2rem;
+  opacity: ${props => props.hide ? 0 : 1};
+  font-size: 6vw;
 `
 export const DummyText = styled(TextSmall)`
-  height: ${props => props.showSummary && 0};
+  /* height: ${props => props.showSummary && 0}; */
   transition: 1s height;
 `
