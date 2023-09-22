@@ -17,6 +17,7 @@ import {
 } from 'Components/Common/StyleDefs';
 import TopTitle from 'Components/ProgramPage/TopTitle';
 import AnimatedNumber from 'Components/Common/AnimatedNumber';
+import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import F2 from 'Components/Chart/F2';
@@ -64,7 +65,7 @@ function ProgramPage(props) {
     // console.log(percentage, window.innerHeight, document.documentElement.scrollHeight)
   }, [])
 
-  const totalRecv = 12345;
+  const totalRecv = 14212;
   return (
     <div>
       <TitleContainer>
@@ -79,7 +80,8 @@ function ProgramPage(props) {
           <TextSmall>
             현재 동시 청취자수 : 
             <span>
-              <AnimatedNumber number={totalRecv} postfix="명" postfixSize={1} />
+              {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={1} /> */}
+              <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
             </span>
           </TextSmall>
         </SummaryTextContainer>
