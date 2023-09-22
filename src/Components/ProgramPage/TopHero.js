@@ -5,7 +5,7 @@ import {
   TextSmall,
   TopHeroContent
 } from 'Components/Common/StyleDefs';
-import AnimatedNumber from 'Components/Common/AnimatedNumber';
+import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 
 const Container = styled.div`
   /* position: sticky;
@@ -33,7 +33,8 @@ function TopHero(props) {
         {/* <BigNumber size={baseNumberSize*ratio} flex={5} opacity={ratio}> */}
           {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize*ratio} /> */}
         <BigNumber size={baseNumberSize} flex={5} opacity={ratio}>
-          <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize} />
+          {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={basePostfixSize} /> */}
+          <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
         </BigNumber>
       </TopHeroContent>
     </Container>

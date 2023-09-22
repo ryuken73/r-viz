@@ -45,7 +45,21 @@ function ProgramPage(props) {
   const [ imageColors, setImageColors ] = React.useState(['black'])
   const [ currentPx, setCurrentPx ] = React.useState(0);
   const [ showSummary, setShowSummary ] = React.useState(false);
+  const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
+  React.useEffect(() => {
+   const timer = setInterval(() => {
+      const rands = Math.floor(Math.random() * 10000);
+      setTotalRecv(totalRecv => {
+        return (Date.now() % 2 === 0) ? 
+          totalRecv + rands :
+          totalRecv - rands
+      })
+   }, 2000) 
+   return () => {
+    clearInterval(timer);
+   }
+  }, [])
   React.useEffect(() => {
     if(loading === false && error === undefined){
       setImageColors(data)
@@ -61,11 +75,10 @@ function ProgramPage(props) {
     const currentPx = (percentage - 1) * heightWithScroll;
     setCurrentPx(currentPx)
     console.log(currentPx, animationStartHeightPx, animationEndHeightPx )
-
     // console.log(percentage, window.innerHeight, document.documentElement.scrollHeight)
   }, [])
 
-  const totalRecv = 14212;
+
   return (
     <div>
       <TitleContainer>
