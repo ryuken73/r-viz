@@ -4,7 +4,8 @@ import {throttle} from 'utils';
 import { Parallax, Background } from 'react-parallax';
 
 const StyledImage = styled.img`
-  filter: brightness(0.3) grayscale(10%) !important;
+  /* filter: brightness(0.15) grayscale(10%) !important; */
+  filter: brightness(0.15) !important;
   transform: rotate(80deg) scale(1.5) translateY(10%);
 `
 const StyledParallax = styled(Parallax)`
