@@ -29,8 +29,19 @@ const CustomImg = styled.img`
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: ${props => props.showSummary ? 0.1 : 0.6};
+  opacity: ${props => props.showSummary ? 0.3 : 1};
   transition: 1s all;
+  -webkit-mask-image: radial-gradient(red, transparent);
+  mask-image: radial-gradient(red, transparent);
+  -webkit-mask-size: 100% 180%;
+  mask-size: 100% 180%;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: source-in;
+  /* -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); */
 `
 
 const getPxFromPercent = (totalHeight, percent) => {
