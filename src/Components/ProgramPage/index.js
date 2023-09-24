@@ -21,6 +21,7 @@ import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import F2LineChart from 'Components/Chart/F2LineChart';
+import ChartReact from 'Components/Chart/ChartReact';
 
 const CustomImg = styled.img`
   position: absolute;
@@ -125,7 +126,8 @@ function ProgramPage(props) {
       <SingleColumnBox height="long">
         <Header>실시간 청취자</Header>
         <Contents>
-          <F2LineChart></F2LineChart>
+          {/* <F2LineChart></F2LineChart> */}
+          <ChartReact></ChartReact>
         </Contents>
       </SingleColumnBox>
       <p></p>
