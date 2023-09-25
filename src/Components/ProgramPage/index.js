@@ -7,15 +7,17 @@ import {
   SummaryTextContainer,
   DummyText,
   Title,
+  Sep,
   SingleColumnBox,
   Columns,
   GraphBox,
   Card,
   Header,
   Contents,
-  TextSmall
+  TextNormal
 } from 'Components/Common/StyleDefs';
 import TopTitle from 'Components/ProgramPage/TopTitle';
+import CardContent from 'Components/ProgramPage/CardContent';
 import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
@@ -85,10 +87,9 @@ function ProgramPage(props) {
     const animationEndHeightPx = getPxFromPercent(window.innerHeight, endPercent);
     const currentPx = (percentage - 1) * heightWithScroll;
     setCurrentPx(currentPx)
-    console.log(currentPx, animationStartHeightPx, animationEndHeightPx )
+    // console.log(currentPx, animationStartHeightPx, animationEndHeightPx )
     // console.log(percentage, window.innerHeight, document.documentElement.scrollHeight)
   }, [])
-
 
   return (
     <div>
@@ -97,17 +98,19 @@ function ProgramPage(props) {
         <SummaryTextContainer hide={true}>
           <DummyText showSummary={showSummary}>Dummy</DummyText>
         </SummaryTextContainer>
-        <Title hide={!showSummary}>
+        <Title size={1.5} hide={!showSummary}>
           {programTitle}
         </Title>
         <SummaryTextContainer hide={!showSummary}>
-          <TextSmall>
-            현재 동시 청취자수 : 
-            <span>
-              {/* <AnimatedNumber number={totalRecv} postfix="명" postfixSize={1} /> */}
-              <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
-            </span>
-          </TextSmall>
+          <TextNormal>
+            현재 동시 청취자수 
+          </TextNormal>
+          <Sep>
+            :
+          </Sep>
+          <TextNormal>
+            <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
+          </TextNormal>
         </SummaryTextContainer>
       </TitleContainer>
       <ParallaxImage
@@ -115,101 +118,65 @@ function ProgramPage(props) {
         overflowColor={filterdColor}
         handleScroll={handleScroll}
       >
-      <TopTitle 
-        totalRecv={totalRecv}
-        currentPx={currentPx} 
-        setShowSummary={setShowSummary}
-      >
-      </TopTitle>
-      {/* <TopHero totalRecv={12345} /> */}
-      <SingleColumnBox height="long">
-        <Header>실시간 청취자</Header>
-        <Contents>
-          <LiveLineChart></LiveLineChart>
-        </Contents>
-      </SingleColumnBox>
-      <p></p>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-      <Columns>
-        <GraphBox>
-          <Header>흐린상태3</Header>
-          <Card></Card>
-        </GraphBox>
-        <GraphBox>
-          <Header>흐린상태4</Header>
-          <Card></Card>
-        </GraphBox>
-      </Columns>
-  
+        <TopTitle 
+          totalRecv={totalRecv}
+          currentPx={currentPx} 
+          setShowSummary={setShowSummary}
+        >
+        </TopTitle>
+        <SingleColumnBox height="long">
+          <Header>현재 동시 청취자수 </Header>
+          <Contents>
+            <LiveLineChart></LiveLineChart>
+          </Contents>
+        </SingleColumnBox>
+        <p></p>
+        <Columns>
+          <GraphBox>
+            <Header>활성 청취자 </Header>
+            <Card>
+              <CardContent
+                headText="200명"
+                footText="어제보다 2% 증가"
+              >
+              </CardContent>
+            </Card>
+          </GraphBox>
+          <GraphBox>
+            <Header>청취자 구성</Header>
+            <Card></Card>
+          </GraphBox>
+        </Columns>
+        <Columns>
+          <GraphBox>
+            <Header>유지율</Header>
+            <Card></Card>
+          </GraphBox>
+          <GraphBox>
+            <Header>청취자참여</Header>
+            <Card></Card>
+          </GraphBox>
+        </Columns>
+        <Columns>
+          <GraphBox>
+            <Header>제작요소</Header>
+            <Card></Card>
+          </GraphBox>
+          <GraphBox>
+            <Header>청취율분석</Header>
+            <Card></Card>
+          </GraphBox>
+        </Columns>
+        <Columns>
+          <GraphBox>
+            <Header>분석노트</Header>
+            <Card></Card>
+          </GraphBox>
+          <GraphBox>
+            <Header>ETC</Header>
+            <Card></Card>
+          </GraphBox>
+        </Columns>
       </ParallaxImage>
     </div>
   )

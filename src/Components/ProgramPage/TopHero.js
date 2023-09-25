@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   BigNumber,
-  TextSmall,
+  TextNormal,
   TopHeroContent
 } from 'Components/Common/StyleDefs';
 import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   BigNumber,
-  TextSmall,
+  TextNormal,
   TopHeroContent
 } from 'Components/Common/StyleDefs';
 import AnimatedNumber from 'Components/Common/AnimatedNumber';
@@ -19,7 +19,7 @@ function TopHero(props) {
   const {totalRecv = 0} = props;
   return (
     <Container>
-      <TextSmall>현재 동시 청취자수</TextSmall>
+      <TextNormal>현재 동시 청취자수</TextNormal>
       <TopHeroContent5
         <BigNumber size={1} flex={5}>
           <AnimatedNumber number={totalRecv} postfix={"11명"} />

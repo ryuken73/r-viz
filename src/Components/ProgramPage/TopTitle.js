@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {TextSmall} from 'Components/Common/StyleDefs';
+import {TextNormal} from 'Components/Common/StyleDefs';
 import ParallaxBox from 'Components/Common/ParallaxBox';
 import TopHero from 'Components/ProgramPage/TopHero';
 
@@ -18,7 +18,7 @@ function TopTitle(props) {
   return (
     // <ParallaxBox speed={-30}>
       <Container>
-        <TextSmall>현재 동시 청취자수</TextSmall>
+        <TextNormal>현재 동시 청취자수</TextNormal>
         <TopHero 
           currentPx={currentPx} 
           setShowSummary={setShowSummary}
