@@ -33,6 +33,7 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   position: sticky;
   top: calc(15vh);
   color: lightgrey;
+  opacity: 0.6;
   z-index: 5;
   text-align: left;
   -webkit-backdrop-filter: blur(${STYLE.BLUR}px);

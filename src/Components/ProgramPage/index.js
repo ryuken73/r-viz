@@ -125,7 +125,7 @@ function ProgramPage(props) {
       </TitleContainer>
       <ParallaxImage
         image={programImage}
-        overflowColor={filterdColor}
+        overflowColor={'black'}
         handleScroll={handleScroll}
       >
         <TopTitle 

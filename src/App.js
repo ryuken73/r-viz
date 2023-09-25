@@ -4,7 +4,9 @@ import SwiperView from 'Components/SwiperView';
 import Footer from 'Components/Footer';
 import './App.css';
 
-const Container = styled.div``
+const Container = styled.div`
+  background: black;
+`
 
 function App() {
   return (
