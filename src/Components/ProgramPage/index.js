@@ -24,6 +24,12 @@ import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import LiveLineChart from 'Components/Chart/LiveLineChart';
 import LineChartSvg from 'Components/Chart/LineChartSvg';
+import RadarChartSvg from 'Components/Chart/RadarChartSvg';
+import BarChartSvg from 'Components/Chart/BarChartSvg';
+import PieChartSvg from 'Components/Chart/PieChartSvg';
+import HbarChartSvg from 'Components/Chart/HbarChartSvg';
+import ScatterChartSvg from 'Components/Chart/ScatterChartSvg';
+import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
 
 const CustomImg = styled.img`
   position: absolute;
@@ -146,37 +152,76 @@ function ProgramPage(props) {
           </GraphBox>
           <GraphBox>
             <Header>청취자 구성</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                footText="1위 남자회사원" 
+              >
+                <RadarChartSvg></RadarChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
         </Columns>
         <Columns>
           <GraphBox>
             <Header>유지율</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                headText="72%"
+                footText="지난주 대비 1% 증가" 
+              >
+                <BarChartSvg></BarChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
           <GraphBox>
             <Header>청취자참여</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                headText="1,230건 "
+                footText="지난주 대비 3% 증가" 
+              >
+                <PieChartSvg></PieChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
         </Columns>
         <Columns>
           <GraphBox>
             <Header>제작요소</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                footText="지난주 대비 3,000 증가" 
+              >
+                <HbarChartSvg></HbarChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
           <GraphBox>
             <Header>청취율분석</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                footText="지난주 대비 1% 증가" 
+              >
+                <ScatterChartSvg></ScatterChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
         </Columns>
         <Columns>
           <GraphBox>
             <Header>분석노트</Header>
-            <Card></Card>
+            <Card>
+            </Card>
           </GraphBox>
           <GraphBox>
             <Header>ETC</Header>
-            <Card></Card>
+            <Card>
+              <CardContent
+                footText="지난주 대비 1% 증가" 
+              >
+                <DualBarChartSvg></DualBarChartSvg>
+              </CardContent>
+            </Card>
           </GraphBox>
         </Columns>
       </ParallaxImage>
