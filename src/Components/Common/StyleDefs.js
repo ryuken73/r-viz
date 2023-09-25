@@ -60,12 +60,26 @@ export const GraphBox = styled.div`
   margin-bottom: 2vh;
   padding: 1vh;
 `
+export const LastGraphBox = styled.div`
+  width: 45%;
+`
 export const Card = styled.div`
   position: relative;
   width: 100%;
   color: white;
   &:after {
     padding-bottom: 100%;
+    content: "";
+    display: block;
+    background-color: transparent;
+  }
+`
+export const LastCard = styled.div`
+  position: relative;
+  width: 100%;
+  color: white;
+  &:after {
+    padding-bottom: 50%;
     content: "";
     display: block;
     background-color: transparent;

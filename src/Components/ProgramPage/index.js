@@ -14,7 +14,9 @@ import {
   Card,
   Header,
   Contents,
-  TextNormal
+  TextNormal,
+  LastGraphBox,
+  LastCard
 } from 'Components/Common/StyleDefs';
 import TopTitle from 'Components/ProgramPage/TopTitle';
 import CardContent from 'Components/ProgramPage/CardContent';
@@ -31,6 +33,7 @@ import HbarChartSvg from 'Components/Chart/HbarChartSvg';
 import ScatterChartSvg from 'Components/Chart/ScatterChartSvg';
 import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
 
+const Container = styled.div``
 const CustomImg = styled.img`
   position: absolute;
   object-fit: cover;
@@ -99,7 +102,7 @@ function ProgramPage(props) {
   }, [])
 
   return (
-    <div>
+    <Container>
       <TitleContainer>
         <CustomImg src={programImage} showSummary={showSummary} />
         <SummaryTextContainer hide={true}>
@@ -224,8 +227,13 @@ function ProgramPage(props) {
             </Card>
           </GraphBox>
         </Columns>
+        <Columns>
+          <LastGraphBox>
+            <LastCard></LastCard>
+          </LastGraphBox>
+        </Columns>
       </ParallaxImage>
-    </div>
+    </Container>
   )
 }
 
