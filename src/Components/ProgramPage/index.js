@@ -23,6 +23,7 @@ import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
 import LiveLineChart from 'Components/Chart/LiveLineChart';
+import LineChartSvg from 'Components/Chart/LineChartSvg';
 
 const CustomImg = styled.img`
   position: absolute;
@@ -139,6 +140,7 @@ function ProgramPage(props) {
                 headText="200명"
                 footText="어제보다 2% 증가"
               >
+                <LineChartSvg></LineChartSvg>
               </CardContent>
             </Card>
           </GraphBox>
