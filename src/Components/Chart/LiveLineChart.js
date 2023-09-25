@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react';
 import Canvas from '@antv/f2-react';
-import { Chart, Line, Axis, Tooltip } from '@antv/f2';
+import { Chart, Line, Axis, Tooltip, Point } from '@antv/f2';
 
 const initialData = [
   {
@@ -22,7 +22,7 @@ function ChartReact() {
         return [
           ...data,
           newData
-        ]
+        ].slice(data.length - 10)
       }) 
     }, 2000)
     return () => {
@@ -31,7 +31,7 @@ function ChartReact() {
   }, [])
   return (
     <Canvas className="noSwiping" pixelRatio={window.devicePixelRatio}>
-        <Chart data={data}>
+        <Chart data={data} scale={{value: {min: 0}}}>
           <Axis
             field="date"
             type="timeCat"
@@ -57,7 +57,28 @@ function ChartReact() {
             y="value" 
             style={{
               stroke: 'yellow',
-              lineWidth: 5 
+              lineWidth: 5,
+              lineCap: 'round' 
+            }}
+            shape="smooth"
+          />
+          <Point 
+            x="date" 
+            y="value" 
+            size={5}
+            style={{
+              field: 'medalType',
+              fill: '#fff',
+              lineWidth: 1,
+              stroke: (val) => {
+                if (val === 'Gold Medals') {
+                  return '#f3ac32';
+                } else if (val === 'Silver Medals') {
+                  return '#b8b8b8';
+                } else if (val === 'Bronze Medals') {
+                  return '#bb6e36';
+                }
+              },
             }}
           />
           <Tooltip />
