@@ -66,7 +66,7 @@ function ProgramPage(props) {
     programImage
   } = props;
   const [ imageColors, setImageColors ] = React.useState(['black'])
-  const [ currentPx, setCurrentPx ] = React.useState(0);
+  const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ showSummary, setShowSummary ] = React.useState(false);
   const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
@@ -90,15 +90,17 @@ function ProgramPage(props) {
   }, [data, error, loading])
   const filterdColor = tinycolor(imageColors[0]).greyscale(10).darken(65).toString();
   const handleScroll = React.useCallback((percentage) => {
-    const startPercent = 20;
-    const endPercent = 10;
-    const heightWithScroll = document.documentElement.scrollHeight;
-    const animationStartHeightPx = getPxFromPercent(window.innerHeight, startPercent);
-    const animationEndHeightPx = getPxFromPercent(window.innerHeight, endPercent);
-    const currentPx = (percentage - 1) * heightWithScroll;
-    setCurrentPx(currentPx)
-    // console.log(currentPx, animationStartHeightPx, animationEndHeightPx )
-    // console.log(percentage, window.innerHeight, document.documentElement.scrollHeight)
+    // const heightWithScroll = document.documentElement.scrollHeight;
+    // const currentPx = (percentage - 1) * heightWithScroll;
+    const hideSummaryStartPercent = 1.04
+    console.log(percentage)
+    setCurrentPercentage(percentage);
+    if(percentage < hideSummaryStartPercent){
+      setShowSummary(false);
+    }
+    if(percentage > hideSummaryStartPercent){
+      setShowSummary(true);
+    }
   }, [])
 
   return (
@@ -130,7 +132,7 @@ function ProgramPage(props) {
       >
         <TopTitle 
           totalRecv={totalRecv}
-          currentPx={currentPx} 
+          currentPercentage={currentPercentage}
           setShowSummary={setShowSummary}
         >
         </TopTitle>
@@ -226,11 +228,6 @@ function ProgramPage(props) {
               </CardContent>
             </Card>
           </GraphBox>
-        </Columns>
-        <Columns>
-          <LastGraphBox>
-            <LastCard></LastCard>
-          </LastGraphBox>
         </Columns>
       </ParallaxImage>
     </Container>

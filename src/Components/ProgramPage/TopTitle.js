@@ -14,14 +14,13 @@ const Container = styled.div`
 `
 
 function TopTitle(props) {
-  const {currentPx, setShowSummary, totalRecv=12345} = props;
+  const {currentPercentage, totalRecv=12345} = props;
   return (
     // <ParallaxBox speed={-30}>
       <Container>
         <TextNormal>현재 동시 청취자수</TextNormal>
         <TopHero 
-          currentPx={currentPx} 
-          setShowSummary={setShowSummary}
+          currentPercentage={currentPercentage}
           totalRecv={totalRecv}
         ></TopHero>
       </Container>
