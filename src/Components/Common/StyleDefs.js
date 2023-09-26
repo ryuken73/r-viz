@@ -10,6 +10,10 @@ const CommonDiv = styled.div`
   border-radius: 5px;
   font-size: ${props => props.size ? `calc((15px + 0.390625vw)*${props.size})` : `calc(15px + 0.390625vw)`};
   color: white;
+  /* * big number not change between swipe in ios safari if below removed! */
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  /* */
 `
 export const BigNumber = styled(CommonDiv)`
   flex: ${props => props.flex};
