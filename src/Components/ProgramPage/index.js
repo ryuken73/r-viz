@@ -229,6 +229,11 @@ function ProgramPage(props) {
             </Card>
           </GraphBox>
         </Columns>
+        <Columns>
+          <LastGraphBox>
+            <LastCard></LastCard>
+          </LastGraphBox>
+        </Columns>
       </ParallaxImage>
     </Container>
   )
