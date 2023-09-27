@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Canvas from '@antv/f2-react';
-import { Chart, Line, Axis, Area } from '@antv/f2';
+import { Chart, Line, ScrollBar, Point, Axis, Area } from '@antv/f2';
 
 const MinusPadding = styled.div`
   padding: -20px;
@@ -39,7 +39,7 @@ const data = [
   {
     time: 'Aug.',
     tem: 2000,
-  },
+  }
 ];
 
 
@@ -61,6 +61,21 @@ function LineCartSvg() {
             }}
             shape="smooth"
           />
+          <Point 
+            x="time" 
+            y="tem"
+            color='white'
+            size={{
+              field: 'time',
+              callback: (time) => {
+                if(time === 'Jun.'){
+                  return 5;
+                } else {
+                  return 0;
+                }
+              }
+            }}
+          ></Point>
         </Chart>
     </Canvas>
     // </MinusPadding>

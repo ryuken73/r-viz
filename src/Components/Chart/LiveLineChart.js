@@ -51,7 +51,15 @@ function ChartReact() {
               }
             }}
           />
-          <Tooltip showCrosshairs={true} />
+          <Tooltip 
+            crosshairsType='xy'
+            crosshairsStyle={{
+              stroke: 'yellow',
+              lineWidth: 1,
+              lineCap: 'round' 
+            }}
+            showCrosshairs={true} 
+          />
           <Line 
             x="date" 
             y="value" 

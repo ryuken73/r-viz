@@ -38,6 +38,7 @@ import GraphComponent from 'Components/Chart/GraphComponent';
 const Container = styled.div`
   transform: ${props => props.openDrawer && 'scale(0.97)'};
   transition: all 0.5s;
+  user-select: none;
 `
 const GraphContainer = styled.div``;
 const CustomImg = styled.img`
