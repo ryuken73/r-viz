@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Canvas from '@antv/f2-react';
-import { Chart, Interval } from '@antv/f2';
+import { Chart, Interval, TextGuide } from '@antv/f2';
 
 const data = [
   {
@@ -52,9 +52,15 @@ function HbarChartSvg() {
         },
       }}
     >
-      {/* <Axis field="year" /> */}
-      {/* <Axis field="sales" /> */}
       <Interval x="year" y="sales" />
+      <TextGuide
+        records={[data[1]]}
+        content={data[1].sales}
+        attrs={{
+          fill: '#000',
+        }}
+        offsetX={+10}
+      ></TextGuide>
     </Chart>
     </Canvas>
   )
