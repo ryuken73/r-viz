@@ -32,8 +32,14 @@ import PieChartSvg from 'Components/Chart/PieChartSvg';
 import HbarChartSvg from 'Components/Chart/HbarChartSvg';
 import ScatterChartSvg from 'Components/Chart/ScatterChartSvg';
 import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
+import BottomDrawer from 'Components/BottomDrawer';
+import GraphComponent from 'Components/Chart/GraphComponent';
 
-const Container = styled.div``
+const Container = styled.div`
+  transform: ${props => props.openDrawer && 'scale(0.97)'};
+  transition: all 0.5s;
+`
+const GraphContainer = styled.div``;
 const CustomImg = styled.img`
   position: absolute;
   object-fit: cover;
@@ -67,6 +73,8 @@ function ProgramPage(props) {
   } = props;
   const [ imageColors, setImageColors ] = React.useState(['black'])
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
+  const [ openDrawer, setOpenDrawer ] = React.useState(false);
+  const [ drawContentId, setDrawContentId] = React.useState(null);
   const [ showSummary, setShowSummary ] = React.useState(false);
   const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
@@ -93,7 +101,7 @@ function ProgramPage(props) {
     // const heightWithScroll = document.documentElement.scrollHeight;
     // const currentPx = (percentage - 1) * heightWithScroll;
     const hideSummaryStartPercent = 1.04
-    console.log(percentage)
+    // console.log(percentage)
     setCurrentPercentage(percentage);
     if(percentage < hideSummaryStartPercent){
       setShowSummary(false);
@@ -103,8 +111,13 @@ function ProgramPage(props) {
     }
   }, [])
 
+  const onClickGraph = React.useCallback((id) => {
+    setDrawContentId(id);
+    setOpenDrawer(true);
+  }, [])
+
   return (
-    <Container>
+    <Container openDrawer={openDrawer}>
       <TitleContainer>
         <CustomImg src={programImage} showSummary={showSummary} />
         <SummaryTextContainer hide={true}>
@@ -138,103 +151,100 @@ function ProgramPage(props) {
         </TopTitle>
         <SingleColumnBox height="long">
           <Header>현재 동시 청취자수 </Header>
-          <Contents>
+          <Contents
+          >
             <LiveLineChart></LiveLineChart>
           </Contents>
         </SingleColumnBox>
         <p></p>
-        <Columns>
-          <GraphBox>
-            <Header>활성 청취자 </Header>
-            <Card>
-              <CardContent
-                headText="200명"
-                footText="어제보다 2% 증가"
-              >
-                <LineChartSvg></LineChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-          <GraphBox>
-            <Header>청취자 구성</Header>
-            <Card>
-              <CardContent
-                footText="1위 남자회사원" 
-              >
-                <RadarChartSvg></RadarChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-        </Columns>
-        <Columns>
-          <GraphBox>
-            <Header>유지율</Header>
-            <Card>
-              <CardContent
-                headText="72%"
-                footText="지난주 대비 1% 증가" 
-              >
-                <BarChartSvg></BarChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-          <GraphBox>
-            <Header>청취자참여</Header>
-            <Card>
-              <CardContent
-                headText="1,230건 "
-                footText="지난주 대비 3% 증가" 
-              >
-                <PieChartSvg></PieChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-        </Columns>
-        <Columns>
-          <GraphBox>
-            <Header>제작요소</Header>
-            <Card>
-              <CardContent
-                footText="지난주 대비 3,000 증가" 
-              >
-                <HbarChartSvg></HbarChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-          <GraphBox>
-            <Header>청취율분석</Header>
-            <Card>
-              <CardContent
-                footText="지난주 대비 1% 증가" 
-              >
-                <ScatterChartSvg></ScatterChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-        </Columns>
-        <Columns>
-          <GraphBox>
-            <Header>분석노트</Header>
-            <Card>
-            </Card>
-          </GraphBox>
-          <GraphBox>
-            <Header>ETC</Header>
-            <Card>
-              <CardContent
-                footText="지난주 대비 1% 증가" 
-              >
-                <DualBarChartSvg></DualBarChartSvg>
-              </CardContent>
-            </Card>
-          </GraphBox>
-        </Columns>
-        <Columns>
-          <LastGraphBox>
-            <LastCard></LastCard>
-          </LastGraphBox>
-        </Columns>
+        <GraphContainer>
+          <Columns>
+            <GraphComponent
+              id="activeListener"
+              title="활성 청취자"
+              headText="200명"
+              footText="어제보다 2% 증가"
+              onClickGraph={onClickGraph}
+            >
+              <LineChartSvg
+                id="activeListener"
+              ></LineChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              id="listenerOrg"
+              title="청취자 구성"
+              footText="1위 남자회사원" 
+              onClickGraph={onClickGraph}
+            >
+              <RadarChartSvg></RadarChartSvg>
+            </GraphComponent>
+          </Columns>
+          <Columns>
+            <GraphComponent
+              id="keepRatio"
+              title="유지율"
+              headText="72%"
+              footText="지난주 대비 1% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <BarChartSvg></BarChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              id="participation"
+              title="청취자참여"
+              headText="1,230건 "
+              footText="지난주 대비 3% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <PieChartSvg></PieChartSvg>
+            </GraphComponent>
+          </Columns>
+          <Columns>
+            <GraphComponent
+              id="production"
+              title="제작요소"
+              footText="지난주 대비 3,000 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <HbarChartSvg></HbarChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              id="listenRatio"
+              title="청취율분석"
+              footText="지난주 대비 1% 증가" 
+              onClickGraph={onClickGraph}
+            >
+                  <ScatterChartSvg></ScatterChartSvg>
+            </GraphComponent>
+          </Columns>
+          <Columns>
+            <GraphComponent
+              id="analysisNote"
+              title="분석노트"
+              onClickGraph={() => {}}
+            >
+            </GraphComponent>
+            <GraphComponent
+              id="etc"
+              title="ETC"
+              footText="지난주 대비 1% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <DualBarChartSvg></DualBarChartSvg>
+            </GraphComponent>
+          </Columns>
+          <Columns>
+            <LastGraphBox>
+              <LastCard></LastCard>
+            </LastGraphBox>
+          </Columns>
+        </GraphContainer>
       </ParallaxImage>
+      <BottomDrawer 
+        drawContentId={drawContentId}
+        openDrawer={openDrawer} 
+        setOpenDrawer={setOpenDrawer}
+      ></BottomDrawer>
     </Container>
   )
 }
