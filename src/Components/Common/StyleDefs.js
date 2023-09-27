@@ -5,6 +5,10 @@ const STYLE = {
   BLUR_HEADER: 25
 }
 
+const COLOR_DOWN_DROP = '#ffffff7d';
+const COLOR_DOWN_DROP_DARK = '#423c5a80';
+const COLOR_DOWN_DROP_BLACK = '#4c3434e0';
+
 const CommonDiv = styled.div`
   text-align: center;
   border-radius: 5px;
@@ -40,8 +44,8 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   opacity: 0.6;
   z-index: 5;
   text-align: left;
-  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
-  backdrop-filter: blur(${STYLE.BLUR}px);
+  /* -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  backdrop-filter: blur(${STYLE.BLUR}px); */
 `
 export const Contents = styled(CommonDiv)`
   border-top-left-radius: 0px;
@@ -64,6 +68,10 @@ export const GraphBox = styled.div`
   /* border: 1px solid white; */
   margin-bottom: 2vh;
   padding: 1vh;
+  background-color: ${COLOR_DOWN_DROP_DARK};
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+  backdrop-filter: blur(33px);
+  background-blend-mode: overlay;
 `
 export const LastGraphBox = styled.div`
   width: 45%;
