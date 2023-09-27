@@ -48,7 +48,20 @@ function BarChartSvg() {
         },
       }}
     >
-      <Interval x="year" y="sales" />
+      <Interval 
+        x="year" 
+        y="sales" 
+        color={{
+          field: 'year',
+          callback: (year) => {
+            if(year === '1962 年'){
+              return 'red';
+            } else {
+              return 'blue';
+            }
+          }
+        }}
+      />
     </Chart>
   </Canvas>
   )
