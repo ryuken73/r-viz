@@ -61,12 +61,12 @@ export const Columns = styled.div`
   align-items: center; 
 `
 export const GraphBox = styled.div`
-  width: 45%;
+  /* width: 45%; */
   backdrop-filter: blur(${STYLE.BLUR}px);
   -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
   border-radius: 20px;
   /* border: 1px solid white; */
-  margin-bottom: 2vh;
+  /* margin-bottom: 2vh; */
   padding: 1vh;
   background-color: ${COLOR_DOWN_DROP_DARK};
   box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -74,7 +74,7 @@ export const GraphBox = styled.div`
   background-blend-mode: overlay;
 `
 export const LastGraphBox = styled.div`
-  width: 45%;
+  /* width: 45%; */
 `
 export const Card = styled.div`
   position: relative;

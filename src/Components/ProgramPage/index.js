@@ -40,7 +40,26 @@ const Container = styled.div`
   transition: all 0.5s;
   user-select: none;
 `
-const GraphContainer = styled.div``;
+const GraphContainer = styled.div`
+  display: grid;
+  gap: 1rem;
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
 const CustomImg = styled.img`
   position: absolute;
   object-fit: cover;
@@ -159,7 +178,7 @@ function ProgramPage(props) {
         </SingleColumnBox>
         <p></p>
         <GraphContainer>
-          <Columns>
+          {/* <Columns> */}
             <GraphComponent
               id="activeListener"
               title="활성 청취자"
@@ -179,8 +198,8 @@ function ProgramPage(props) {
             >
               <RadarChartSvg></RadarChartSvg>
             </GraphComponent>
-          </Columns>
-          <Columns>
+          {/* </Columns> */}
+          {/* <Columns> */}
             <GraphComponent
               id="keepRatio"
               title="유지율"
@@ -199,8 +218,8 @@ function ProgramPage(props) {
             >
               <PieChartSvg></PieChartSvg>
             </GraphComponent>
-          </Columns>
-          <Columns>
+          {/* </Columns> */}
+          {/* <Columns> */}
             <GraphComponent
               id="production"
               title="제작요소"
@@ -217,8 +236,8 @@ function ProgramPage(props) {
             >
                   <ScatterChartSvg></ScatterChartSvg>
             </GraphComponent>
-          </Columns>
-          <Columns>
+          {/* </Columns> */}
+          {/* <Columns> */}
             <GraphComponent
               id="analysisNote"
               title="분석노트"
@@ -233,12 +252,12 @@ function ProgramPage(props) {
             >
               <DualBarChartSvg></DualBarChartSvg>
             </GraphComponent>
-          </Columns>
-          <Columns>
+          {/* </Columns> */}
+          {/* <Columns> */}
             <LastGraphBox>
               <LastCard></LastCard>
             </LastGraphBox>
-          </Columns>
+          {/* </Columns> */}
         </GraphContainer>
       </ParallaxImage>
       <BottomDrawer 
