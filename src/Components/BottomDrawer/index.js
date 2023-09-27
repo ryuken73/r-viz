@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import GraphSlider from 'Components/GraphSlider';
 
 const CustomDraw = styled(SwipeableDrawer)`
   div.MuiDrawer-paper{
@@ -26,6 +27,7 @@ function BottomDrawer(props) {
       onClose={closeDrawer}
     >
       {drawContentId}
+      <GraphSlider></GraphSlider>
     </CustomDraw>
   )
 }
