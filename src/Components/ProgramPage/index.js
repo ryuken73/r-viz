@@ -44,6 +44,7 @@ const GraphContainer = styled.div`
   display: grid;
   gap: 1rem;
   // Small devices (landscape phones, 576px and up)
+  grid-template-columns: repeat(2, 1fr);
   @media (min-width: 576px) {
     grid-template-columns: repeat(2, 1fr);
   }
