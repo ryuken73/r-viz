@@ -6,7 +6,8 @@ const STYLE = {
 }
 
 const COLOR_DOWN_DROP = '#ffffff7d';
-const COLOR_DOWN_DROP_DARK = '#000111';
+// const COLOR_DOWN_DROP_DARK = '#000111';
+const COLOR_DOWN_DROP_DARK = '#160e23';
 const COLOR_DOWN_DROP_BLACK = '#4c3434e0';
 
 const CommonDiv = styled.div`

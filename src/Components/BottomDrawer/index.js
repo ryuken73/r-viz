@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import GraphSlider from 'Components/GraphSlider';
+import ChartSlider from 'Components/ChartSlider';
 
 const CustomDraw = styled(SwipeableDrawer)`
   div.MuiDrawer-paper{
     color: white;
-    padding: 20px;
+    padding: 10px;
     height: 85%;
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
-    background: rgb(24 27 37);
+    /* background: rgb(24 27 37); */
+    background: #160e23;
   }
 `
-
 
 function BottomDrawer(props) {
   const {drawContentId, openDrawer, setOpenDrawer} = props;
@@ -27,7 +27,7 @@ function BottomDrawer(props) {
       onClose={closeDrawer}
     >
       {drawContentId}
-      <GraphSlider></GraphSlider>
+      <ChartSlider></ChartSlider>
     </CustomDraw>
   )
 }
