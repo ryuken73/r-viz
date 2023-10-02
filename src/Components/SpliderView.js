@@ -9,6 +9,9 @@ import background3 from 'resources/parkso.jpg';
 const CustomSplide = styled(Splide)`
   padding: ${props => props.padding || `1em !important`};
 `
+const CustomSplideTrack = styled(SplideTrack)`
+  overflow: clip;
+`
 function SpliderView(props) {
   const {pages=[background1, background2, background3]} = props;
   return (
@@ -18,11 +21,11 @@ function SpliderView(props) {
         perPage: 1,
         pagination: false
       }}
-      padding={0}
+      padding="0em"
       hasTrack={false}
       tag="section"
     >
-      <SplideTrack>
+      <CustomSplideTrack>
         {pages.map(page => (
           <SplideSlide 
             key={page}
@@ -32,7 +35,7 @@ function SpliderView(props) {
             ></ProgramPage>
           </SplideSlide>
         ))}
-      </SplideTrack>
+      </CustomSplideTrack>
     </CustomSplide>
   )
 }
