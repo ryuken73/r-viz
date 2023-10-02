@@ -33,7 +33,7 @@ function ParallaxImage(props) {
   const onChangePercentage = throttle(handleScroll, 50);
 
   return (
-    <StyledParallax
+    <div
       strength={0}
       renderLayer={(percentage) => {
         onChangePercentage(percentage)
@@ -47,7 +47,7 @@ function ParallaxImage(props) {
       <Container>
         {children}
       </Container>
-    </StyledParallax>
+    </div>
   )
 }
 

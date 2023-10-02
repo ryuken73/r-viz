@@ -112,7 +112,7 @@ function ProgramPage(props) {
           totalRecv + rands :
           totalRecv - rands
       })
-   }, 2000) 
+   }, 10000) 
    return () => {
     clearInterval(timer);
    }
