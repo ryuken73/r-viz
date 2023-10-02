@@ -8,9 +8,17 @@ import background3 from 'resources/parkso.jpg';
 
 const CustomSplide = styled(Splide)`
   padding: ${props => props.padding || `1em !important`};
+  width: 100%;
 `
 const CustomSplideTrack = styled(SplideTrack)`
   overflow: clip;
+  width: 100%;
+  ul {
+    width: 100%;
+    li {
+      width: 100%;
+    }
+  }
 `
 function SpliderView(props) {
   const {pages=[background1, background2, background3]} = props;
