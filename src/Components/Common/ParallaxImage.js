@@ -34,7 +34,7 @@ function ParallaxImage(props) {
 
   return (
     <StyledParallax
-      strength={100}
+      strength={0}
       renderLayer={(percentage) => {
         onChangePercentage(percentage)
         return <dv></dv>
