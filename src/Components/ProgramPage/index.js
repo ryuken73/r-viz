@@ -24,6 +24,7 @@ import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
+import SlidingRadio from 'Components/SlidingRadio';
 import LiveLineChart from 'Components/Chart/LiveLineChart';
 import LineChartSvg from 'Components/Chart/LineChartSvg';
 import RadarChartSvg from 'Components/Chart/RadarChartSvg';
@@ -61,6 +62,10 @@ const GraphContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
+const SliderContainer = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+`
 const CustomImg = styled.img`
   position: absolute;
   object-fit: cover;
@@ -177,7 +182,9 @@ function ProgramPage(props) {
             <LiveLineChart></LiveLineChart>
           </Contents>
         </SingleColumnBox>
-        <p></p>
+        <SliderContainer>
+          <SlidingRadio></SlidingRadio>
+        </SliderContainer>
         <GraphContainer>
           {/* <Columns> */}
             <GraphComponent
