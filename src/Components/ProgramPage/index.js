@@ -183,7 +183,8 @@ function ProgramPage(props) {
           </Contents>
         </SingleColumnBox>
         <SliderContainer>
-          <SlidingRadio></SlidingRadio>
+          <div>111</div>
+          {/* <SlidingRadio></SlidingRadio> */}
         </SliderContainer>
         <GraphContainer>
           {/* <Columns> */}

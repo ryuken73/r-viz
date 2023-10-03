@@ -70,7 +70,11 @@ export const GraphBox = styled.div`
   /* margin-bottom: 2vh; */
   padding: 1vh;
   background-color: ${COLOR_DOWN_DROP_DARK};
-  box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+  /* box-shadow: 0 10px 15px rgb(0 0 0 / 20%); */
+  box-shadow: 
+    rgba(255, 0, 255, 0.3) 0px 3px 3px -2px, 
+    rgba(255, 0, 255, 0.14) 0px 3px 4px 0px, 
+    rgba(255, 0, 255, 0.12) 0px 1px 8px 0px;
   backdrop-filter: blur(33px);
   background-blend-mode: overlay;
 `
