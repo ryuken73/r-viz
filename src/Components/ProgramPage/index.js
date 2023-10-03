@@ -36,6 +36,7 @@ import ScatterChartSvg from 'Components/Chart/ScatterChartSvg';
 import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
 import BottomDrawer from 'Components/BottomDrawer';
 import GraphComponent from 'Components/Chart/GraphComponent';
+import useAppState from 'hooks/useAppState';
 
 const Container = styled.div`
   transform: ${props => props.openDrawer && 'scale(0.97)'};
@@ -72,6 +73,7 @@ const CustomImg = styled.img`
   object-fit: cover;
   object-position: center top;
   width: 100%;
+  max-width: 800px;
   height: 100%;
   z-index: -1;
   opacity: ${props => props.showSummary ? 0.3 : 1};
@@ -98,11 +100,12 @@ function ProgramPage(props) {
     programTitle="두시탈출 컬투쇼",
     programImage
   } = props;
+  const { showSummary } = useAppState();
   const [ imageColors, setImageColors ] = React.useState(['black'])
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
   const [ drawContentId, setDrawContentId] = React.useState(null);
-  const [ showSummary, setShowSummary ] = React.useState(false);
+  // const [ showSummary, setShowSummary ] = React.useState(false);
   const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
   React.useEffect(() => {
@@ -124,24 +127,29 @@ function ProgramPage(props) {
     }
   }, [data, error, loading])
   const filterdColor = tinycolor(imageColors[0]).greyscale(10).darken(65).toString();
-  const handleScroll = React.useCallback((percentage) => {
-    // const heightWithScroll = document.documentElement.scrollHeight;
-    // const currentPx = (percentage - 1) * heightWithScroll;
-    const hideSummaryStartPercent = 1.04
-    // console.log(percentage)
-    setCurrentPercentage(percentage);
-    if(percentage < hideSummaryStartPercent){
-      setShowSummary(false);
-    }
-    if(percentage > hideSummaryStartPercent){
-      setShowSummary(true);
-    }
+  // const handleScroll = React.useCallback((percentage) => {
+  //   // const heightWithScroll = document.documentElement.scrollHeight;
+  //   // const currentPx = (percentage - 1) * heightWithScroll;
+  //   const hideSummaryStartPercent = 1.04
+  //   // console.log(percentage)
+  //   setCurrentPercentage(percentage);
+  //   if(percentage < hideSummaryStartPercent){
+  //     setShowSummary(false);
+  //   }
+  //   if(percentage > hideSummaryStartPercent){
+  //     setShowSummary(true);
+  //   }
+  // }, [])
+  const handleScroll = React.useCallback((event) => {
+    console.log(event);
   }, [])
 
   const onClickGraph = React.useCallback((id) => {
     setDrawContentId(id);
     setOpenDrawer(true);
   }, [])
+
+  console.log('####', showSummary)
 
   return (
     <Container openDrawer={openDrawer}>
@@ -165,9 +173,6 @@ function ProgramPage(props) {
           </TextNormal>
         </SummaryTextContainer>
       </TitleContainer>
-        <SliderContainer>
-          <SlidingRadio></SlidingRadio>
-        </SliderContainer>
       {/* <ParallaxImage
         image={programImage}
         overflowColor={'black'}
@@ -175,16 +180,13 @@ function ProgramPage(props) {
       > */}
       <ImageBackground
         image={programImage}
+        handleScroll={handleScroll}
       >
         <TopTitle 
           totalRecv={totalRecv}
           currentPercentage={currentPercentage}
-          setShowSummary={setShowSummary}
         >
         </TopTitle>
-        <SliderContainer>
-          <SlidingRadio></SlidingRadio>
-        </SliderContainer>
         <SingleColumnBox height="long">
           <Header>현재 동시 청취자수 </Header>
           <Contents
