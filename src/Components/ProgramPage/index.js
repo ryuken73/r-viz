@@ -24,6 +24,7 @@ import AnimatedNumber from 'Components/Common/AnimatedNumber';
 import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import TopHero from 'Components/ProgramPage/TopHero';
 import ParallaxImage from 'Components/Common/ParallaxImage';
+import ImageBackground from 'Components/Common/ImageBackground';
 import SlidingRadio from 'Components/SlidingRadio';
 import LiveLineChart from 'Components/Chart/LiveLineChart';
 import LineChartSvg from 'Components/Chart/LineChartSvg';
@@ -167,10 +168,13 @@ function ProgramPage(props) {
         <SliderContainer>
           <SlidingRadio></SlidingRadio>
         </SliderContainer>
-      <ParallaxImage
+      {/* <ParallaxImage
         image={programImage}
         overflowColor={'black'}
         handleScroll={handleScroll}
+      > */}
+      <ImageBackground
+        image={programImage}
       >
         <TopTitle 
           totalRecv={totalRecv}
@@ -273,7 +277,8 @@ function ProgramPage(props) {
             </LastGraphBox>
           {/* </Columns> */}
         </GraphContainer>
-      </ParallaxImage>
+      {/* </ParallaxImage> */}
+      </ImageBackground>
       <BottomDrawer 
         drawContentId={drawContentId}
         openDrawer={openDrawer} 
