@@ -164,6 +164,9 @@ function ProgramPage(props) {
           </TextNormal>
         </SummaryTextContainer>
       </TitleContainer>
+        <SliderContainer>
+          <SlidingRadio></SlidingRadio>
+        </SliderContainer>
       <ParallaxImage
         image={programImage}
         overflowColor={'black'}
@@ -175,6 +178,9 @@ function ProgramPage(props) {
           setShowSummary={setShowSummary}
         >
         </TopTitle>
+        <SliderContainer>
+          <SlidingRadio></SlidingRadio>
+        </SliderContainer>
         <SingleColumnBox height="long">
           <Header>현재 동시 청취자수 </Header>
           <Contents
@@ -183,8 +189,7 @@ function ProgramPage(props) {
           </Contents>
         </SingleColumnBox>
         <SliderContainer>
-          <div>111</div>
-          {/* <SlidingRadio></SlidingRadio> */}
+          <SlidingRadio></SlidingRadio>
         </SliderContainer>
         <GraphContainer>
           {/* <Columns> */}
