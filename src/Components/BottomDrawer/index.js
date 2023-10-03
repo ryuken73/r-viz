@@ -18,7 +18,7 @@ const CustomDraw = styled(SwipeableDrawer)`
 function BottomDrawer(props) {
   const {drawContentId, openDrawer, setOpenDrawer} = props;
   const closeDrawer = React.useCallback(() => {
-    setOpenDrawer(false)
+    setOpenDrawer(false);
   }, [setOpenDrawer]);
   return (
     <CustomDraw
@@ -27,7 +27,7 @@ function BottomDrawer(props) {
       onClose={closeDrawer}
     >
       {drawContentId}
-      <ChartSlider></ChartSlider>
+      <ChartSlider show={openDrawer}></ChartSlider>
     </CustomDraw>
   )
 }

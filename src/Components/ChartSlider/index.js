@@ -6,8 +6,11 @@ import AreaChart from 'Components/Chart/AreaChart';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
 
-const Container = styled.div``
+const Container = styled.div`
+  visibility: ${props => props.show ? 'visible' : 'hidden'};
+`
 const CustomSplide = styled(Splide)`
+  visibility: ${props => props.show ? 'visible' : 'hidden'};
   padding: ${props => props.padding || `1em !important`};
 `
 const CustomSplideChart = styled(CustomSplide)`
@@ -18,13 +21,15 @@ const CustomSplideChart = styled(CustomSplide)`
   }
 `
 const CustomSlide = styled(SplideSlide)`
+  visibility: ${props => props.show ? 'visible' : 'hidden'};
   text-align: center;
 `
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun']
 const GRAPHS = [1, 2, 3, 4, 5, 6, 7]
 
-function GraphSlider() {
+function GraphSlider(props) {
+  const { show } = props;
   const mainRef = React.useRef(null);
   const dayRef = React.useRef(null);
   React.useEffect(() => {
@@ -35,7 +40,7 @@ function GraphSlider() {
   }, [])
    
   return (
-    <Container>
+    <Container show={show}>
       <CustomSplide 
         options = {{
           arrows: false,
@@ -45,10 +50,14 @@ function GraphSlider() {
         ref={dayRef}
         hasTrack={false}
         tag="section"
+        show={show}
       >
         <SplideTrack>
           {DAYS.map(day => (
-            <CustomSlide key={day}>
+            <CustomSlide 
+              key={day} 
+              show={show}
+            >
               {day}
             </CustomSlide>
           ))}
@@ -63,10 +72,14 @@ function GraphSlider() {
         hasTrack={false}
         tag="section"
         padding="0em"
+        show={show}
       >
         <SplideTrack>
           {GRAPHS.map(graph => (
-            <CustomSlide key={graph}>
+            <CustomSlide 
+              key={graph}
+              show={show}
+            >
               <AreaChart></AreaChart>
             </CustomSlide>
           ))}
