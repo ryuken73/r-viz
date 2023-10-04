@@ -26,7 +26,7 @@ function BottomDrawer(props) {
       open={openDrawer}
       onClose={closeDrawer}
     >
-      {drawContentId}
+      {drawContentId}<span>{Date.now()}</span>
       <ChartSlider show={openDrawer}></ChartSlider>
     </CustomDraw>
   )
