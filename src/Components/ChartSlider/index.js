@@ -5,15 +5,16 @@ import AreaChart from 'Components/Chart/AreaChart';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
+import { Preview } from '@mui/icons-material';
 
 const Container = styled.div`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
 `
-const CustomSplide = styled(Splide)`
+const CustomSplidePeriod = styled(Splide)`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
   padding: ${props => props.padding || `1em !important`};
 `
-const CustomSplideChart = styled(CustomSplide)`
+const CustomSplideChart = styled(CustomSplidePeriod)`
   ul {
     li {
       width: 100% !important;
@@ -24,9 +25,46 @@ const CustomSlide = styled(SplideSlide)`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
   text-align: center;
 `
+const TextContainer = styled.div``;
 
-const DAYS = ['Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun']
-const GRAPHS = [1, 2, 3, 4, 5, 6, 7]
+const dailyData = [
+  {
+    dayOfWeek: 'Mon',
+    dayNumber: 10,
+    message: 'Monday Summary'
+  },
+  {
+    dayOfWeek: 'Tue',
+    dayNumber: 11,
+    message: 'TuesDay Summary'
+  },
+  {
+    dayOfWeek: 'Wed',
+    dayNumber: 12,
+    message: 'Wednesday Summary'
+  },
+  {
+    dayOfWeek: 'Thr',
+    dayNumber: 13,
+    message: 'Thursday Summary'
+  },
+  {
+    dayOfWeek: 'Fri',
+    dayNumber: 14,
+    message: 'Friday Summary'
+  },
+  {
+    dayOfWeek: 'Sat',
+    dayNumber: 15,
+    message: 'Saturday Summary'
+  },
+  {
+    dayOfWeek: 'Sun',
+    dayNumber: 16,
+    message: 'Sunday Summary'
+  },
+]
+
 
 function GraphSlider(props) {
   const { show } = props;
@@ -41,7 +79,7 @@ function GraphSlider(props) {
    
   return (
     <Container show={show}>
-      <CustomSplide 
+      <CustomSplidePeriod 
         options = {{
           arrows: false,
           perPage: 7,
@@ -53,16 +91,16 @@ function GraphSlider(props) {
         show={show}
       >
         <SplideTrack>
-          {DAYS.map(day => (
+          {dailyData.map(day => (
             <CustomSlide 
-              key={day} 
+              key={day.dayNumber} 
               show={show}
             >
-              {day}
+              {day.dayOfWeek}
             </CustomSlide>
           ))}
         </SplideTrack>
-      </CustomSplide>
+      </CustomSplidePeriod>
       <CustomSplideChart
         options={{
           arrows: false,
@@ -75,16 +113,18 @@ function GraphSlider(props) {
         show={show}
       >
         <SplideTrack>
-          {GRAPHS.map(graph => (
+          {dailyData.map(day => (
             <CustomSlide 
-              key={graph}
+              key={day.dayNumber}
               show={show}
             >
               <AreaChart></AreaChart>
+              <TextContainer>
+                <h2>{day.message}</h2>
+              </TextContainer>
             </CustomSlide>
           ))}
         </SplideTrack>
-
       </CustomSplideChart>
     </Container>
   )

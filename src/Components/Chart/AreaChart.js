@@ -47,12 +47,15 @@ const data = [
     tem: 12,
   },
 ];
+console.log(window.innerWidth)
+const CANVAS_WIDTH = window.innerWidth * 0.7;
 
-function LineCartSvg() {
+function LineCartSvg(props) {
+  const {data} = props;
   return (
-    // <MinusPadding>
     <CustomCanvas 
       pixelRatio={window.devicePixelRatio}
+      height={CANVAS_WIDTH}
     >
       <Chart
         data={data}
@@ -89,7 +92,6 @@ function LineCartSvg() {
         <Line x="time" y="tem" size="5" color="l(90) 0:#f7ff18 1:#f7f7f7" shape="smooth" />
       </Chart>
     </CustomCanvas>
-    // </MinusPadding>
   )
 
 }

@@ -1,6 +1,11 @@
 const dev = {
   CONFIG_LOCAL_STORAGE_KEY: 'r-viz-sbs',
-  LOGLESS_REDUX_ACTIONS: ['']
+  LOGLESS_REDUX_ACTIONS: [''],
+  DEFAULT_FETCH_OPTIONS: {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  }  
 }
 
 const prd = {
