@@ -95,7 +95,7 @@ function ProgramPage(props) {
     programImage,
     isOnair
   } = props;
-  const { showSummary } = useAppState();
+  const { showSummary, globalPeriod } = useAppState();
   const [ imageColors, setImageColors ] = React.useState(['black'])
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
@@ -122,10 +122,6 @@ function ProgramPage(props) {
   }, [data, error, loading])
 
   const filterdColor = tinycolor(imageColors[0]).greyscale(10).darken(65).toString();
-
-  const handleScroll = React.useCallback((event) => {
-    console.log(event);
-  }, [])
 
   const onClickGraph = React.useCallback((programId, chartType) => {
     setDrawContentId(chartType);
@@ -157,7 +153,6 @@ function ProgramPage(props) {
       </TitleContainer>
       <ImageBackground
         image={programImage}
-        handleScroll={handleScroll}
       >
         <TopTitle 
           summaryText={summaryText}
