@@ -115,8 +115,8 @@ function ProgramPage(props) {
       const rands = Math.floor(Math.random() * 10000);
       setTotalRecv(totalRecv => {
         return (Date.now() % 2 === 0) ? 
-          totalRecv + rands :
-          totalRecv - rands
+          Math.abs(totalRecv + rands) :
+          Math.abs(totalRecv - rands)
       })
    }, 10000) 
    return () => {
