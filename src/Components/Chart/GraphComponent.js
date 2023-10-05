@@ -8,10 +8,10 @@ import {
 
 
 export default function GraphComponent(props) {
-  const {id, title, headText, footText, children, onClickGraph} = props;
+  const {programId, type: chartType, title, headText, footText, children, onClickGraph} = props;
   const handleClick = React.useCallback(() => {
-    onClickGraph(id);
-  }, [id, onClickGraph])
+    onClickGraph(programId, chartType);
+  }, [chartType, onClickGraph, programId])
   return (
     <GraphBox onClick={handleClick}>
       <Header>{title}</Header>

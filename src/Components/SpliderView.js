@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
+import { useListProgramsQuery } from 'hooks/useDataQuery';
 import ProgramPage from 'Components/ProgramPage';
-import background1 from 'resources/Cul2.jpg';
-import background2 from 'resources/ji.jpg';
-import background3 from 'resources/parkso.jpg';
 
 const CustomSplide = styled(Splide)`
   padding: ${props => props.padding || `1em !important`};
@@ -21,7 +19,7 @@ const CustomSplideTrack = styled(SplideTrack)`
   }
 `
 function SpliderView(props) {
-  const {pages=[background1, background2, background3]} = props;
+  const { data: listPrograms, isLoading } = useListProgramsQuery({autoRunning: true});
   return (
     <CustomSplide
       options = {{
@@ -34,12 +32,14 @@ function SpliderView(props) {
       tag="section"
     >
       <CustomSplideTrack>
-        {pages.map(page => (
+        {listPrograms?.map(program => (
           <SplideSlide 
-            key={page}
+            key={program.programId}
           >
             <ProgramPage
-              programImage={page}
+              programId={program.programId}
+              programTitle={program.programTitle}
+              programImage={program.programImage}
             ></ProgramPage>
           </SplideSlide>
         ))}

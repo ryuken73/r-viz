@@ -12,6 +12,12 @@ const defaultGetOptions = {
 }
 
 const apiMap = {
+  "queryListPrograms": () => {
+    return {
+      url: `/listPrograms`,
+      ...defaultGetOptions
+    }
+  },
   "queryDetailData": ({period, type}) => {
     return {
       url: `/${period}/${type}`,
@@ -31,6 +37,26 @@ export const useDetailDataQuery = ({
     period,
     type
   });
+  const queryKey = {
+    apiName,
+    url,
+    fetchOptions
+  }
+  const results = useQuery({
+    queryKey, 
+    queryFn: querySample, 
+    enabled,
+    keepPreviousData: true
+  });
+  return results;  
+}
+
+export const useListProgramsQuery = ({
+  autoRunning=false
+}) => {
+  const enabled = autoRunning;
+  const apiName = 'queryListPrograms';
+  const {url, fetchOptions} = apiMap[apiName]({});
   const queryKey = {
     apiName,
     url,

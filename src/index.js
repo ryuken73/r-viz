@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ParallaxProvider } from 'react-scroll-parallax';
+// import { ParallaxProvider } from 'react-scroll-parallax';
 import {store} from 'store';
 import {Provider} from 'react-redux';
+import {QueryClient, QueryClientProvider} from 'react-query'
 
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <ParallaxProvider>
+    <QueryClientProvider client={queryClient}>
+    {/* <ParallaxProvider> */}
       <App />
-    </ParallaxProvider>
+    {/* </ParallaxProvider> */}
+    </QueryClientProvider>
   </Provider>
 );
 

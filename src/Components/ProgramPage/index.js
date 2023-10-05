@@ -97,6 +97,7 @@ const getPxFromPercent = (totalHeight, percent) => {
 
 function ProgramPage(props) {
   const {
+    programId=0,
     programTitle="두시탈출 컬투쇼",
     programImage
   } = props;
@@ -144,8 +145,8 @@ function ProgramPage(props) {
     console.log(event);
   }, [])
 
-  const onClickGraph = React.useCallback((id) => {
-    setDrawContentId(id);
+  const onClickGraph = React.useCallback((programId, chartType) => {
+    setDrawContentId(chartType);
     setOpenDrawer(true);
   }, [])
 
@@ -200,7 +201,8 @@ function ProgramPage(props) {
         <GraphContainer>
           {/* <Columns> */}
             <GraphComponent
-              id="activeListener"
+              programId={programId}
+              type="activeListener"
               title="활성 청취자"
               headText="200명"
               footText="어제보다 2% 증가"
@@ -211,7 +213,8 @@ function ProgramPage(props) {
               ></LineChartSvg>
             </GraphComponent>
             <GraphComponent
-              id="listenerOrg"
+              programId={programId}
+              type="listenerOrg"
               title="청취자 구성"
               footText="1위 남자회사원" 
               onClickGraph={onClickGraph}
@@ -221,7 +224,8 @@ function ProgramPage(props) {
           {/* </Columns> */}
           {/* <Columns> */}
             <GraphComponent
-              id="keepRatio"
+              programId={programId}
+              type="keepRatio"
               title="유지율"
               headText="72%"
               footText="지난주 대비 1% 증가" 
@@ -230,7 +234,8 @@ function ProgramPage(props) {
               <BarChartSvg></BarChartSvg>
             </GraphComponent>
             <GraphComponent
-              id="participation"
+              programId={programId}
+              type="participation"
               title="청취자참여"
               headText="1,230건 "
               footText="지난주 대비 3% 증가" 
@@ -241,7 +246,8 @@ function ProgramPage(props) {
           {/* </Columns> */}
           {/* <Columns> */}
             <GraphComponent
-              id="production"
+              programId={programId}
+              type="production"
               title="제작요소"
               footText="지난주 대비 3,000 증가" 
               onClickGraph={onClickGraph}
@@ -249,7 +255,8 @@ function ProgramPage(props) {
               <HbarChartSvg></HbarChartSvg>
             </GraphComponent>
             <GraphComponent
-              id="listenRatio"
+              programId={programId}
+              type="listenRatio"
               title="청취율분석"
               footText="지난주 대비 1% 증가" 
               onClickGraph={onClickGraph}
@@ -259,13 +266,15 @@ function ProgramPage(props) {
           {/* </Columns> */}
           {/* <Columns> */}
             <GraphComponent
-              id="analysisNote"
+              programId={programId}
+              type="analysisNote"
               title="분석노트"
               onClickGraph={() => {}}
             >
             </GraphComponent>
             <GraphComponent
-              id="etc"
+              programId={programId}
+              type="etc"
               title="ETC"
               footText="지난주 대비 1% 증가" 
               onClickGraph={onClickGraph}
