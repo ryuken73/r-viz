@@ -36,11 +36,9 @@ export const TopHeroContent = styled.div`
   align-items: center;
 `
 export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
   position: -webkit-sticky;
   position: sticky;
-  top: calc(15vh);
+  top: calc(14.5vh);
   /* color: lightgrey; */
   color: darkcyan;
   /* opacity: 0.6; */
@@ -50,6 +48,8 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   margin: -1vh;
   padding: 1vh;
   background-color: rgb(18, 18, 18);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   /* -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
   backdrop-filter: blur(${STYLE.BLUR}px); */
 `
