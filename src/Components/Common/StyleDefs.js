@@ -61,10 +61,10 @@ export const Columns = styled.div`
   justify-content: space-between;
   align-items: center; 
 `
-export const GraphBox = styled.div`
+export const GraphBoxOld = styled.div`
   /* width: 45%; */
-  backdrop-filter: blur(${STYLE.BLUR}px);
-  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  /* backdrop-filter: blur(${STYLE.BLUR}px);
+  -webkit-backdrop-filter: blur(${STYLE.BLUR}px); */
   border-radius: 20px;
   /* border: 1px solid white; */
   /* margin-bottom: 2vh; */
@@ -75,6 +75,20 @@ export const GraphBox = styled.div`
     rgba(255, 0, 255, 0.3) 0px 3px 3px -2px, 
     rgba(255, 0, 255, 0.14) 0px 3px 4px 0px, 
     rgba(255, 0, 255, 0.12) 0px 1px 8px 0px;
+  backdrop-filter: blur(33px);
+  background-blend-mode: overlay;
+`
+export const GraphBox = styled.div`
+  /* width: 45%; */
+  backdrop-filter: blur(${STYLE.BLUR}px);
+  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  border-radius: 20px;
+  background-color: rgb(18, 18, 18);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+  /* border: 1px solid white; */
+  /* margin-bottom: 2vh; */
+  padding: 1vh;
   backdrop-filter: blur(33px);
   background-blend-mode: overlay;
 `
