@@ -161,7 +161,7 @@ function ProgramPage(props) {
         >
         </TopTitle>
         <SingleColumnBox height="long">
-          <Header>{liveGraphTitle}</Header>
+          <Header noBackground={true}>{liveGraphTitle}</Header>
           <Contents
           >
             <LiveLineChart></LiveLineChart>

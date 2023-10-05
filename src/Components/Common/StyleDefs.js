@@ -36,8 +36,8 @@ export const TopHeroContent = styled.div`
   align-items: center;
 `
 export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
-  position: -webkit-sticky;
-  position: sticky;
+  position: ${props => !props.noBackground && 'sticky'};
+  position: ${props => !props.noBackground && '-webkit-sticky'};
   top: calc(14.5vh);
   /* color: lightgrey; */
   color: darkcyan;
@@ -47,7 +47,7 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   text-align: left;
   margin: -1vh;
   padding: 1vh;
-  background-color: rgb(18, 18, 18);
+  background-color: ${props => !props.noBackground && 'rgb(18, 18, 18)'};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   /* -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
