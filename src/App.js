@@ -13,10 +13,12 @@ const Container = styled.div`
 
 function App() {
   console.log('re-render app')
-  const {showSummary, setShowSummaryState} = useAppState();
+  const {
+    showSummary, 
+    setShowSummaryState, 
+    setOpacityHeroState
+  } = useAppState();
   const handleScroll = React.useCallback((event) => {
-    const scrollTop = event.target.scrollingElement.scrollTop;
-    console.log(scrollTop, window.scrollY)
     if(window.scrollY > 180 && showSummary === false){
       console.log('set true')
       setShowSummaryState(true);
@@ -25,7 +27,11 @@ function App() {
       console.log('set false')
       setShowSummaryState(false);
     }
-  }, [setShowSummaryState, showSummary])
+    const opacityHero = (130-window.scrollY)/130;
+    if(opacityHero >= 0){
+      setOpacityHeroState(opacityHero)
+    }
+  }, [setOpacityHeroState, setShowSummaryState, showSummary])
   // const onChangePercentage = React.useCallback(() => {
   //   return throttle(handleScroll, 50);
   // }, [handleScroll]) 

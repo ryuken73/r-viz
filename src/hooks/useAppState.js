@@ -3,13 +3,15 @@ import {useSelector, useDispatch} from 'react-redux';
 import {
   setShowSummary,
   setGlobalPeriod,
-  setOnairProgramIds
+  setOnairProgramIds,
+  setOpacityHero
 } from 'appSlice';
 
 function useAppState() {
   const showSummary = useSelector((state) => state.app.showSummary);
   const globalPeriod = useSelector((state) => state.app.globalPeriod);
   const onAirProgramIds = useSelector((state) => state.app.onAirProgramIds);
+  const opacityHero = useSelector((state) => state.app.opacityHero);
   const dispatch = useDispatch();
   
   const setShowSummaryState = React.useCallback((showSummary) => {
@@ -24,13 +26,19 @@ function useAppState() {
     dispatch(setOnairProgramIds({onAirProgramIds}))
   },[dispatch]);
 
+  const setOpacityHeroState = React.useCallback((opacityHero) => {
+    dispatch(setOpacityHero({opacityHero}))
+  },[dispatch]);
+
   return {
     showSummary,
     globalPeriod,
     onAirProgramIds,
+    opacityHero,
     setShowSummaryState,
     setGlobalPeriodState,
-    setOnairProgramIdsState
+    setOnairProgramIdsState,
+    setOpacityHeroState,
   }
 }
 
