@@ -100,7 +100,6 @@ function ProgramPage(props) {
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
   const [ drawContentId, setDrawContentId] = React.useState(null);
-  // const [ showSummary, setShowSummary ] = React.useState(false);
   const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
   React.useEffect(() => {
