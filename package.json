@@ -30,6 +30,7 @@
     "redux-logger": "^3.0.6",
     "styled-components": "^6.0.7",
     "swiper": "^10.2.0",
+    "time-series-data-generator": "^0.1.5",
     "tinycolor2": "^1.6.0",
     "victory": "^36.6.11",
     "web-vitals": "^2.1.4"

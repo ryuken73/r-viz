@@ -10,33 +10,49 @@ const initialData = [
   },
 ];
 
-function ChartReact() {
-  const [data, setData] = React.useState(initialData);
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setData(data => {
-        const newData = {
-          date: new Date ().getTime(),
-          value: Math.round(Math.random() * 100)
-        }
-        return [
-          ...data,
-          newData
-        ].slice(data.length - 10)
-      }) 
-    }, 2000)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
+function ChartReact(props) {
+  // const [data, setData] = React.useState(initialData);
+  const {chartData: data, period} = props;
+  console.log('chartData:', data)
+  // React.useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setData(data => {
+  //       const newData = {
+  //         date: new Date ().getTime(),
+  //         value: Math.round(Math.random() * 100)
+  //       }
+  //       return [
+  //         ...data,
+  //         newData
+  //       ].slice(data.length - 10)
+  //     }) 
+  //   }, 2000)
+  //   return () => {
+  //     clearInterval(timer)
+  //   }
+  // }, [])
+  const timeMaskMap = {
+    daily: 'mm:ss',
+    weekly: 'MM.DD',
+    monthy: 'MM.DD',
+    halfYearly: 'MM',
+    yearly: 'MM',
+  }
+  const tickCountMap = {
+    daily: 5,
+    weekly: 8,
+    monthy: 15,
+    halfYearly: 6,
+    yearly: 12,
+  }
   return (
     <Canvas className="noSwiping" pixelRatio={window.devicePixelRatio}>
         <Chart data={data} scale={{value: {min: 0}}}>
           <Axis
-            field="date"
+            field="timestamp"
             type="timeCat"
-            mask="mm:ss"
-            tickCount={5}
+            mask={timeMaskMap[period]}
+            tickCount={tickCountMap[period]}
             style={{
               label: { align: 'between' },
               grid: { stroke: 'transparent'}
@@ -61,7 +77,7 @@ function ChartReact() {
             showCrosshairs={true} 
           />
           <Line 
-            x="date" 
+            x="timestamp" 
             y="value" 
             style={{
               stroke: 'yellow',
@@ -71,7 +87,7 @@ function ChartReact() {
             shape="smooth"
           />
           <Point 
-            x="date" 
+            x="timestamp" 
             y="value" 
             size={5}
             style={{

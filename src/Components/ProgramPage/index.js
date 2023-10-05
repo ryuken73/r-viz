@@ -30,6 +30,7 @@ import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
 import BottomDrawer from 'Components/BottomDrawer';
 import GraphComponent from 'Components/Chart/GraphComponent';
 import useAppState from 'hooks/useAppState';
+import {useDetailDataQuery} from 'hooks/useDataQuery';
 
 const Container = styled.div`
   transform: ${props => props.openDrawer && 'scale(0.97)'};
@@ -100,21 +101,32 @@ function ProgramPage(props) {
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
   const [ drawContentId, setDrawContentId] = React.useState(null);
-  const [ totalRecv, setTotalRecv ] = React.useState(100);
+  // const [ totalRecv, setTotalRecv ] = React.useState(100);
+  const { data: activeListenerData = {}, isLoading } = useDetailDataQuery({
+    autoRunning: true,
+    programId,
+    isOnair,
+    period: globalPeriod,
+    type: 'activeListener'
+  })
+  console.log('activeListenerData:', activeListenerData)
+  const { totalRecv = 0, chartData=[] } = activeListenerData;
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
-  React.useEffect(() => {
-   const timer = setInterval(() => {
-      const rands = Math.floor(Math.random() * 10000);
-      setTotalRecv(totalRecv => {
-        return (Date.now() % 2 === 0) ? 
-          Math.abs(totalRecv + rands) :
-          Math.abs(totalRecv - rands)
-      })
-   }, 10000) 
-   return () => {
-    clearInterval(timer);
-   }
-  }, [])
+
+  // React.useEffect(() => {
+  //  const timer = setInterval(() => {
+  //     const rands = Math.floor(Math.random() * 10000);
+  //     setTotalRecv(totalRecv => {
+  //       return (Date.now() % 2 === 0) ? 
+  //         Math.abs(totalRecv + rands) :
+  //         Math.abs(totalRecv - rands)
+  //     })
+  //  }, 10000) 
+  //  return () => {
+  //   clearInterval(timer);
+  //  }
+  // }, [])
+
   React.useEffect(() => {
     if(loading === false && error === undefined){
       setImageColors(data)
@@ -164,7 +176,10 @@ function ProgramPage(props) {
           <Header noBackground={true}>{liveGraphTitle}</Header>
           <Contents
           >
-            <LiveLineChart></LiveLineChart>
+            <LiveLineChart 
+              chartData={chartData}
+              period={globalPeriod}
+            ></LiveLineChart>
           </Contents>
         </SingleColumnBox>
         <SliderContainer>

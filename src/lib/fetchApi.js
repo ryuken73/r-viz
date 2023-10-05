@@ -1,4 +1,5 @@
 import {sampleListPrograms} from 'sample/sampleData';
+import Series from 'time-series-data-generator';
 
 export const queryAll = async ({queryKey}) => {
   const [_key, url, options ] = queryKey;
@@ -17,10 +18,10 @@ export const queryAll = async ({queryKey}) => {
 };
 
 export const querySample = async ({queryKey}) => {
-  const [_key, url, options ] = queryKey;
-  console.log('fetch called:', _key, url,  queryKey)
-  const {apiName} = _key;
-  const response = await fetchSample(apiName);
+  const [_key ] = queryKey;
+  const {apiName, url, params} = _key;
+  console.log('fetch called:', apiName, url,  queryKey)
+  const response = await fetchSample(apiName, url, params);
   const body = response;
   if (body.success){
     return body.data;
@@ -29,7 +30,7 @@ export const querySample = async ({queryKey}) => {
   }
 }
 
-const fetchSample = (apiName) => {
+const fetchSample = (apiName, url, params) => {
   return new Promise((resolve, reject) => {
     if(apiName === 'queryListPrograms'){
       resolve({success: true, data: sampleListPrograms})
@@ -39,6 +40,54 @@ const fetchSample = (apiName) => {
       resolve({success: true, data: ['1', '4']})
       return;
     }
+    if(apiName === 'queryDetailData'){
+      const {programId, type, period, isOnair} = params;
+      if(isOnair){
+        const liveData = getLiveData(type, period)
+        resolve({success: true, data: liveData})
+      } else {
+        const pastData = getPastData(type, period)
+        resolve({success: true, data: pastData})
+      }
+      return;
+    }
     resolve({success: false})
   })
+}
+
+const getLiveData = (type, period) => {
+  if(type === 'activeListener'){
+
+  }
+}
+const getPastData = (type, period) => {
+  const plusTimeMap = {
+    daily: 1000 * 60 * 60,
+    weekly: 1000 * 60 * 60 * 24 * 7,
+    monthly: 1000 * 60 * 60 * 24 * 30,
+    halfYearly: 1000 * 60 * 60 * 24 * 30 * 6,
+    yearly: 1000 * 60 * 60 * 24 * 30 * 12,
+  }
+  const intervalMap = {
+    daily: 300,
+    weekly: 60*60*24,
+    monthly: 60*60*24,
+    halfYearly: 60*60*24*30,
+    yearly: 60*60*24*30
+  }
+  if(type === 'activeListener'){
+    const from = (new Date(Date.now())).toISOString();
+    const until = (new Date(Date.now() + plusTimeMap[period])).toISOString();
+    const interval = intervalMap[period];
+    const keyName = 'value';
+    const series = new Series({from, until, interval, keyName})
+    const chartData = series.generate(() => {
+      return Math.round(Math.random() * 100);
+    });
+
+    return {
+      totalRecv: Math.floor(Math.random() * 10000),
+      chartData
+    }
+  }
 }

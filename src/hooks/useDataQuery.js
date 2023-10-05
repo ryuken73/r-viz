@@ -18,9 +18,9 @@ const apiMap = {
       ...defaultGetOptions
     }
   },
-  "queryDetailData": ({period, type}) => {
+  "queryDetailData": ({programId, isOnair, period, type}) => {
     return {
-      url: `/${period}/${type}`,
+      url: `/${programId}/${type}?period=${period}&isOnair=${isOnair}`,
       ...defaultGetOptions
     }
   },
@@ -32,30 +32,49 @@ const apiMap = {
   }
 }
 
-const useQueryFunction = (enabled, apiName, params) => {
+const useQueryFunction = (enabled, apiName, autoRefetch, autoRefetchInterval, params) => {
   const {url, fetchOptions} = apiMap[apiName](params);
   const queryKey = {
     apiName,
     url,
+    params,
     fetchOptions
   }
-  const results = useQuery({
-    queryKey, 
-    queryFn: querySample, 
-    enabled,
-    keepPreviousData: true
-  });
+  const queryParams = autoRefetch ? 
+    {
+      queryKey, 
+      queryFn: querySample, 
+      enabled,
+      keepPreviousData: true,
+      refetchInterval: autoRefetchInterval
+    } : {
+      queryKey, 
+      queryFn: querySample, 
+      enabled,
+      keepPreviousData: true,
+    } 
+  const results = useQuery(queryParams);
   return results;  
 
 }
 
 export const useDetailDataQuery = ({
   autoRunning=false,
+  programId,
+  isOnair,
   period,
   type,
 }) => {
   const apiName = 'queryDetailData';
-  const results = useQueryFunction(autoRunning, apiName, {period, type})
+  const autoRefetch = isOnair;
+  const autoRefetchInterval = 2000;
+  const results = useQueryFunction(
+    autoRunning, 
+    apiName, 
+    autoRefetch, 
+    autoRefetchInterval, 
+    {programId, isOnair, period, type}
+  )
   return results;  
 }
 
