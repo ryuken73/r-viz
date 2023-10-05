@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   showSummary: false,
+  globalPeriod: 'daily',
+  onAirProgramIds: []
 };
 
 export const appSlice = createSlice({
@@ -13,11 +15,23 @@ export const appSlice = createSlice({
       const { showSummary } = payload;
       state.showSummary = showSummary;
     },
+    setGlobalPeriod: (state, action) => {
+      const { payload } = action;
+      const { globalPeriod } = payload;
+      state.globalPeriod = globalPeriod;
+    },
+    setOnairProgramIds: (state, action) => {
+      const { payload } = action;
+      const { onAirProgramIds } = payload;
+      state.onAirProgramIds = onAirProgramIds;
+    },
   },
 })
 
 export const {
-  setShowSummary
+  setShowSummary,
+  setGlobalPeriod,
+  setOnairProgramIds
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -20,7 +20,7 @@ function TopHero(props) {
   return (
     <Container>
       <TextNormal>현재 동시 청취자수</TextNormal>
-      <TopHeroContent5
+      <TopHeroContent>
         <BigNumber size={1} flex={5}>
           <AnimatedNumber number={totalRecv} postfix={"11명"} />
         </BigNumber>

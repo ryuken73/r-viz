@@ -99,7 +99,8 @@ function ProgramPage(props) {
   const {
     programId=0,
     programTitle="두시탈출 컬투쇼",
-    programImage
+    programImage,
+    isOnair
   } = props;
   const { showSummary } = useAppState();
   const [ imageColors, setImageColors ] = React.useState(['black'])
@@ -150,7 +151,8 @@ function ProgramPage(props) {
     setOpenDrawer(true);
   }, [])
 
-  console.log('####', showSummary)
+  const summaryText = isOnair ? '[ONAIR] 현재 동시 청취자수' : '평균 동시 청취자수'
+  const liveGraphTitle = isOnair ? '현재 동시 청취자수' : '동시 청취자수'
 
   return (
     <Container openDrawer={openDrawer}>
@@ -163,9 +165,7 @@ function ProgramPage(props) {
           {programTitle}
         </Title>
         <SummaryTextContainer hide={!showSummary}>
-          <TextNormal>
-            현재 동시 청취자수 
-          </TextNormal>
+          <TextNormal>{summaryText}</TextNormal>
           <Sep>
             :
           </Sep>
@@ -184,12 +184,13 @@ function ProgramPage(props) {
         handleScroll={handleScroll}
       >
         <TopTitle 
+          summaryText={summaryText}
           totalRecv={totalRecv}
           currentPercentage={currentPercentage}
         >
         </TopTitle>
         <SingleColumnBox height="long">
-          <Header>현재 동시 청취자수 </Header>
+          <Header>{liveGraphTitle}</Header>
           <Contents
           >
             <LiveLineChart></LiveLineChart>

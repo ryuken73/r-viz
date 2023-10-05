@@ -35,6 +35,10 @@ const fetchSample = (apiName) => {
       resolve({success: true, data: sampleListPrograms})
       return;
     }
+    if(apiName === 'queryOnairProgramIds'){
+      resolve({success: true, data: ['1', '4']})
+      return;
+    }
     resolve({success: false})
   })
 }

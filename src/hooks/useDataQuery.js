@@ -23,20 +23,17 @@ const apiMap = {
       url: `/${period}/${type}`,
       ...defaultGetOptions
     }
+  },
+  "queryOnairProgramIds": () => {
+    return {
+      url: `/onairProgramIds`,
+      ...defaultGetOptions
+    }
   }
 }
 
-export const useDetailDataQuery = ({
-  autoRunning=false,
-  period,
-  type,
-}) => {
-  const enabled = autoRunning;
-  const apiName = 'queryDetailData';
-  const {url, fetchOptions} = apiMap[apiName]({
-    period,
-    type
-  });
+const useQueryFunction = (enabled, apiName, params) => {
+  const {url, fetchOptions} = apiMap[apiName](params);
   const queryKey = {
     apiName,
     url,
@@ -49,24 +46,31 @@ export const useDetailDataQuery = ({
     keepPreviousData: true
   });
   return results;  
+
+}
+
+export const useDetailDataQuery = ({
+  autoRunning=false,
+  period,
+  type,
+}) => {
+  const apiName = 'queryDetailData';
+  const results = useQueryFunction(autoRunning, apiName, {period, type})
+  return results;  
 }
 
 export const useListProgramsQuery = ({
   autoRunning=false
 }) => {
-  const enabled = autoRunning;
   const apiName = 'queryListPrograms';
-  const {url, fetchOptions} = apiMap[apiName]({});
-  const queryKey = {
-    apiName,
-    url,
-    fetchOptions
-  }
-  const results = useQuery({
-    queryKey, 
-    queryFn: querySample, 
-    enabled,
-    keepPreviousData: true
-  });
+  const results = useQueryFunction(autoRunning, apiName, {})
+  return results;  
+}
+
+export const useOnairProgramIdsQuery = ({
+  autoRunning=true
+}) => {
+  const apiName = 'queryOnairProgramIds';
+  const results = useQueryFunction(autoRunning, apiName, {})
   return results;  
 }

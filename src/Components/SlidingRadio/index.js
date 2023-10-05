@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import useAppState from 'hooks/useAppState';
 
 const Container = styled.div`
   display: flex;
@@ -48,10 +49,14 @@ const itemList = {
 }
 
 function SlidingRadio() {
+  const {setGlobalPeriodState} = useAppState();
   const slideRef = React.useRef(null);
   const onClickItem = React.useCallback((event) => {
-    slideRef.current.style.transform = `translateX(${event.target.id * 100}%)`;
-  }, [])
+    const index = event.target.id;
+    const currentPeriod = Object.keys(itemList)[index];
+    slideRef.current.style.transform = `translateX(${index * 100}%)`;
+    setGlobalPeriodState(currentPeriod);
+  }, [setGlobalPeriodState])
   return (
     <Container onClick={onClickItem}>
       {Object.keys(itemList).map((key, index) => (

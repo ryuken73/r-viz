@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
-import { useListProgramsQuery } from 'hooks/useDataQuery';
+import { 
+  useListProgramsQuery ,
+  useOnairProgramIdsQuery
+} from 'hooks/useDataQuery';
 import ProgramPage from 'Components/ProgramPage';
 
 const CustomSplide = styled(Splide)`
@@ -20,6 +23,8 @@ const CustomSplideTrack = styled(SplideTrack)`
 `
 function SpliderView(props) {
   const { data: listPrograms, isLoading } = useListProgramsQuery({autoRunning: true});
+  const { data: onairProgramIds } = useOnairProgramIdsQuery({autoRunning: true});
+  console.log(onairProgramIds)
   return (
     <CustomSplide
       options = {{
@@ -40,6 +45,7 @@ function SpliderView(props) {
               programId={program.programId}
               programTitle={program.programTitle}
               programImage={program.programImage}
+              isOnair={onairProgramIds?.includes(program.programId)}
             ></ProgramPage>
           </SplideSlide>
         ))}
