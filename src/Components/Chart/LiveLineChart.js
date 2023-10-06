@@ -32,22 +32,22 @@ function ChartReact(props) {
   //   }
   // }, [])
   const timeMaskMap = {
-    daily: 'mm:ss',
-    weekly: 'MM.DD',
-    monthy: 'MM.DD',
-    halfYearly: 'MM',
-    yearly: 'MM',
+    daily: 'h시m분',
+    weekly: 'M월D일',
+    monthy: 'M월D일',
+    halfYearly: 'M월',
+    yearly: 'M월',
   }
   const tickCountMap = {
-    daily: 5,
-    weekly: 8,
-    monthy: 15,
+    daily: 4,
+    weekly: 4,
+    monthy: 6,
     halfYearly: 6,
-    yearly: 12,
+    yearly: 6,
   }
   return (
     <Canvas className="noSwiping" pixelRatio={window.devicePixelRatio}>
-        <Chart data={data} scale={{value: {min: 0}}}>
+        <Chart data={data} scale={{value: {min: 0, max: 100}}}>
           <Axis
             field="timestamp"
             type="timeCat"
