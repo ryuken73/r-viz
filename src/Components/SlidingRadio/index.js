@@ -49,14 +49,23 @@ const itemList = {
 }
 
 function SlidingRadio() {
-  const {setGlobalPeriodState} = useAppState();
+  const {globalPeriod, setGlobalPeriodState} = useAppState();
   const slideRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const index = Object.keys(itemList).findIndex(period => period === globalPeriod);
+    if(typeof(index) === 'undefined' || index.length === 0) return;
+    slideRef.current.style.transform = `translateX(${index * 100}%)`;
+  }, [globalPeriod])
+
   const onClickItem = React.useCallback((event) => {
     const index = event.target.id;
+    if(typeof(index) === 'undefined' || index.length === 0) return;
     const currentPeriod = Object.keys(itemList)[index];
     slideRef.current.style.transform = `translateX(${index * 100}%)`;
     setGlobalPeriodState(currentPeriod);
   }, [setGlobalPeriodState])
+
   return (
     <Container onClick={onClickItem}>
       {Object.keys(itemList).map((key, index) => (
