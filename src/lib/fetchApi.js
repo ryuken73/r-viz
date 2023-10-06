@@ -55,11 +55,16 @@ const fetchSample = (apiName, url, params) => {
   })
 }
 
+const randumNumber = (max=100) => {
+  return Math.round(Math.random() * max);
+}
+
 const getLiveData = (type, period) => {
   if(type === 'activeListener'){
 
   }
 }
+
 const getPastData = (type, period) => {
   const plusTimeMap = {
     daily: 1000 * 60 * 60,
@@ -82,11 +87,12 @@ const getPastData = (type, period) => {
     const keyName = 'value';
     const series = new Series({from, until, interval, keyName})
     const chartData = series.generate(() => {
-      return Math.round(Math.random() * 100);
+      return randumNumber()
     });
 
     return {
       totalRecv: Math.floor(Math.random() * 10000),
+      message: `${randumNumber()}% 변동`,
       chartData
     }
   }

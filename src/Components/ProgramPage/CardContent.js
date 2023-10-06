@@ -14,7 +14,6 @@ function CardContent(props) {
       {headText && (<CardHeader size={1.8}>{headText}</CardHeader>)}
       {children}
       {footText && (<CardFooter>{footText}</CardFooter>)}
-
     </Container>
   )
 }

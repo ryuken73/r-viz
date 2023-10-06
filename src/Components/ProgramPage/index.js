@@ -190,12 +190,13 @@ function ProgramPage(props) {
             programId={programId}
             type="activeListener"
             title="활성 청취자"
-            headText="200명"
-            footText="어제보다 2% 증가"
+            headText={activeListenerData.totalRecv}
+            footText={activeListenerData.message}
             onClickGraph={onClickGraph}
           >
             <LineChartSvg
               id="activeListener"
+              chartData={activeListenerData.chartData}
             ></LineChartSvg>
           </GraphComponent>
           <GraphComponent
