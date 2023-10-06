@@ -80,7 +80,7 @@ const getPastData = (type, period) => {
     halfYearly: 60*60*24*30,
     yearly: 60*60*24*30
   }
-  if(type === 'activeListener'){
+  if(type === 'activeListener' || type === 'keepRatio'){
     const from = (new Date(Date.now())).toISOString();
     const until = (new Date(Date.now() + plusTimeMap[period])).toISOString();
     const interval = intervalMap[period];
@@ -92,8 +92,20 @@ const getPastData = (type, period) => {
 
     return {
       totalRecv: Math.floor(Math.random() * 10000),
-      message: `${randumNumber()}% 변동`,
+      footText: `${randumNumber()}% 변동`,
       chartData
     }
+  }
+  const orgList = ['10대', '20대', '30대', '40대', '50대', '60대', '70대', '이상']
+  if(type === 'listenerOrg'){
+    const result = {};
+    result.chartData = orgList.map(org => {
+      return {
+        item: org,
+        score: randumNumber()
+      }
+    })
+    result.footText = '20대 선호';
+    return result;
   }
 }

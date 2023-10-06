@@ -109,7 +109,20 @@ function ProgramPage(props) {
     period: globalPeriod,
     type: 'activeListener'
   })
-  console.log('activeListenerData:', activeListenerData)
+  const { data: listenerOrgData = {}} = useDetailDataQuery({
+    autoRunning: true,
+    programId,
+    isOnair,
+    period: globalPeriod,
+    type: 'listenerOrg'
+  })
+  const { data: keepRatioData = {}} = useDetailDataQuery({
+    autoRunning: true,
+    programId,
+    isOnair,
+    period: globalPeriod,
+    type: 'keepRatio'
+  })
   const { totalRecv = 0, chartData=[] } = activeListenerData;
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
 
@@ -191,7 +204,7 @@ function ProgramPage(props) {
             type="activeListener"
             title="활성 청취자"
             headText={activeListenerData.totalRecv}
-            footText={activeListenerData.message}
+            footText={activeListenerData.footText}
             onClickGraph={onClickGraph}
           >
             <LineChartSvg
@@ -203,20 +216,26 @@ function ProgramPage(props) {
             programId={programId}
             type="listenerOrg"
             title="청취자 구성"
-            footText="1위 남자회사원" 
+            footText={listenerOrgData.footText}
             onClickGraph={onClickGraph}
           >
-            <RadarChartSvg></RadarChartSvg>
+            <RadarChartSvg
+              id="listenerOrg"
+              chartData={listenerOrgData.chartData}
+            ></RadarChartSvg>
           </GraphComponent>
           <GraphComponent
             programId={programId}
             type="keepRatio"
             title="유지율"
-            headText="72%"
-            footText="지난주 대비 1% 증가" 
+            headText={keepRatioData.headText}
+            footText={keepRatioData.footText}
             onClickGraph={onClickGraph}
           >
-            <BarChartSvg></BarChartSvg>
+            <BarChartSvg
+              id="keepRatio"
+              chartData={keepRatioData.chartData}
+            ></BarChartSvg>
           </GraphComponent>
           <GraphComponent
             programId={programId}

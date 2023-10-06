@@ -7,7 +7,7 @@ const data = [
     {
       name: '长津湖',
       percent: 10,
-      a: '1',
+      a: '2',
     },
     {
       name: '我和我的父辈',
@@ -17,7 +17,7 @@ const data = [
     {
       name: '失控玩家',
       percent: 30,
-      a: '1',
+      a: '2',
     },
     {
       name: '宝可梦',
@@ -27,7 +27,7 @@ const data = [
     {
       name: '峰爆',
       percent: 50,
-      a: '1',
+      a: '3',
     },
     {
       name: '其他',
