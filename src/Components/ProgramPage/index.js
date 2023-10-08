@@ -32,6 +32,17 @@ import GraphComponent from 'Components/Chart/GraphComponent';
 import useAppState from 'hooks/useAppState';
 import {useDetailDataQuery} from 'hooks/useDataQuery';
 
+const TopSticky = styled.div`
+  position: fixed;
+  top: -3rem;
+  width: 100%;
+  color: white;
+  z-index: 100;
+  text-align: center;
+  background: black;
+  height: 3rem;
+`
+
 const Container = styled.div`
   transform: ${props => props.openDrawer && 'scale(0.97)'};
   transition: all 0.5s;
@@ -157,8 +168,9 @@ function ProgramPage(props) {
   const liveGraphTitle = isOnair ? '현재 동시 청취자수' : '동시 청취자수'
 
   return (
-    <Container openDrawer={openDrawer}>
-      <TitleContainer>
+    <div>
+      <TitleContainer openDrawer={openDrawer}>
+        <TopSticky show={openDrawer}>ABC</TopSticky>
         <CustomImg src={programImage} showSummary={showSummary} />
         <SummaryTextContainer hide={true}>
           <DummyText showSummary={showSummary}>Dummy</DummyText>
@@ -176,122 +188,124 @@ function ProgramPage(props) {
           </TextNormal>
         </SummaryTextContainer>
       </TitleContainer>
-      <ImageBackground
-        image={programImage}
-      >
-        <TopTitle 
-          summaryText={summaryText}
-          totalRecv={totalRecv}
-          currentPercentage={currentPercentage}
+      <Container openDrawer={openDrawer}>
+        <ImageBackground
+          image={programImage}
         >
-        </TopTitle>
-        <SingleColumnBox height="long">
-          <Header noBackground={true}>{liveGraphTitle}</Header>
-          <Contents
+          <TopTitle 
+            summaryText={summaryText}
+            totalRecv={totalRecv}
+            currentPercentage={currentPercentage}
           >
-            <LiveLineChart 
-              chartData={chartData}
-              period={globalPeriod}
-            ></LiveLineChart>
-          </Contents>
-        </SingleColumnBox>
-        <SliderContainer>
-          <SlidingRadio></SlidingRadio>
-        </SliderContainer>
-        <GraphContainer>
-          <GraphComponent
-            programId={programId}
-            type="activeListener"
-            title="활성 청취자"
-            headText={activeListenerData.totalRecv||"none"}
-            footText={activeListenerData.footText||"none"}
-            onClickGraph={onClickGraph}
-          >
-            <LineChartSvg
-              id="activeListener"
-              chartData={activeListenerData.chartData}
-            ></LineChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="listenerOrg"
-            title="청취자 구성"
-            footText={listenerOrgData.footText||'none'}
-            onClickGraph={onClickGraph}
-          >
-            <RadarChartSvg
-              id="listenerOrg"
-              chartData={listenerOrgData.chartData}
-            ></RadarChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="keepRatio"
-            title="유지율"
-            headText={keepRatioData.headText||'none'}
-            footText={keepRatioData.footText||'none'}
-            onClickGraph={onClickGraph}
-          >
-            <BarChartSvg
-              id="keepRatio"
-              chartData={keepRatioData.chartData}
-            ></BarChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="participation"
-            title="청취자참여"
-            headText="1,230건 "
-            footText="지난주 대비 3% 증가" 
-            onClickGraph={onClickGraph}
-          >
-            <PieChartSvg></PieChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="production"
-            title="제작요소"
-            footText="지난주 대비 3,000 증가" 
-            onClickGraph={onClickGraph}
-          >
-            <HbarChartSvg></HbarChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="listenRatio"
-            title="청취율분석"
-            footText="지난주 대비 1% 증가" 
-            onClickGraph={onClickGraph}
-          >
-            <ScatterChartSvg></ScatterChartSvg>
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="analysisNote"
-            title="분석노트"
-            onClickGraph={() => {}}
-          >
-          </GraphComponent>
-          <GraphComponent
-            programId={programId}
-            type="etc"
-            title="ETC"
-            footText="지난주 대비 1% 증가" 
-            onClickGraph={onClickGraph}
-          >
-            <DualBarChartSvg></DualBarChartSvg>
-          </GraphComponent>
-          <LastGraphBox>
-            <LastCard></LastCard>
-          </LastGraphBox>
-        </GraphContainer>
-      </ImageBackground>
-      <BottomDrawer 
-        drawerContent={drawerContent}
-        openDrawer={openDrawer} 
-        setOpenDrawer={setOpenDrawer}
-      ></BottomDrawer>
-    </Container>
+          </TopTitle>
+          <SingleColumnBox height="long">
+            <Header noBackground={true}>{liveGraphTitle}</Header>
+            <Contents
+            >
+              <LiveLineChart 
+                chartData={chartData}
+                period={globalPeriod}
+              ></LiveLineChart>
+            </Contents>
+          </SingleColumnBox>
+          <SliderContainer>
+            <SlidingRadio></SlidingRadio>
+          </SliderContainer>
+          <GraphContainer>
+            <GraphComponent
+              programId={programId}
+              type="activeListener"
+              title="활성 청취자"
+              headText={activeListenerData.totalRecv||"none"}
+              footText={activeListenerData.footText||"none"}
+              onClickGraph={onClickGraph}
+            >
+              <LineChartSvg
+                id="activeListener"
+                chartData={activeListenerData.chartData}
+              ></LineChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="listenerOrg"
+              title="청취자 구성"
+              footText={listenerOrgData.footText||'none'}
+              onClickGraph={onClickGraph}
+            >
+              <RadarChartSvg
+                id="listenerOrg"
+                chartData={listenerOrgData.chartData}
+              ></RadarChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="keepRatio"
+              title="유지율"
+              headText={keepRatioData.headText||'none'}
+              footText={keepRatioData.footText||'none'}
+              onClickGraph={onClickGraph}
+            >
+              <BarChartSvg
+                id="keepRatio"
+                chartData={keepRatioData.chartData}
+              ></BarChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="participation"
+              title="청취자참여"
+              headText="1,230건 "
+              footText="지난주 대비 3% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <PieChartSvg></PieChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="production"
+              title="제작요소"
+              footText="지난주 대비 3,000 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <HbarChartSvg></HbarChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="listenRatio"
+              title="청취율분석"
+              footText="지난주 대비 1% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <ScatterChartSvg></ScatterChartSvg>
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="analysisNote"
+              title="분석노트"
+              onClickGraph={() => {}}
+            >
+            </GraphComponent>
+            <GraphComponent
+              programId={programId}
+              type="etc"
+              title="ETC"
+              footText="지난주 대비 1% 증가" 
+              onClickGraph={onClickGraph}
+            >
+              <DualBarChartSvg></DualBarChartSvg>
+            </GraphComponent>
+            <LastGraphBox>
+              <LastCard></LastCard>
+            </LastGraphBox>
+          </GraphContainer>
+        </ImageBackground>
+        <BottomDrawer 
+          drawerContent={drawerContent}
+          openDrawer={openDrawer} 
+          setOpenDrawer={setOpenDrawer}
+        ></BottomDrawer>
+      </Container>
+    </div>
   )
 }
 

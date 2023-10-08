@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import SwiperView from 'Components/SwiperView';
 import SplideView from 'Components/SpliderView';
 import Footer from 'Components/Footer';
 import useAppState from 'hooks/useAppState';
@@ -46,7 +45,9 @@ function App() {
 
   return (
     <Container>
-      {/* <SwiperView /> */}
+      {/* <TopSticky>
+        ABC
+      </TopSticky> */}
       <SplideView />
       <Footer />
     </Container>
