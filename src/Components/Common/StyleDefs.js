@@ -157,8 +157,8 @@ export const TitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 15vh;
-  transform: ${props => props.openDrawer && 'scale(0.9)'};
-  transition: all 0.5s;
+  /* transform: ${props => props.openDrawer && 'scale(0.9)'}; */
+  /* transition: all 0.5s; */
 `
 export const SummaryTextContainer = styled.div`
   opacity: ${props => props.hide ? 0 : 1};

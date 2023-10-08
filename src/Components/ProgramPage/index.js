@@ -171,7 +171,7 @@ function ProgramPage(props) {
     <div>
       <Container openDrawer={openDrawer}>
         <TitleContainer openDrawer={openDrawer}>
-          <TopSticky show={openDrawer}>ABC</TopSticky>
+          {/* <TopSticky show={openDrawer}>ABC</TopSticky> */}
           <CustomImg src={programImage} showSummary={showSummary} />
           <SummaryTextContainer hide={true}>
             <DummyText showSummary={showSummary}>Dummy</DummyText>
