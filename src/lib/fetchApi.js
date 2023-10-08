@@ -51,6 +51,16 @@ const fetchSample = (apiName, url, params) => {
       }
       return;
     }
+    if(apiName === 'queryBatchData'){
+      const {programId, unit, unitTargets, type} = params;
+      const results = unitTargets.map(unitTarget => {
+        return {
+          target: unitTarget,
+          targetData: getPastData(type, unit)
+        }
+      })
+      resolve({success: true, data: results});
+    }
     resolve({success: false})
   })
 }
@@ -92,6 +102,7 @@ const getPastData = (type, period) => {
 
     return {
       totalRecv: Math.floor(Math.random() * 10000),
+      headText: `${randumNumber()}%`,
       footText: `${randumNumber()}% 변동`,
       chartData
     }

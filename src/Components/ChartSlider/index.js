@@ -5,7 +5,7 @@ import AreaChart from 'Components/Chart/AreaChart';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
-import { Preview } from '@mui/icons-material';
+import { useBatchDataQuery } from 'hooks/useDataQuery';
 
 const Container = styled.div`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
@@ -50,7 +50,6 @@ const dailyData = [
   },
   {
     dayOfWeek: 'Fri',
-    dayNumber: 14,
     message: 'Friday Summary'
   },
   {
@@ -67,15 +66,26 @@ const dailyData = [
 
 
 function GraphSlider(props) {
-  const { show } = props;
+  const { show, programId, chartType } = props;
   const mainRef = React.useRef(null);
   const dayRef = React.useRef(null);
+
   React.useEffect(() => {
     if(mainRef.current === null || dayRef.current === null){
       return;
     }
     mainRef.current.sync(dayRef.current.splide);
   }, [])
+
+  const {data, isLoading} = useBatchDataQuery({
+    autoRunning: true,
+    programId,
+    unit: 'daily',
+    unitTargets: dailyData,
+    type: chartType
+  }, [])
+
+  console.log('####', chartType, data)
    
   return (
     <Container show={show}>
@@ -113,17 +123,21 @@ function GraphSlider(props) {
         show={show}
       >
         <SplideTrack>
-          {dailyData.map(day => (
-            <CustomSlide 
-              key={day.dayNumber}
-              show={show}
-            >
-              <AreaChart></AreaChart>
-              <TextContainer>
-                <h2>{day.message}</h2>
-              </TextContainer>
-            </CustomSlide>
-          ))}
+          {isLoading ? (
+            <div>Loading...</div>
+          ):(
+            dailyData.map((day, index) => (
+              <CustomSlide 
+                key={day.dayNumber}
+                show={show}
+              >
+                <AreaChart data={data[index]}></AreaChart>
+                <TextContainer>
+                  <h2>{day.message}</h2>
+                </TextContainer>
+              </CustomSlide>
+            ))
+          )}
         </SplideTrack>
       </CustomSplideChart>
     </Container>

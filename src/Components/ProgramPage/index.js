@@ -100,26 +100,26 @@ function ProgramPage(props) {
   const [ imageColors, setImageColors ] = React.useState(['black'])
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
-  const [ drawContentId, setDrawContentId] = React.useState(null);
+  const [ drawerContent, setDrawerContent] = React.useState(null);
   // const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data: activeListenerData = {}, isLoading } = useDetailDataQuery({
     autoRunning: true,
     programId,
-    isOnair,
+    isOnair: false,
     period: globalPeriod,
     type: 'activeListener'
   })
   const { data: listenerOrgData = {}} = useDetailDataQuery({
     autoRunning: true,
     programId,
-    isOnair,
+    isOnair: false,
     period: globalPeriod,
     type: 'listenerOrg'
   })
   const { data: keepRatioData = {}} = useDetailDataQuery({
     autoRunning: true,
     programId,
-    isOnair,
+    isOnair: false,
     period: globalPeriod,
     type: 'keepRatio'
   })
@@ -149,7 +149,7 @@ function ProgramPage(props) {
   const filterdColor = tinycolor(imageColors[0]).greyscale(10).darken(65).toString();
 
   const onClickGraph = React.useCallback((programId, chartType) => {
-    setDrawContentId(chartType);
+    setDrawerContent({programId, chartType});
     setOpenDrawer(true);
   }, [])
 
@@ -287,7 +287,7 @@ function ProgramPage(props) {
         </GraphContainer>
       </ImageBackground>
       <BottomDrawer 
-        drawContentId={drawContentId}
+        drawerContent={drawerContent}
         openDrawer={openDrawer} 
         setOpenDrawer={setOpenDrawer}
       ></BottomDrawer>

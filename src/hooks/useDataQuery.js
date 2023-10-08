@@ -24,12 +24,18 @@ const apiMap = {
       ...defaultGetOptions
     }
   },
+  "queryBatchData": ({programId, unit, unitTargets, type}) => {
+    return {
+      url: `/${programId}/${type}?unit=${unit}&unitTargets=${unitTargets}`,
+      ...defaultGetOptions
+    }
+  },
   "queryOnairProgramIds": () => {
     return {
       url: `/onairProgramIds`,
       ...defaultGetOptions
     }
-  }
+  },
 }
 
 const useQueryFunction = (enabled, apiName, autoRefetch, autoRefetchInterval, params) => {
@@ -76,6 +82,26 @@ export const useDetailDataQuery = ({
     {programId, isOnair, period, type}
   )
   return results;  
+}
+
+export const useBatchDataQuery = ({
+  autoRunning=false,
+  programId,
+  unit,
+  unitTargets,
+  type,
+}) => {
+  const apiName = 'queryBatchData';
+  const autoRefetch = null;
+  const autoRefetchInterval = null;
+  const result = useQueryFunction(
+    autoRunning,
+    apiName,
+    autoRefetch,
+    autoRefetchInterval,
+    {programId, unit, unitTargets, type}
+  )
+  return result;
 }
 
 export const useListProgramsQuery = ({

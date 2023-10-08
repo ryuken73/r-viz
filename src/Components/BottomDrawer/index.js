@@ -16,7 +16,9 @@ const CustomDraw = styled(SwipeableDrawer)`
 `
 
 function BottomDrawer(props) {
-  const {drawContentId, openDrawer, setOpenDrawer} = props;
+  const {drawerContent, openDrawer, setOpenDrawer} = props;
+  const {programId, chartType} = drawerContent ? drawerContent: {};
+  console.log('#### drawerContent:', drawerContent)
   const closeDrawer = React.useCallback(() => {
     setOpenDrawer(false);
   }, [setOpenDrawer]);
@@ -26,8 +28,18 @@ function BottomDrawer(props) {
       open={openDrawer}
       onClose={closeDrawer}
     >
-      {drawContentId}<span>{Date.now()}</span>
-      <ChartSlider show={openDrawer}></ChartSlider>
+      {drawerContent === null ? (
+        <div>loading</div>
+      ):(
+        <div>
+          {programId}<span>{chartType}</span>
+          <ChartSlider 
+            show={openDrawer}
+            programId={programId}
+            chartType={chartType}
+          ></ChartSlider>
+        </div>
+      )}
     </CustomDraw>
   )
 }
