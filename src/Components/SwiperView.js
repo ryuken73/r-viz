@@ -12,7 +12,7 @@ function SwiperView(props) {
   const {pages=[background1, background2, background3]} = props;
   return (
     <Swiper
-      speed={400}
+      speed={1000}
       noSwipingClass='noSwiping'
       touchAngle={80}
       threshold={25}

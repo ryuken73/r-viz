@@ -35,6 +35,7 @@ function SpliderView(props) {
   return (
     <CustomSplide
       options = {{
+        speed: 1000,
         arrows: false,
         perPage: 1,
         pagination: false,
