@@ -169,26 +169,26 @@ function ProgramPage(props) {
 
   return (
     <div>
-      <TitleContainer openDrawer={openDrawer}>
-        <TopSticky show={openDrawer}>ABC</TopSticky>
-        <CustomImg src={programImage} showSummary={showSummary} />
-        <SummaryTextContainer hide={true}>
-          <DummyText showSummary={showSummary}>Dummy</DummyText>
-        </SummaryTextContainer>
-        <Title size={1.5} hide={!showSummary}>
-          {programTitle}
-        </Title>
-        <SummaryTextContainer hide={!showSummary}>
-          <TextNormal>{summaryText}</TextNormal>
-          <Sep>
-            :
-          </Sep>
-          <TextNormal>
-            <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
-          </TextNormal>
-        </SummaryTextContainer>
-      </TitleContainer>
       <Container openDrawer={openDrawer}>
+        <TitleContainer openDrawer={openDrawer}>
+          <TopSticky show={openDrawer}>ABC</TopSticky>
+          <CustomImg src={programImage} showSummary={showSummary} />
+          <SummaryTextContainer hide={true}>
+            <DummyText showSummary={showSummary}>Dummy</DummyText>
+          </SummaryTextContainer>
+          <Title size={1.5} hide={!showSummary}>
+            {programTitle}
+          </Title>
+          <SummaryTextContainer hide={!showSummary}>
+            <TextNormal>{summaryText}</TextNormal>
+            <Sep>
+              :
+            </Sep>
+            <TextNormal>
+              <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
+            </TextNormal>
+          </SummaryTextContainer>
+        </TitleContainer>
         <ImageBackground
           image={programImage}
         >
