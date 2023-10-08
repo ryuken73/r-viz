@@ -203,8 +203,8 @@ function ProgramPage(props) {
             programId={programId}
             type="activeListener"
             title="활성 청취자"
-            headText={activeListenerData.totalRecv}
-            footText={activeListenerData.footText}
+            headText={activeListenerData.totalRecv||"none"}
+            footText={activeListenerData.footText||"none"}
             onClickGraph={onClickGraph}
           >
             <LineChartSvg
@@ -216,7 +216,7 @@ function ProgramPage(props) {
             programId={programId}
             type="listenerOrg"
             title="청취자 구성"
-            footText={listenerOrgData.footText}
+            footText={listenerOrgData.footText||'none'}
             onClickGraph={onClickGraph}
           >
             <RadarChartSvg
@@ -228,8 +228,8 @@ function ProgramPage(props) {
             programId={programId}
             type="keepRatio"
             title="유지율"
-            headText={keepRatioData.headText}
-            footText={keepRatioData.footText}
+            headText={keepRatioData.headText||'none'}
+            footText={keepRatioData.footText||'none'}
             onClickGraph={onClickGraph}
           >
             <BarChartSvg

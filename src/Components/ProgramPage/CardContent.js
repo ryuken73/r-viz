@@ -9,11 +9,13 @@ const Container = styled(CardInStyle)`
 
 function CardContent(props) {
   const {headText, footText, children} = props;
+  const headVisible = headText === 'none' ? 'hidden':'visible';
+  const footVisible = footText === 'none' ? 'hidden':'visible';
   return (
     <Container>
-      {headText && (<CardHeader size={1.8}>{headText}</CardHeader>)}
+      {headText && (<CardHeader visibility={headVisible} size={1.8}>{headText}</CardHeader>)}
       {children}
-      {footText && (<CardFooter>{footText}</CardFooter>)}
+      {footText && (<CardFooter visibility={footVisible}>{footText}</CardFooter>)}
     </Container>
   )
 }

@@ -128,12 +128,14 @@ export const CardInStyle = styled.div`
   height: 100%;
 `
 export const CardHeader = styled(CommonDiv)`
-  position: absolute;
+  /* position: absolute; */
+  visibility: ${props => props.visibility};
   backdrop-filter: blur(50px);
   text-align: left;
 `
 export const CardFooter = styled((props) => (<CommonDiv size={0.9} {...props} />))`
-  position: absolute;
+  /* position: absolute; */
+  visibility: ${props => props.visibility};
   backdrop-filter: blur(50px);
   bottom: 0px;
   text-align: left;
