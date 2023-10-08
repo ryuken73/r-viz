@@ -37,7 +37,8 @@ function SpliderView(props) {
       options = {{
         arrows: false,
         perPage: 1,
-        pagination: false
+        pagination: false,
+        noDrag: '.noSwiping'
       }}
       padding="0em"
       hasTrack={false}
