@@ -24,7 +24,14 @@ const CustomSplideTrack = styled(SplideTrack)`
 function SpliderView(props) {
   const { data: listPrograms, isLoading } = useListProgramsQuery({autoRunning: true});
   const { data: onairProgramIds } = useOnairProgramIdsQuery({autoRunning: true});
+  const splideRef = React.useRef(null);
   console.log(onairProgramIds)
+  const handleMove = React.useCallback((a, b, c) => {
+    console.log('##### move', a, b, c, splideRef.current.splide.index);
+  }, [])
+  const handleVisible = React.useCallback((slide) => {
+    console.log('##### visible', slide);
+  }, [])
   return (
     <CustomSplide
       options = {{
@@ -35,6 +42,9 @@ function SpliderView(props) {
       padding="0em"
       hasTrack={false}
       tag="section"
+      ref={splideRef}
+      onMove={handleMove}
+      onVisible={handleVisible}
     >
       <CustomSplideTrack>
         {listPrograms?.map(program => (
