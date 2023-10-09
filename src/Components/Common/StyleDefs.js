@@ -59,6 +59,7 @@ export const Contents = styled(CommonDiv)`
   backdrop-filter: blur(${STYLE.BLUR}px);
 `
 export const SingleColumnBox = styled.div`
+  visibility: ${props => props.hide && 'hidden'};
 `;
 
 export const Columns = styled.div`

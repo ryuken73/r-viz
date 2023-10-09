@@ -8,16 +8,17 @@ const Container = styled.div`
   position: relative;
   padding-top: 4vh;
   padding-bottom: 4vh;
+  visibility: ${props => props.hide && 'hidden'};
   /* height: 300px; */
   color: white;
   /* transform: translateY(30%); */
 `
 
 function TopTitle(props) {
-  const {summaryText, currentPercentage, totalRecv=12345} = props;
+  const {hide, summaryText, currentPercentage, totalRecv=12345} = props;
   return (
     // <ParallaxBox speed={-30}>
-      <Container>
+      <Container hide={hide}>
         <TextNormal>{summaryText}</TextNormal>
         <TopHero 
           currentPercentage={currentPercentage}

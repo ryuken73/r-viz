@@ -9,6 +9,17 @@ import './App.css';
 const Container = styled.div`
   background: black;
 `
+const TopSticky = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  z-index: -1;
+  text-align: center;
+  background: green;
+  height: 3rem;
+`
 
 function App() {
   console.log('re-render app')
@@ -46,7 +57,6 @@ function App() {
   return (
     <Container>
       {/* <TopSticky>
-        ABC
       </TopSticky> */}
       <SplideView />
       <Footer />

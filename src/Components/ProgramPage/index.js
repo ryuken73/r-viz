@@ -37,7 +37,7 @@ const TopSticky = styled.div`
   top: -3rem;
   width: 100%;
   color: white;
-  z-index: 100;
+  z-index: 15;
   text-align: center;
   background: black;
   height: 3rem;
@@ -45,6 +45,7 @@ const TopSticky = styled.div`
 
 const Container = styled.div`
   transform: ${props => props.openDrawer && 'scale(0.97)'};
+  /* transform: scale(0.9); */
   transition: all 0.5s;
   user-select: none;
 `
@@ -193,12 +194,13 @@ function ProgramPage(props) {
           image={programImage}
         >
           <TopTitle 
+            hide={openDrawer}
             summaryText={summaryText}
             totalRecv={totalRecv}
             currentPercentage={currentPercentage}
           >
           </TopTitle>
-          <SingleColumnBox height="long">
+          <SingleColumnBox hide={openDrawer} height="long">
             <Header noBackground={true}>{liveGraphTitle}</Header>
             <Contents
             >
