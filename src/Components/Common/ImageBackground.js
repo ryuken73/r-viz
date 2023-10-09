@@ -13,11 +13,11 @@ const ImageContainer = styled.div`
 `
 const StyledImage = styled.img`
   /* filter: brightness(0.15) grayscale(10%) !important; */
-  /* width: 330%; */
+  width: 330%;
   object-fit: cover;
   object-position: top right;
   filter: brightness(0.15) !important;
-  transform: rotate(90deg) scale(1) translateY(18.5%);
+  transform: rotate(90deg) scale(3) translateY(18.5%);
 `
 
 function ImageBackground(props) {
