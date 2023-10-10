@@ -31,6 +31,17 @@ import BottomDrawer from 'Components/BottomDrawer';
 import GraphComponent from 'Components/Chart/GraphComponent';
 import useAppState from 'hooks/useAppState';
 import {useDetailDataQuery} from 'hooks/useDataQuery';
+import constants from 'config/constants';
+
+const {DATA_TYPE} = constants;
+const {
+  ACTIVE_LISTENER,
+  LISTENER_ORG,
+  KEEP_RATIO,
+  PARTICIPATION,
+  PRODUCTION,
+  LISTEN_ANALYSIS
+} = DATA_TYPE;
 
 const TopSticky = styled.div`
   position: fixed;
@@ -119,21 +130,21 @@ function ProgramPage(props) {
     programId,
     isOnair: false,
     period: globalPeriod,
-    type: 'activeListener'
+    type: ACTIVE_LISTENER
   })
   const { data: listenerOrgData = {}} = useDetailDataQuery({
     autoRunning: true,
     programId,
     isOnair: false,
     period: globalPeriod,
-    type: 'listenerOrg'
+    type: LISTENER_ORG
   })
   const { data: keepRatioData = {}} = useDetailDataQuery({
     autoRunning: true,
     programId,
     isOnair: false,
     period: globalPeriod,
-    type: 'keepRatio'
+    type: KEEP_RATIO
   })
   const { totalRecv = 0, chartData=[] } = activeListenerData;
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
@@ -216,45 +227,45 @@ function ProgramPage(props) {
           <GraphContainer>
             <GraphComponent
               programId={programId}
-              type="activeListener"
+              type={ACTIVE_LISTENER}
               title="활성 청취자"
               headText={activeListenerData.totalRecv||"none"}
               footText={activeListenerData.footText||"none"}
               onClickGraph={onClickGraph}
             >
               <LineChartSvg
-                id="activeListener"
+                id={ACTIVE_LISTENER}
                 chartData={activeListenerData.chartData}
               ></LineChartSvg>
             </GraphComponent>
             <GraphComponent
               programId={programId}
-              type="listenerOrg"
+              type={LISTENER_ORG}
               title="청취자 구성"
               footText={listenerOrgData.footText||'none'}
               onClickGraph={onClickGraph}
             >
               <RadarChartSvg
-                id="listenerOrg"
+                id={LISTENER_ORG}
                 chartData={listenerOrgData.chartData}
               ></RadarChartSvg>
             </GraphComponent>
             <GraphComponent
               programId={programId}
-              type="keepRatio"
+              type={KEEP_RATIO}
               title="유지율"
               headText={keepRatioData.headText||'none'}
               footText={keepRatioData.footText||'none'}
               onClickGraph={onClickGraph}
             >
               <BarChartSvg
-                id="keepRatio"
+                id={KEEP_RATIO}
                 chartData={keepRatioData.chartData}
               ></BarChartSvg>
             </GraphComponent>
             <GraphComponent
               programId={programId}
-              type="participation"
+              type={PARTICIPATION}
               title="청취자참여"
               headText="1,230건 "
               footText="지난주 대비 3% 증가" 
@@ -264,7 +275,7 @@ function ProgramPage(props) {
             </GraphComponent>
             <GraphComponent
               programId={programId}
-              type="production"
+              type={PRODUCTION}
               title="제작요소"
               footText="지난주 대비 3,000 증가" 
               onClickGraph={onClickGraph}
@@ -273,7 +284,7 @@ function ProgramPage(props) {
             </GraphComponent>
             <GraphComponent
               programId={programId}
-              type="listenRatio"
+              type={LISTEN_ANALYSIS}
               title="청취율분석"
               footText="지난주 대비 1% 증가" 
               onClickGraph={onClickGraph}

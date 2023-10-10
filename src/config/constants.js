@@ -5,6 +5,14 @@ const dev = {
     headers: {
       'Content-type': 'application/json'
     }
+  },
+  DATA_TYPE : {
+    ACTIVE_LISTENER: 'activeListener',
+    LISTENER_ORG: 'listenerOrg',
+    KEEP_RATIO: 'keepRatio',
+    PARTICIPATION: "participation",
+    PRODUCTION: 'production',
+    LISTEN_ANALYSIS: 'listenAnalysis',
   }  
 }
 

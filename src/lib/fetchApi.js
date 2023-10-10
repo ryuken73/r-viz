@@ -22,6 +22,7 @@ export const querySample = async ({queryKey}) => {
   const {apiName, url, params} = _key;
   console.log('fetch called:', apiName, url,  queryKey)
   const response = await fetchSample(apiName, url, params);
+  console.log('## mock data:', params?.type, response);
   const body = response;
   if (body.success){
     return body.data;
