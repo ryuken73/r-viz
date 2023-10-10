@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import AreaChart from 'Components/Chart/AreaChart';
 import RadarChart from 'Components/Chart/RadarChart';
+import BarChart from 'Components/Chart/BarChart';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
@@ -78,11 +79,14 @@ const dailyData = [
 
 const Chart = (props) => {
   console.log('### return:', props.chartType, ACTIVE_LISTENER)
-  if(props.chartType === ACTIVE_LISTENER || props.chartType === KEEP_RATIO){
+  if(props.chartType === ACTIVE_LISTENER){
     return <AreaChart {...props} />
   }
   if(props.chartType === LISTENER_ORG ){
     return <RadarChart {...props} />
+  }
+  if(props.chartType === KEEP_RATIO ){
+    return <BarChart {...props} />
   }
 }
 
