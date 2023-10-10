@@ -2,10 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import AreaChart from 'Components/Chart/AreaChart';
+import RadarChart from 'Components/Chart/RadarChart';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
 import { useBatchDataQuery } from 'hooks/useDataQuery';
+import constants from 'config/constants';
+
+const {DATA_TYPE} = constants;
+const {
+  ACTIVE_LISTENER,
+  LISTENER_ORG,
+  KEEP_RATIO,
+  PARTICIPATION,
+  PRODUCTION,
+  LISTEN_ANALYSIS
+} = DATA_TYPE;
 
 const Container = styled.div`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
@@ -63,6 +75,16 @@ const dailyData = [
     message: 'Sunday Summary'
   },
 ]
+
+const Chart = (props) => {
+  console.log('### return:', props.chartType, ACTIVE_LISTENER)
+  if(props.chartType === ACTIVE_LISTENER || props.chartType === KEEP_RATIO){
+    return <AreaChart {...props} />
+  }
+  if(props.chartType === LISTENER_ORG ){
+    return <RadarChart {...props} />
+  }
+}
 
 
 function GraphSlider(props) {
@@ -131,7 +153,7 @@ function GraphSlider(props) {
                 key={day.dayNumber}
                 show={show}
               >
-                <AreaChart data={data[index]}></AreaChart>
+                <Chart chartType={chartType} data={data[index]}></Chart>
                 <TextContainer>
                   <h2>{day.message}</h2>
                 </TextContainer>
