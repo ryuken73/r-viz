@@ -4,6 +4,7 @@ import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import AreaChart from 'Components/Chart/AreaChart';
 import RadarChart from 'Components/Chart/RadarChart';
 import BarChart from 'Components/Chart/BarChart';
+import HBarChart from 'Components/Chart/HBarChart';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
@@ -87,6 +88,9 @@ const Chart = (props) => {
   }
   if(props.chartType === KEEP_RATIO ){
     return <BarChart {...props} />
+  }
+  if(props.chartType === PRODUCTION ){
+    return <HBarChart {...props} />
   }
 }
 

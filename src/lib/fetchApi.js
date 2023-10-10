@@ -91,7 +91,7 @@ const getPastData = (type, period) => {
     halfYearly: 60*60*24*30,
     yearly: 60*60*24*30
   }
-  if(type === 'activeListener' || type === 'keepRatio'){
+  if(type === 'activeListener' || type === 'keepRatio' || type === 'production'){
     const from = (new Date(Date.now())).toISOString();
     const until = (new Date(Date.now() + plusTimeMap[period])).toISOString();
     const interval = intervalMap[period];

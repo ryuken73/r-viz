@@ -7,33 +7,33 @@ const data = [
     {
       name: '长津湖',
       percent: 10,
-      a: '2',
+      a: '1',
     },
     {
       name: '我和我的父辈',
       percent: 20,
       a: '1',
     },
-    {
-      name: '失控玩家',
-      percent: 30,
-      a: '3',
-    },
-    {
-      name: '宝可梦',
-      percent: 40,
-      a: '4',
-    },
-    {
-      name: '峰爆',
-      percent: 50,
-      a: '5',
-    },
-    {
-      name: '其他',
-      percent: 60,
-      a: '6',
-    },
+    // {
+    //   name: '失控玩家',
+    //   percent: 30,
+    //   a: '1',
+    // },
+    // {
+    //   name: '宝可梦',
+    //   percent: 40,
+    //   a: '1',
+    // },
+    // {
+    //   name: '峰爆',
+    //   percent: 50,
+    //   a: '1',
+    // },
+    // {
+    //   name: '其他',
+    //   percent: 60,
+    //   a: '1',
+    // },
   ];
 
 function PieChartSvg() {
@@ -44,7 +44,7 @@ function PieChartSvg() {
         coord={{
           type: 'polar',
           transposed: true,
-          innerRadius: 0.1,
+          innerRadius: 0.7,
         }}
       >
         <Interval
