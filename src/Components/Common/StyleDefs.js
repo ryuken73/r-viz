@@ -38,7 +38,7 @@ export const TopHeroContent = styled.div`
 export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   position: ${props => !props.noBackground && 'sticky'};
   position: ${props => !props.noBackground && '-webkit-sticky'};
-  top: calc(14.5vh);
+  top: calc(15vh + 2rem);
   /* color: lightgrey; */
   color: darkcyan;
   /* opacity: 0.6; */
