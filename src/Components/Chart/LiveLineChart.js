@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react';
-import Canvas from '@antv/f2-react';
+// import Canvas from '@antv/f2-react';
+import styled from 'styled-components';
+import Canvas from 'lib/ReactF2';
 import { Chart, Line, Axis, Tooltip, Point } from '@antv/f2';
 
 const initialData = [
@@ -10,9 +12,20 @@ const initialData = [
   },
 ];
 
+const Container = styled.div`
+  width: 100%;
+`
+
 function ChartReact(props) {
   // const [data, setData] = React.useState(initialData);
   const {chartData: data, period} = props;
+  const parentRef = React.useRef(null);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if(parentRef.current === null) return;
+    if(ref.current === null) return;
+    ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
+  }, [])
   console.log('chartData:', data)
   // React.useEffect(() => {
   //   const timer = setInterval(() => {
@@ -31,6 +44,13 @@ function ChartReact(props) {
   //     clearInterval(timer)
   //   }
   // }, [])
+  React.useEffect(() => {
+    if(ref.current === null) return;
+    window.addEventListener('resize', () => {
+      ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
+    })
+  }, [])
+
   const timeMaskMap = {
     daily: 'h시m분',
     weekly: 'M월D일',
@@ -46,7 +66,8 @@ function ChartReact(props) {
     yearly: 6,
   }
   return (
-    <Canvas className="noSwiping" pixelRatio={window.devicePixelRatio}>
+    <Container ref={parentRef}>
+      <Canvas ref={ref} className="noSwiping" pixelRatio={window.devicePixelRatio}>
         <Chart data={data} scale={{value: {min: 0, max: 100}}}>
           <Axis
             field="timestamp"
@@ -107,9 +128,9 @@ function ChartReact(props) {
           />
           <Tooltip />
         </Chart>
-    </Canvas>
+      </Canvas>
+    </Container>
   )
-
 }
 
 export default ChartReact;
