@@ -14,6 +14,7 @@ function AreaChart(props) {
     <CustomCanvas 
       pixelRatio={window.devicePixelRatio}
       height={CANVAS_WIDTH}
+      className="noSwiping"
     >
       <Chart
         data={data.targetData.chartData}

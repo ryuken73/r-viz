@@ -24,6 +24,14 @@ const {
 const Container = styled.div`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
 `
+const MaskBox = styled.div`
+  position: absolute;
+  bottom: 0;
+  background: transparent;
+  width: 100%;
+  height: 80%;
+  z-index: 30;
+`
 const CustomSplidePeriod = styled(Splide)`
   visibility: ${props => props.show ? 'visible' : 'hidden'};
   padding: ${props => props.padding || `1em !important`};
@@ -144,7 +152,8 @@ function GraphSlider(props) {
       <CustomSplideChart
         options={{
           arrows: false,
-          pagination: false
+          pagination: false,
+          noDrag: '.noSwiping'
         }}
         ref={mainRef}
         hasTrack={false}
@@ -161,6 +170,7 @@ function GraphSlider(props) {
                 key={day.dayNumber}
                 show={show}
               >
+                <MaskBox></MaskBox>
                 <Chart chartType={chartType} data={data[index]}></Chart>
                 <TextContainer>
                   <h2>{day.message}</h2>
