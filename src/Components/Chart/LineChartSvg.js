@@ -12,6 +12,8 @@ function LineCartSvg(props) {
   const {chartData} = props;
   const parentRef = React.useRef(null);
   const ref = React.useRef(null);
+
+  console.log('###', props)
   
   React.useEffect(() => {
     if(parentRef.current === null) return;

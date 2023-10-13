@@ -14,7 +14,9 @@ const dev = {
     PARTICIPATION: "participation",
     PRODUCTION: 'production',
     LISTEN_ANALYSIS: 'listenAnalysis',
-  }  
+    ANALYSIS_NOTE: 'analysisNote',
+    ETC: 'etc'
+  },
 }
 
 const prd = {
