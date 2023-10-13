@@ -7,6 +7,7 @@ const dev = {
     }
   },
   DATA_TYPE : {
+    CONCURRENT_LISTENER: 'concurrentListener',
     ACTIVE_LISTENER: 'activeListener',
     LISTENER_ORG: 'listenerOrg',
     KEEP_RATIO: 'keepRatio',

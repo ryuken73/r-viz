@@ -35,6 +35,7 @@ import constants from 'config/constants';
 
 const {DATA_TYPE} = constants;
 const {
+  CONCURRENT_LISTENER,
   ACTIVE_LISTENER,
   LISTENER_ORG,
   KEEP_RATIO,
@@ -129,6 +130,13 @@ function ProgramPage(props) {
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
   const [ drawerContent, setDrawerContent] = React.useState(null);
   // const [ totalRecv, setTotalRecv ] = React.useState(100);
+  const { data: concurrentListener = {}} = useDetailDataQuery({
+    autoRunning: true,
+    programId,
+    isOnair: false,
+    period: globalPeriod,
+    type: CONCURRENT_LISTENER
+  })
   const { data: activeListenerData = {}, isLoading } = useDetailDataQuery({
     autoRunning: true,
     programId,
@@ -150,7 +158,7 @@ function ProgramPage(props) {
     period: globalPeriod,
     type: KEEP_RATIO
   })
-  const { totalRecv = 0, chartData=[] } = activeListenerData;
+  const { totalRecv = 0, chartData=[] } = concurrentListener;
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
 
   // React.useEffect(() => {
