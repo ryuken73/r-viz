@@ -1,33 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Canvas from '@antv/f2-react';
 import Canvas from 'lib/ReactF2';
 import { Chart, Line, ScrollBar, Point, Axis, Area } from '@antv/f2';
+import useChartResize from 'hooks/useChartResize';
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 `
 
-function LineCartSvg(props) {
+function LineChartSvg(props) {
   const {chartData} = props;
   const parentRef = React.useRef(null);
   const ref = React.useRef(null);
 
-  console.log('###', props)
-  
-  React.useEffect(() => {
-    if(parentRef.current === null) return;
-    if(ref.current === null) return;
-    ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
-  }, [])  
-
-  React.useEffect(() => {
-    if(ref.current === null) return;
-    window.addEventListener('resize', () => {
-      console.log(parentRef.current.clientWidth)
-      ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
-    })
-  }, [])
+  useChartResize({
+    parentRef, 
+    canvasRef: ref,
+    heightRatio: 0.8  
+  })
 
   return (
     <Container ref={parentRef}>
@@ -68,4 +59,4 @@ function LineCartSvg(props) {
   )
 }
 
-export default React.memo(LineCartSvg);
+export default React.memo(LineChartSvg);
