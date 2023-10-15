@@ -87,7 +87,7 @@ function ConcurrentUserChart(props) {
                   return 'transparent'
                 }
                 if(type === 'past'){
-                  return 'wheat'
+                  return 'yellow'
                 }
               }
             }}
@@ -101,10 +101,10 @@ function ConcurrentUserChart(props) {
               field: 'type',
               lineWidth: (type) => {
                 if(type === 'current'){
-                  return 4
+                  return 2
                 }
                 if(type === 'past'){
-                  return 2
+                  return 1
                 }
               },
               lineCap: 'round',
@@ -134,15 +134,22 @@ function ConcurrentUserChart(props) {
               field: 'type',
               callback: (type) => {
                 if(type === 'current'){
-                  return 3;
-                } else {
                   return 2;
+                } else {
+                  return 1;
                 }
               }
             }}
             style={{
-              field: 'medalType',
-              fill: '#fff',
+              field: 'type',
+              fill: (type) => {
+                  if(type === 'current'){
+                    return 'gold';
+                  } else {
+                    return 'transparent';
+                  }
+                }
+              ,
               lineWidth: 1,
               stroke: (val) => {
                 if (val === 'Gold Medals') {
