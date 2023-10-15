@@ -206,6 +206,7 @@ function ProgramPage(props) {
           image={programImage}
         >
           <TopTitle 
+            isOnair={isOnair}
             hide={openDrawer}
             summaryText={summaryText}
             totalRecv={totalRecv[1]}
@@ -217,6 +218,7 @@ function ProgramPage(props) {
             <Contents
             >
               <ConcurrentUserChart 
+                isOnair={isOnair}
                 chartData={isOnair ? savedData : chartData}
               ></ConcurrentUserChart>
             </Contents>

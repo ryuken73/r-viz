@@ -25,8 +25,10 @@ export const BigNumber = styled(CommonDiv)`
   background: transparent;
   opacity: ${props => props.opacity ? `${props.opacity}` : 1};
   transition: 0.5s all;
+  color: ${props => props.color};
 `
 export const TextNormal = styled(CommonDiv)`
+  color: ${props => props.color};
   flex: ${props => props.flex};
 `
 export const TopHeroContent = styled.div`

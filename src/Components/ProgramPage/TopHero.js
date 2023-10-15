@@ -12,13 +12,13 @@ const Container = styled.div`
   z-index: 10;
 `
 function TopHero(props) {
-  const {totalRecv = 0} = props;
+  const {totalRecv = 0, color} = props;
   const {opacityHero} = useAppState();
   const baseNumberSize = 5;
   return (
     <Container>
       <TopHeroContent>
-        <BigNumber size={baseNumberSize} flex={5} opacity={opacityHero}>
+        <BigNumber color={color} size={baseNumberSize} flex={5} opacity={opacityHero}>
           <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
         </BigNumber>
       </TopHeroContent>

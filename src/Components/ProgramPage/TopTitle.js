@@ -10,22 +10,22 @@ const Container = styled.div`
   padding-bottom: 4vh;
   visibility: ${props => props.hide && 'hidden'};
   /* height: 300px; */
-  color: white;
+  color: ${props => props.isOnair ? 'yellow !important' : 'white'};
   /* transform: translateY(30%); */
 `
 
 function TopTitle(props) {
-  const {hide, summaryText, currentPercentage, totalRecv=12345} = props;
+  const {isOnair, hide, summaryText, currentPercentage, totalRecv=12345} = props;
+  const color = isOnair ? 'moccasin' : 'lightblue';
   return (
-    // <ParallaxBox speed={-30}>
-      <Container hide={hide}>
-        <TextNormal>{summaryText}</TextNormal>
-        <TopHero 
-          currentPercentage={currentPercentage}
-          totalRecv={totalRecv}
-        ></TopHero>
-      </Container>
-    // </ParallaxBox>
+    <Container isOnair={isOnair} hide={hide}>
+      <TextNormal color={color}>{summaryText}</TextNormal>
+      <TopHero 
+        color={color}
+        currentPercentage={currentPercentage}
+        totalRecv={totalRecv}
+      ></TopHero>
+    </Container>
   )
 }
 

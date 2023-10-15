@@ -15,14 +15,20 @@ const Container = styled.div`
 `
 
 function ConcurrentUserChart(props) {
-  const {chartData: data} = props;
+  const {chartData: data, isOnair} = props;
   const parentRef = React.useRef(null);
   const ref = React.useRef(null);
+
+  const lineColor = isOnair ? 'yellow':'teal';
+  const pointColor = isOnair ? 'yellow':'teal';
+  const areaColor = isOnair ? 'yellow':'teal';
+
   React.useEffect(() => {
     if(parentRef.current === null) return;
     if(ref.current === null) return;
     ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
   }, [])
+
   console.log('+++chartData:', data)
   React.useEffect(() => {
     if(ref.current === null) return;
@@ -84,10 +90,10 @@ function ConcurrentUserChart(props) {
               field: 'type',
               callback: (type) => {
                 if(type === 'current'){
-                  return 'transparent'
+                  return 'transparent';
                 }
                 if(type === 'past'){
-                  return 'yellow'
+                  return areaColor; 
                 }
               }
             }}
@@ -124,7 +130,7 @@ function ConcurrentUserChart(props) {
             }}
             color={{
               field: 'type',
-              range: ['grey', 'yellow']
+              range: ['grey', lineColor]
             }}
           />
           <Point 
@@ -144,7 +150,7 @@ function ConcurrentUserChart(props) {
               field: 'type',
               fill: (type) => {
                   if(type === 'current'){
-                    return 'gold';
+                    return pointColor;
                   } else {
                     return 'transparent';
                   }
