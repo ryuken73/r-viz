@@ -20,13 +20,7 @@ import AnimatedNumberWithDot from 'Components/Common/AnimatedNumberWithDot';
 import ImageBackground from 'Components/Common/ImageBackground';
 import SlidingRadio from 'Components/SlidingRadio';
 import LiveLineChart from 'Components/Chart/LiveLineChart';
-import LineChartSvg from 'Components/Chart/LineChartSvg';
-import RadarChartSvg from 'Components/Chart/RadarChartSvg';
-import BarChartSvg from 'Components/Chart/BarChartSvg';
-import PieChartSvg from 'Components/Chart/PieChartSvg';
-import HbarChartSvg from 'Components/Chart/HbarChartSvg';
-import ScatterChartSvg from 'Components/Chart/ScatterChartSvg';
-import DualBarChartSvg from 'Components/Chart/DualBarChartSvg';
+import ConcurrentUserChart from 'Components/Chart/ConcurrentUserChart';
 import BottomDrawer from 'Components/BottomDrawer';
 import GraphComponent from 'Components/Chart/GraphComponent';
 import useAppState from 'hooks/useAppState';
@@ -116,6 +110,23 @@ const CustomImg = styled.img`
 const getPxFromPercent = (totalHeight, percent) => {
   return totalHeight * percent / 100;
 }
+const INITIAL_RECORD_COUNT = 121;
+
+const genNextData = (chartData) => {
+  const nextIndex = chartData.length - INITIAL_RECORD_COUNT;
+  if(chartData.length === INITIAL_RECORD_COUNT * 2){
+    return chartData;
+  }
+  const nextRecord = {
+    ...chartData[nextIndex],
+    value: Math.round(Math.random() * 100),
+    type: 'current'
+  }
+  return [
+    ...chartData,
+    nextRecord
+  ]
+}
 
 function ProgramPage(props) {
   const {
@@ -129,51 +140,29 @@ function ProgramPage(props) {
   const [ currentPercentage, setCurrentPercentage ] = React.useState(0);
   const [ openDrawer, setOpenDrawer ] = React.useState(false);
   const [ drawerContent, setDrawerContent] = React.useState(null);
+  const [ savedData, setSavedData ] = React.useState(null);
   // const [ totalRecv, setTotalRecv ] = React.useState(100);
   const { data: concurrentListener = {}} = useDetailDataQuery({
     autoRunning: true,
     programId,
-    isOnair: false,
-    period: globalPeriod,
-    type: CONCURRENT_LISTENER
+    isOnair,
+    type: CONCURRENT_LISTENER,
   })
-  const { data: activeListenerData = {}, isLoading } = useDetailDataQuery({
-    autoRunning: true,
-    programId,
-    isOnair: false,
-    period: globalPeriod,
-    type: ACTIVE_LISTENER
-  })
-  const { data: listenerOrgData = {}} = useDetailDataQuery({
-    autoRunning: true,
-    programId,
-    isOnair: false,
-    period: globalPeriod,
-    type: LISTENER_ORG
-  })
-  const { data: keepRatioData = {}} = useDetailDataQuery({
-    autoRunning: true,
-    programId,
-    isOnair: false,
-    period: globalPeriod,
-    type: KEEP_RATIO
-  })
-  const { totalRecv = 0, chartData=[] } = concurrentListener;
+  const { totalRecv = [0, 0], chartData=[] } = concurrentListener;
   const { data, loading, error} = usePalette(programImage, 5, 'rgbString');
 
-  // React.useEffect(() => {
-  //  const timer = setInterval(() => {
-  //     const rands = Math.floor(Math.random() * 10000);
-  //     setTotalRecv(totalRecv => {
-  //       return (Date.now() % 2 === 0) ? 
-  //         Math.abs(totalRecv + rands) :
-  //         Math.abs(totalRecv - rands)
-  //     })
-  //  }, 10000) 
-  //  return () => {
-  //   clearInterval(timer);
-  //  }
-  // }, [])
+  React.useEffect(() => {
+    if(!isOnair) return;
+    if(concurrentListener.chartData === undefined) return;
+    setSavedData(savedData => {
+      if(savedData === null){
+        return concurrentListener.chartData;
+      } else {
+        const nextData = genNextData(savedData);
+        return nextData;
+      }
+    })
+  }, [concurrentListener.chartData, isOnair])
 
   React.useEffect(() => {
     if(loading === false && error === undefined){
@@ -209,7 +198,7 @@ function ProgramPage(props) {
               :
             </Sep>
             <TextNormal>
-              <AnimatedNumberWithDot to={totalRecv} postfix="명" postfixSize={1} />
+              <AnimatedNumberWithDot to={totalRecv[1]} postfix="명" postfixSize={1} />
             </TextNormal>
           </SummaryTextContainer>
         </TitleContainer>
@@ -219,7 +208,7 @@ function ProgramPage(props) {
           <TopTitle 
             hide={openDrawer}
             summaryText={summaryText}
-            totalRecv={totalRecv}
+            totalRecv={totalRecv[1]}
             currentPercentage={currentPercentage}
           >
           </TopTitle>
@@ -227,10 +216,9 @@ function ProgramPage(props) {
             <Header noBackground={true}>{liveGraphTitle}</Header>
             <Contents
             >
-              <LiveLineChart 
-                chartData={chartData}
-                period={globalPeriod}
-              ></LiveLineChart>
+              <ConcurrentUserChart 
+                chartData={isOnair ? savedData : chartData}
+              ></ConcurrentUserChart>
             </Contents>
           </SingleColumnBox>
             <SliderContainer>

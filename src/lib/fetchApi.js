@@ -66,32 +66,75 @@ const fetchSample = (apiName, url, params) => {
   })
 }
 
-const randumNumber = (max=100) => {
-  return Math.round(Math.random() * max);
+const randumNumber = (min=0, max=100) => {
+  return min + Math.round(Math.random() * (max-min));
+}
+
+const plusTimeMap = {
+  daily: 1000 * 60 * 60,
+  weekly: 1000 * 60 * 60 * 24 * 7,
+  monthly: 1000 * 60 * 60 * 24 * 30,
+  halfYearly: 1000 * 60 * 60 * 24 * 30 * 6,
+  yearly: 1000 * 60 * 60 * 24 * 30 * 12,
+}
+const intervalMap = {
+  daily: 300,
+  weekly: 60*60*24,
+  monthly: 60*60*24,
+  halfYearly: 60*60*24*30,
+  yearly: 60*60*24*30
 }
 
 const getLiveData = (type, period) => {
-  if(type === 'activeListener'){
-
+  if(type === 'concurrentListener'){
+    const from = (new Date(Date.now())).toISOString();
+    const until = (new Date(Date.now() + plusTimeMap['daily'] * 2)).toISOString();
+    const interval = 60;
+    const keyName = 'value';
+    const series = new Series({from, until, interval, keyName})
+    const chartDataPast = series.generate(() => {
+      return randumNumber(40, 85)
+    }).map(data => {
+      return {...data, type: 'past'};
+    })  
+    return {
+      totalRecv: [Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000)],
+      headText: `${randumNumber()}%`,
+      footText: `${randumNumber()}% 변동`,
+      chartData: chartDataPast,
+    }
   }
 }
 
 const getPastData = (type, period) => {
-  const plusTimeMap = {
-    daily: 1000 * 60 * 60,
-    weekly: 1000 * 60 * 60 * 24 * 7,
-    monthly: 1000 * 60 * 60 * 24 * 30,
-    halfYearly: 1000 * 60 * 60 * 24 * 30 * 6,
-    yearly: 1000 * 60 * 60 * 24 * 30 * 12,
+  if( type === 'concurrentListener'){
+    const from = (new Date(Date.now())).toISOString();
+    const until = (new Date(Date.now() + plusTimeMap['daily'] * 2)).toISOString();
+    const interval = 60;
+    const keyName = 'value';
+    const series = new Series({from, until, interval, keyName})
+    const chartDataPast = series.generate(() => {
+    return randumNumber(40, 85)
+    }).map(data => {
+      return {...data, type: 'past'};
+    })  
+    const chartDataCurrent = series.generate(() => {
+      return randumNumber(50, 99)
+    }).map(data => {
+      return {...data, type: 'current'};
+    })
+
+    return {
+      totalRecv: [Math.floor(Math.random() * 10000), Math.floor(Math.random()*10000)],
+      headText: `${randumNumber()}%`,
+      footText: `${randumNumber()}% 변동`,
+      chartData: [
+        ...chartDataPast,
+        ...chartDataCurrent
+      ]
+    }
   }
-  const intervalMap = {
-    daily: 300,
-    weekly: 60*60*24,
-    monthly: 60*60*24,
-    halfYearly: 60*60*24*30,
-    yearly: 60*60*24*30
-  }
-  if( type === 'concurrentListener' || type === 'activeListener' || type === 'keepRatio' || type === 'production'){
+  if( type === 'activeListener' || type === 'keepRatio' || type === 'production'){
     const from = (new Date(Date.now())).toISOString();
     const until = (new Date(Date.now() + plusTimeMap[period])).toISOString();
     const interval = intervalMap[period];

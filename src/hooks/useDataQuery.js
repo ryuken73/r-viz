@@ -61,7 +61,6 @@ const useQueryFunction = (enabled, apiName, autoRefetch, autoRefetchInterval, pa
     } 
   const results = useQuery(queryParams);
   return results;  
-
 }
 
 export const useDetailDataQuery = ({
@@ -70,6 +69,7 @@ export const useDetailDataQuery = ({
   isOnair,
   period,
   type,
+  prevData
 }) => {
   const apiName = 'queryDetailData';
   const autoRefetch = isOnair;
@@ -79,7 +79,7 @@ export const useDetailDataQuery = ({
     apiName, 
     autoRefetch, 
     autoRefetchInterval, 
-    {programId, isOnair, period, type}
+    {programId, isOnair, period, type, prevData}
   )
   return results;  
 }

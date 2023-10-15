@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react';
-// import Canvas from '@antv/f2-react';
 import styled from 'styled-components';
 import Canvas from 'lib/ReactF2';
-import { Chart, Line, Axis, Tooltip, Point } from '@antv/f2';
+import { Chart, Line, Area, Axis, Tooltip, Point } from '@antv/f2';
 
 const initialData = [
   {
@@ -16,9 +14,8 @@ const Container = styled.div`
   width: 100%;
 `
 
-function ChartReact(props) {
-  // const [data, setData] = React.useState(initialData);
-  const {chartData: data, period} = props;
+function ConcurrentUserChart(props) {
+  const {chartData: data} = props;
   const parentRef = React.useRef(null);
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -26,7 +23,7 @@ function ChartReact(props) {
     if(ref.current === null) return;
     ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
   }, [])
-  console.log('chartData:', data)
+  console.log('+++chartData:', data)
   React.useEffect(() => {
     if(ref.current === null) return;
     window.addEventListener('resize', () => {
@@ -55,8 +52,8 @@ function ChartReact(props) {
           <Axis
             field="timestamp"
             type="timeCat"
-            mask={timeMaskMap[period]}
-            tickCount={tickCountMap[period]}
+            mask={timeMaskMap['daily']}
+            tickCount={tickCountMap['daily']}
             style={{
               label: { align: 'between' },
               grid: { stroke: 'transparent'}
@@ -80,20 +77,69 @@ function ChartReact(props) {
             }}
             showCrosshairs={true} 
           />
+          <Area 
+            x="timestamp" 
+            y="value" 
+            color={{
+              field: 'type',
+              callback: (type) => {
+                if(type === 'current'){
+                  return 'transparent'
+                }
+                if(type === 'past'){
+                  return 'wheat'
+                }
+              }
+            }}
+            shape="smooth"
+          />
           <Line 
             x="timestamp" 
             y="value" 
             style={{
-              stroke: 'yellow',
-              lineWidth: 5,
-              lineCap: 'round' 
+              // stroke: 'yellow',
+              field: 'type',
+              lineWidth: (type) => {
+                if(type === 'current'){
+                  return 4
+                }
+                if(type === 'past'){
+                  return 2
+                }
+              },
+              lineCap: 'round',
+              smooth: true
             }}
-            shape="smooth"
+            // shape="smooth"
+            shape={{
+              field: 'type',
+              callback: (type) => {
+                if (type === 'current') {
+                  return 'line';
+                }
+                if (type === 'past') {
+                  return 'dash';
+                }
+              },
+            }}
+            color={{
+              field: 'type',
+              range: ['grey', 'yellow']
+            }}
           />
           <Point 
             x="timestamp" 
             y="value" 
-            size={5}
+            size={{
+              field: 'type',
+              callback: (type) => {
+                if(type === 'current'){
+                  return 3;
+                } else {
+                  return 2;
+                }
+              }
+            }}
             style={{
               field: 'medalType',
               fill: '#fff',
@@ -116,4 +162,4 @@ function ChartReact(props) {
   )
 }
 
-export default ChartReact;
+export default React.memo(ConcurrentUserChart);
