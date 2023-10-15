@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Canvas from '@antv/f2-react';
+import Canvas from 'lib/ReactF2';
 import { Chart, Interval, Legend } from '@antv/f2';
+import useChartResize from 'hooks/useChartResize';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`
 
 const data = [
     {
@@ -37,31 +43,41 @@ const data = [
   ];
 
 function PieChartSvg() {
+  const parentRef = React.useRef(null);
+  const ref = React.useRef(null);
+
+  useChartResize({
+    parentRef, 
+    canvasRef: ref,
+    heightRatio: 0.8  
+  })
   return (
-    <Canvas pixelRatio={window.devicePixelRatio}>
-      <Chart
-        data={data}
-        coord={{
-          type: 'polar',
-          transposed: true,
-          innerRadius: 0.7,
-        }}
-      >
-        <Interval
-          x="a"
-          y="percent"
-          adjust="stack"
-          // adjust="symmetric"
-          color={{
-            field: 'name',
-            range: ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0'],
+    <Container ref={parentRef}>
+      <Canvas ref={ref} pixelRatio={window.devicePixelRatio}>
+        <Chart
+          data={data}
+          coord={{
+            type: 'polar',
+            transposed: true,
+            innerRadius: 0.7,
           }}
-          style={{
-            radius: [10, 7, 4, 2],
-          }}
-        />
-      </Chart>
-    </Canvas>
+        >
+          <Interval
+            x="a"
+            y="percent"
+            adjust="stack"
+            // adjust="symmetric"
+            color={{
+              field: 'name',
+              range: ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0'],
+            }}
+            style={{
+              radius: [10, 7, 4, 2],
+            }}
+          />
+        </Chart>
+      </Canvas>
+    </Container>
   )
 
 }

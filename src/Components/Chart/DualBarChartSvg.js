@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Canvas from '@antv/f2-react';
+import Canvas from 'lib/ReactF2';
 import { Chart, Line, Axis, Interval, Point, Legend } from '@antv/f2';
+import useChartResize from 'hooks/useChartResize';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`
 
 const data = [
   {
@@ -117,23 +123,34 @@ const data = [
 ];
 
 function DualBarChartSvg() {
+  const parentRef = React.useRef(null);
+  const ref = React.useRef(null);
+
+  useChartResize({
+    parentRef, 
+    canvasRef: ref,
+    heightRatio: 0.8  
+  })
+
   return (
-    <Canvas pixelRatio={window.devicePixelRatio}>
-      <Chart
-        data={data}
-        coord={{
-          transposed: true,
-        }}
-        scale={{
-          sales: {
-            tickCount: 5,
-          },
-        }}
-      >
-        <Interval x="cate" y="value" adjust="stack" color="gender" />
-        <Legend align="right" field="gender" />
-      </Chart>
-    </Canvas>
+    <Container ref={parentRef}>
+      <Canvas ref={ref} pixelRatio={window.devicePixelRatio}>
+        <Chart
+          data={data}
+          coord={{
+            transposed: true,
+          }}
+          scale={{
+            sales: {
+              tickCount: 5,
+            },
+          }}
+        >
+          <Interval x="cate" y="value" adjust="stack" color="gender" />
+          <Legend align="right" field="gender" />
+        </Chart>
+      </Canvas>
+    </Container>
   )
 
 }
