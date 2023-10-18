@@ -11,7 +11,9 @@ const CustomSplide = styled(Splide)`
   padding: ${props => props.padding || `1em !important`};
   width: 100%;
   -webkit-transform: translate3d(0, 0, 0);
-`
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  `
 const CustomSplideTrack = styled(SplideTrack)`
   overflow: clip;
   width: 100%;
