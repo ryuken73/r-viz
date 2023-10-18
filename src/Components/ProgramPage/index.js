@@ -177,7 +177,7 @@ function ProgramPage(props) {
     setOpenDrawer(true);
   }, [])
 
-  const summaryText = isOnair ? '[ONAIR] 현재 동시 청취자수' : '평균 동시 청취자수Y'
+  const summaryText = isOnair ? '[ONAIR] 현재 동시 청취자수' : '평균 동시 청취자수Z'
   const liveGraphTitle = isOnair ? '현재 동시 청취자수' : '동시 청취자수'
 
   return (
