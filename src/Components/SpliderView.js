@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css/core';
 import { 
   useListProgramsQuery ,
   useOnairProgramIdsQuery
