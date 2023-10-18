@@ -10,6 +10,7 @@ import ProgramPage from 'Components/ProgramPage';
 const CustomSplide = styled(Splide)`
   padding: ${props => props.padding || `1em !important`};
   width: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
 `
 const CustomSplideTrack = styled(SplideTrack)`
   overflow: clip;
