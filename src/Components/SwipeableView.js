@@ -1,29 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import SwipeableViews from 'react-swipeable-views';
+// import '@splidejs/react-splide/css/core';
+import { 
+  useListProgramsQuery ,
+  useOnairProgramIdsQuery
+} from 'hooks/useDataQuery';
 import ProgramPage from 'Components/ProgramPage';
-import background1 from 'resources/Cul2.jpg';
-import background2 from 'resources/ji.jpg';
-import background3 from 'resources/parkso.jpg';
 
-import 'swiper/css';
-
-function SwiperView(props) {
-  const {pages=[background1, background2, background3]} = props;
+function SpliderView(props) {
+  const { data: listPrograms, isLoading } = useListProgramsQuery({autoRunning: true});
+  const { data: onairProgramIds } = useOnairProgramIdsQuery({autoRunning: true});
+  const splideRef = React.useRef(null);
+  console.log(onairProgramIds)
+  const handleMove = React.useCallback((a, b, c) => {
+    console.log('##### move', a, b, c, splideRef.current.splide.index);
+  }, [])
+  const handleVisible = React.useCallback((slide) => {
+    console.log('##### visible', slide);
+  }, [])
   return (
     <SwipeableViews
     >
-      {pages.map(page => (
-        // <SwiperSlide key={page}>
-          <ProgramPage
-            key={page}
-            programImage={page}
-          ></ProgramPage>
-        // </SwiperSlide>
-      ))}
+        {listPrograms?.map(program => (
+            <ProgramPage
+              programId={program.programId}
+              programTitle={program.programTitle}
+              programImage={program.programImage}
+              isOnair={onairProgramIds?.includes(program.programId)}
+            ></ProgramPage>
+        ))}
     </SwipeableViews>
   )
 }
 
-export default React.memo(SwiperView);
+export default React.memo(SpliderView);
