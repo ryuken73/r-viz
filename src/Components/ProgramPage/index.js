@@ -213,7 +213,7 @@ function ProgramPage(props) {
             currentPercentage={currentPercentage}
           >
           </TopTitle>
-          <SingleColumnBox hide={openDrawer} height="long">
+          {/* <SingleColumnBox hide={openDrawer} height="long">
             <Header noBackground={true}>{liveGraphTitle}</Header>
             <Contents
             >
@@ -222,12 +222,12 @@ function ProgramPage(props) {
                 chartData={isOnair ? savedData : chartData}
               ></ConcurrentUserChart>
             </Contents>
-          </SingleColumnBox>
+          </SingleColumnBox> */}
             {/* <SliderContainer>
               <SlidingRadio></SlidingRadio>
             </SliderContainer> */}
             <GraphContainer>
-              <GraphComponent
+              {/* <GraphComponent
                 programId={programId}
                 type={ACTIVE_LISTENER}
                 title="활성 청취자"
@@ -279,7 +279,7 @@ function ProgramPage(props) {
                 title="ETC"
                 footText="지난주 대비 1% 증가" 
                 onClickGraph={onClickGraph}
-              />
+              /> */}
               <LastGraphBox>
                 <LastCard></LastCard>
               </LastGraphBox>
