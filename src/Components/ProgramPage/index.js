@@ -202,7 +202,7 @@ function ProgramPage(props) {
             </TextNormal>
           </SummaryTextContainer>
         </TitleContainer>
-        <ImageBackground
+        {/* <ImageBackground
           image={programImage}
         >
           <TopTitle 
@@ -284,12 +284,12 @@ function ProgramPage(props) {
                 <LastCard></LastCard>
               </LastGraphBox>
             </GraphContainer>
-        </ImageBackground>
-        <BottomDrawer 
+        </ImageBackground> */}
+        {/* <BottomDrawer 
           drawerContent={drawerContent}
           openDrawer={openDrawer} 
           setOpenDrawer={setOpenDrawer}
-        ></BottomDrawer>
+        ></BottomDrawer> */}
       </Container>
     </div>
   )
