@@ -183,8 +183,7 @@ function ProgramPage(props) {
   return (
     <div>
       <Container openDrawer={openDrawer}>
-        <TitleContainer openDrawer={openDrawer}>
-          {/* <TopSticky show={openDrawer}>ABC</TopSticky> */}
+        {/* <TitleContainer openDrawer={openDrawer}>
           <CustomImg src={programImage} showSummary={showSummary} />
           <SummaryTextContainer hide={true}>
             <DummyText showSummary={showSummary}>Dummy</DummyText>
@@ -201,7 +200,7 @@ function ProgramPage(props) {
               <AnimatedNumberWithDot to={totalRecv[1]} postfix="명" postfixSize={1} />
             </TextNormal>
           </SummaryTextContainer>
-        </TitleContainer>
+        </TitleContainer> */}
         {/* <ImageBackground
           image={programImage}
         > */}
@@ -213,7 +212,7 @@ function ProgramPage(props) {
             currentPercentage={currentPercentage}
           >
           </TopTitle>
-          {/* <SingleColumnBox hide={openDrawer} height="long">
+          <SingleColumnBox hide={openDrawer} height="long">
             <Header noBackground={true}>{liveGraphTitle}</Header>
             <Contents
             >
@@ -222,12 +221,12 @@ function ProgramPage(props) {
                 chartData={isOnair ? savedData : chartData}
               ></ConcurrentUserChart>
             </Contents>
-          </SingleColumnBox> */}
+          </SingleColumnBox>
             {/* <SliderContainer>
               <SlidingRadio></SlidingRadio>
             </SliderContainer> */}
             <GraphContainer>
-              <GraphComponent
+              {/* <GraphComponent
                 programId={programId}
                 type={ACTIVE_LISTENER}
                 title="활성 청취자"
@@ -279,7 +278,7 @@ function ProgramPage(props) {
                 title="ETC"
                 footText="지난주 대비 1% 증가" 
                 onClickGraph={onClickGraph}
-              />
+              /> */}
               <LastGraphBox>
                 <LastCard></LastCard>
               </LastGraphBox>
