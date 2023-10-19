@@ -201,9 +201,9 @@ function ProgramPage(props) {
             </TextNormal>
           </SummaryTextContainer>
         </TitleContainer> */}
-        {/* <ImageBackground
+        <ImageBackground
           image={programImage}
-        > */}
+        >
           <TopTitle 
             isOnair={isOnair}
             hide={openDrawer}
@@ -222,11 +222,11 @@ function ProgramPage(props) {
               ></ConcurrentUserChart>
             </Contents>
           </SingleColumnBox>
-            {/* <SliderContainer>
+            <SliderContainer>
               <SlidingRadio></SlidingRadio>
-            </SliderContainer> */}
+            </SliderContainer>
             <GraphContainer>
-              {/* <GraphComponent
+              <GraphComponent
                 programId={programId}
                 type={ACTIVE_LISTENER}
                 title="활성 청취자"
@@ -278,17 +278,17 @@ function ProgramPage(props) {
                 title="ETC"
                 footText="지난주 대비 1% 증가" 
                 onClickGraph={onClickGraph}
-              /> */}
+              />
               <LastGraphBox>
                 <LastCard></LastCard>
               </LastGraphBox>
             </GraphContainer>
-        {/* </ImageBackground> */}
-        {/* <BottomDrawer 
+        </ImageBackground>
+        <BottomDrawer 
           drawerContent={drawerContent}
           openDrawer={openDrawer} 
           setOpenDrawer={setOpenDrawer}
-        ></BottomDrawer> */}
+        ></BottomDrawer>
       </Container>
     </div>
   )
