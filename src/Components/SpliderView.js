@@ -39,7 +39,7 @@ function SpliderView(props) {
   return (
     <CustomSplide
       options = {{
-        speed: 400,
+        speed: 1000,
         easing: 'linear',
         arrows: false,
         perPage: 1,
