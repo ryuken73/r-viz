@@ -183,7 +183,7 @@ function ProgramPage(props) {
   return (
     <div>
       <Container openDrawer={openDrawer}>
-        {/* <TitleContainer openDrawer={openDrawer}>
+        <TitleContainer openDrawer={openDrawer}>
           <CustomImg src={programImage} showSummary={showSummary} />
           <SummaryTextContainer hide={true}>
             <DummyText showSummary={showSummary}>Dummy</DummyText>
@@ -200,7 +200,7 @@ function ProgramPage(props) {
               <AnimatedNumberWithDot to={totalRecv[1]} postfix="명" postfixSize={1} />
             </TextNormal>
           </SummaryTextContainer>
-        </TitleContainer> */}
+        </TitleContainer>
         <ImageBackground
           image={programImage}
         >

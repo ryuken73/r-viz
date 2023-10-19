@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SplideView from 'Components/SpliderView';
+import SwipeableView from 'Components/SwipeableView';
 import Footer from 'Components/Footer';
 import useAppState from 'hooks/useAppState';
 import {throttle} from 'utils';
@@ -58,7 +59,8 @@ function App() {
     <Container>
       {/* <TopSticky>
       </TopSticky> */}
-      <SplideView />
+      {/* <SplideView /> */}
+      <SwipeableView />
       <Footer />
     </Container>
   );

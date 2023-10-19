@@ -27,7 +27,7 @@ function ImageBackground(props) {
       overflowColor={overflowColor}
     >
       <ImageContainer>
-        <StyledImage src={image} />
+        {/* <StyledImage src={image} /> */}
       </ImageContainer>
       {children}
     </Container>
