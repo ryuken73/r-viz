@@ -31,7 +31,7 @@ function ChartReact(props) {
     if(ref.current === null) return;
     window.addEventListener('resize', () => {
       ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
-    }, {passvie: false})
+    }, {passive: false})
   }, [])
 
   const timeMaskMap = {
