@@ -22,7 +22,7 @@ const useChartResize = (props) => {
     if(canvasRef.current === null) return;
     window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', handleResize, {passive: true})
     }
   }, [canvasRef, handleResize])
 

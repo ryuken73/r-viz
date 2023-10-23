@@ -68,7 +68,7 @@ function SlidingRadio() {
   }, [resizeSlider])
 
   React.useEffect(() => {
-    window.addEventListener('resize', resizeSlider)
+    window.addEventListener('resize', resizeSlider, {passive: true})
     return () => {
       window.removeEventListener('resize', resizeSlider);
     }

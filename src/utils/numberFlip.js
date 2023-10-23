@@ -95,7 +95,7 @@ export default class Flip {
           })
     }
     resize()
-    window.addEventListener("resize", resize)
+    window.addEventListener("resize", resize, {passive: true})
   }
 
   _draw({ per, alter, digit }) {
