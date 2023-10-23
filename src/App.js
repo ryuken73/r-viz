@@ -61,8 +61,6 @@ function App() {
       </TopSticky> */}
       {/* <SplideView /> */}
       <div>aaa</div>
-      <div>aaa</div>
-      <div>aaa</div>
       <SwipeableView />
       <Footer />
     </Container>

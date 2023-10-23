@@ -222,9 +222,9 @@ function ProgramPage(props) {
               ></ConcurrentUserChart>
             </Contents>
           </SingleColumnBox>
-            <SliderContainer>
+            {/* <SliderContainer>
               <SlidingRadio></SlidingRadio>
-            </SliderContainer>
+            </SliderContainer> */}
             <GraphContainer>
               <GraphComponent
                 programId={programId}
