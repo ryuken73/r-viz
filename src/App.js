@@ -49,10 +49,10 @@ function App() {
   const onChangePercentage = throttle(handleScroll, 50);
 
   React.useEffect(() => {
-    window.addEventListener('scroll', onChangePercentage);
-    return () => {
-      window.removeEventListener('scroll', onChangePercentage)
-    }
+    // window.addEventListener('scroll', onChangePercentage);
+    // return () => {
+    //   window.removeEventListener('scroll', onChangePercentage)
+    // }
   }, [onChangePercentage])
 
   return (
