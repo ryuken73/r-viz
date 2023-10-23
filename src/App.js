@@ -60,6 +60,7 @@ function App() {
       {/* <TopSticky>
       </TopSticky> */}
       {/* <SplideView /> */}
+      <div>aaa</div>
       <SwipeableView />
       <Footer />
     </Container>
