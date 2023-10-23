@@ -30,12 +30,12 @@ function ConcurrentUserChart(props) {
   }, [])
 
   console.log('+++chartData:', data)
-  React.useEffect(() => {
-    if(ref.current === null) return;
-    window.addEventListener('resize', () => {
-      ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
-    }, {passive: true})
-  }, [])
+  // React.useEffect(() => {
+  //   if(ref.current === null) return;
+  //   window.addEventListener('resize', () => {
+  //     ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
+  //   }, {passive: true})
+  // }, [])
 
   const timeMaskMap = {
     daily: 'h시m분',

@@ -67,12 +67,12 @@ function SlidingRadio() {
     resizeSlider();
   }, [resizeSlider])
 
-  React.useEffect(() => {
-    window.addEventListener('resize', resizeSlider, {passive: true})
-    return () => {
-      window.removeEventListener('resize', resizeSlider);
-    }
-  }, [resizeSlider])
+  // React.useEffect(() => {
+  //   window.addEventListener('resize', resizeSlider, {passive: true})
+  //   return () => {
+  //     window.removeEventListener('resize', resizeSlider);
+  //   }
+  // }, [resizeSlider])
 
   React.useEffect(() => {
     const index = Object.keys(itemList).findIndex(period => period === globalPeriod);
