@@ -20,9 +20,9 @@ const useChartResize = (props) => {
 
   React.useEffect(() => {
     if(canvasRef.current === null) return;
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, {passive: true})
     return () => {
-      window.removeEventListener('resize', handleResize, {passive: true})
+      window.removeEventListener('resize', handleResize)
     }
   }, [canvasRef, handleResize])
 
