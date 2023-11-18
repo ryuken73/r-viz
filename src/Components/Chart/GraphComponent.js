@@ -88,6 +88,7 @@ function GraphComponent(props) {
 
   return (
     <GraphBox onClick={handleClick}>
+    <div>
       {/* <Header>{title}</Header> */}
       <Card>
         {isLoading ? (
@@ -104,6 +105,7 @@ function GraphComponent(props) {
           </CardContent>
         )}
       </Card>
+    </div>
     </GraphBox>
   )
 }

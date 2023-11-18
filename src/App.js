@@ -57,12 +57,9 @@ function App() {
 
   return (
     <Container>
-      {/* <TopSticky>
-      </TopSticky> */}
-      {/* <SplideView /> */}
-      <div>aaa</div>
-      <div>aaa</div>
-      <div>aaa</div>
+      <TopSticky>
+      </TopSticky>
+      {/* {/* <SplideView /> */}
       <SwipeableView />
       <Footer />
     </Container>

@@ -92,10 +92,12 @@ export const GraphBoxOld = styled.div`
 `
 export const GraphBox = styled.div`
   /* width: 45%; */
-  backdrop-filter: blur(${STYLE.BLUR}px);
-  -webkit-backdrop-filter: blur(${STYLE.BLUR}px);
+  /* backdrop-filter: blur(${STYLE.BLUR}px); */
+  /* -webkit-backdrop-filter: blur(${STYLE.BLUR}px); */
+
   border-radius: 20px;
   background-color: rgb(18, 18, 18);
+
   /* box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px; */
   /* background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)); */
 
@@ -104,7 +106,7 @@ export const GraphBox = styled.div`
 
   /* padding: 1vh; */
   
-  backdrop-filter: blur(33px);
+  /* backdrop-filter: blur(1px); */
   background-blend-mode: overlay;
 `
 export const LastGraphBox = styled.div`
@@ -140,13 +142,13 @@ export const CardInStyle = styled.div`
 export const CardHeader = styled(CommonDiv)`
   /* position: absolute; */
   visibility: ${props => props.visibility};
-  backdrop-filter: blur(50px);
+  /* backdrop-filter: blur(50px); */
   text-align: left;
 `
 export const CardFooter = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   /* position: absolute; */
   visibility: ${props => props.visibility};
-  backdrop-filter: blur(50px);
+  /* backdrop-filter: blur(50px); */
   bottom: 0px;
   text-align: left;
   margin-top: auto;
