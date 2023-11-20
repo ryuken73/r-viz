@@ -41,7 +41,7 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   position: ${props => !props.noBackground && 'sticky'};
   position: ${props => !props.noBackground && '-webkit-sticky'};
 
-  /* top: calc(15vh + 2rem); */
+  top: calc(15vh + 2rem);
 
   /* color: lightgrey; */
   color: darkcyan;
@@ -52,7 +52,7 @@ export const Header = styled((props) => (<CommonDiv size={0.9} {...props} />))`
   margin: -1vh;
   padding: 1vh;
 
-  /* background-color: ${props => !props.noBackground && 'rgb(18, 18, 18)'}; */
+  background-color: ${props => !props.noBackground && 'rgb(18, 18, 18)'};
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -104,7 +104,7 @@ export const GraphBox = styled.div`
   /* border: 1px solid white; */
   /* margin-bottom: 2vh; */
 
-  /* padding: 1vh; */
+  padding: 1vh;
   
   /* backdrop-filter: blur(1px); */
   background-blend-mode: overlay;

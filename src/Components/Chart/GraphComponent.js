@@ -89,7 +89,7 @@ function GraphComponent(props) {
   return (
     <GraphBox onClick={handleClick}>
     <div>
-      {/* <Header>{title}</Header> */}
+      <Header>{title}</Header>
       <Card>
         {isLoading ? (
           <div>Loading...</div>
