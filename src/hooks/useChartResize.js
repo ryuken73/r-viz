@@ -1,13 +1,24 @@
+import {debounce} from 'lodash';
 import React from 'react';
 
 const useChartResize = (props) => {
   const {parentRef, canvasRef, heightRatio=0.5 } = props;
-  const handleResize = React.useCallback(() => {
+  const debouncedChange = debounce(() => {
+    console.log('^^^^ resize:', canvasRef.current)
     canvasRef.current.resize(
       parentRef.current.clientWidth, 
       parentRef.current.clientHeight
     );
-  }, [canvasRef, parentRef])
+  }, 500);
+  const handleResize = React.useCallback(() => {
+    debouncedChange();
+    // console.log('^^^^ resize:', canvasRef.current)
+    // canvasRef.current.resize(
+    //   parentRef.current.clientWidth, 
+    //   parentRef.current.clientHeight
+    // );
+  }, [debouncedChange])
+
 
   React.useEffect(() => {
     if(parentRef.current === null) return;

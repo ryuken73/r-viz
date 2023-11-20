@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {debounce} from 'lodash';
 import useAppState from 'hooks/useAppState';
 
 const Container = styled.div`
@@ -56,23 +57,26 @@ function SlidingRadio() {
   const containerRef = React.useRef(null);
   const slideRef = React.useRef(null);
 
+  const debouncedChange = debounce(() => {
+    const clientRect = containerRef.current.getBoundingClientRect();
+    setSliderWidth(clientRect.width / 5);
+  }, 100)
 
   const resizeSlider = React.useCallback(() => {
     if(containerRef.current === null) return;
-    const clientRect = containerRef.current.getBoundingClientRect();
-    setSliderWidth(clientRect.width / 5);
-  }, [])
+    debouncedChange();
+  }, [debouncedChange])
 
   React.useEffect(() => {
     resizeSlider();
   }, [resizeSlider])
 
-  // React.useEffect(() => {
-  //   window.addEventListener('resize', resizeSlider, {passive: true})
-  //   return () => {
-  //     window.removeEventListener('resize', resizeSlider);
-  //   }
-  // }, [resizeSlider])
+  React.useEffect(() => {
+    window.addEventListener('resize', resizeSlider, {passive: true})
+    return () => {
+      window.removeEventListener('resize', resizeSlider);
+    }
+  }, [resizeSlider])
 
   React.useEffect(() => {
     const index = Object.keys(itemList).findIndex(period => period === globalPeriod);
