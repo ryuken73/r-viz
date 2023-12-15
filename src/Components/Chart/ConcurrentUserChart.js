@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Canvas from 'lib/ReactF2';
+import useChartResize from 'hooks/useChartResize';
 import { Chart, Line, Area, Axis, Tooltip, Point } from '@antv/f2';
 
 const initialData = [
@@ -28,6 +29,12 @@ function ConcurrentUserChart(props) {
     if(ref.current === null) return;
     ref.current.resize(parentRef.current.clientWidth, parentRef.current.clientWidth*0.5);
   }, [])
+
+  useChartResize({
+    parentRef, 
+    canvasRef: ref,
+    heightRatio: 0.8  
+  })
 
   console.log('+++chartData:', data)
   // React.useEffect(() => {
